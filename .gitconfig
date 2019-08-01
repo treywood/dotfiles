@@ -1,0 +1,62 @@
+[user]
+	email = woode@dnb.com
+	name = Edwin Wood
+	signingkey = 3D533BD82781C6BD
+
+[color]
+	ui = auto
+
+[color "status"]
+	added = yellow
+	changed = magenta
+	untracked = cyan
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	ci = commit
+	cm = commit -m
+	cma = commit -a -m
+	pr = pull --rebase
+	rb = rebase
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+    	ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+    	le = log --oneline --decorate
+    	la = "!git config -l | grep alias | cut -c 7-"
+	sha = ! git rev-parse HEAD | cut -c 1-7
+	f = fetch
+	nvm = ! git add . && git reset --hard
+
+[diff]
+	tool = opendiff
+
+[difftool]
+	prompt = false
+
+[merge]
+	tool = opendiff
+
+[credential]
+	helper = osxkeychain
+
+[push]
+	default = simple
+	followTags = true
+[commit]
+	gpgsign = true
+[http]
+[https]
