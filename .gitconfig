@@ -1,62 +1,120 @@
-[user]
-	email = woode@dnb.com
-	name = Edwin Wood
-	signingkey = 3D533BD82781C6BD
-
-[color]
-	ui = auto
-
-[color "status"]
-	added = yellow
-	changed = magenta
-	untracked = cyan
-
-[color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
-
-[color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-
-[alias]
-	st = status
-	co = checkout
-	br = branch
-	ci = commit
-	cm = commit -m
-	cma = commit -a -m
-	pr = pull --rebase
-	rb = rebase
-	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-    	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-    	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
-    	ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
-    	le = log --oneline --decorate
-    	la = "!git config -l | grep alias | cut -c 7-"
-	sha = ! git rev-parse HEAD | cut -c 1-7
-	f = fetch
-	nvm = ! git add . && git reset --hard
-
+[include]
+	path = ~/Development/config_files/square/gitconfig
+# Below this line are some defaults for friendly git behavior. Feel free to
+# alter or remove them.
+[push]
+	config = default
+	default = current
 [diff]
-	tool = opendiff
-
-[difftool]
-	prompt = false
-
+	renames = true
+	indentHeuristic = on
+[status]
+	showUntrackedFiles = all
+[branch]
+	autosetupmerge = true
 [merge]
-	tool = opendiff
+	summary = true
+	conflictstyle = diff3
+[rebase]
+	autosquash = true
+	autostash = true
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+[alias]
+	c = commit -m
+	a = add
+	di = diff
+	dic = diff --cached
+	pl = pull
+	ps = push
+	plre = pull --rebase
+	s = status
+	st = status
+	out = log origin..HEAD
+	ci = commit
+	co = checkout
+	cp = cherry-pick
+	b = branch
+	changed = diff --name-status -r
+	add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+	au = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+	ch = diff --name-status -r
+	cosu = !sh -c 'git checkout $0 && git submodule update --init'
+	ignored = "!git ls-files --others --exclude-standard"
+	lg = log --all --graph --abbrev-commit --date=relative --pretty=format:'%C(bold blue)%h - %C(reset)%C(green)(%ar)%C(reset) - %s %C(dim)- %an%C(reset)%C(yellow)%d'
+	lgb = log --graph --abbrev-commit --date=relative --pretty=format:'%C(bold blue)%h - %C(reset)%C(green)(%ar)%C(reset) - %s %C(dim)- %an%C(reset)%C(yellow)%d'
+	track = !sh -c 'git branch --track "$0" "origin/$0" && git checkout "$0"'
+	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+	touchdown = merge --no-ff
+	integrate = merge --no-ff
+	td = merge --no-ff
+	lastauthor = log -1 --format='%Cgreen%an <%ae>'
+	reauthor = commit --amend --reset-author -C HEAD
+	publish = push -u
+	tree = log --graph --decorate --pretty=oneline --abbrev-commit
+	hist = log --pretty=format:\"%C(yellow)%h %ad%Creset | %s%C(bold red)%d%Creset [%C(bold blue)%an%Creset]\" --graph --date=short
+	cleanup-branches = !sh -c 'git branch --merged | grep -v ^* | xargs -n 1 git branch -d'
+	pf = push --force-with-lease
+	nit = commit --amend --no-edit
+	praise = blame
+	git = !exec git
+	lb = branch -v --sort=committerdate
+[rerere]
+	enabled = 1
+[pull]
+	rebase = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[feature]
+	manyFiles = true
+[log]
+	mailmap = true
+[alias]
+	co = checkout
+	cma = commit -a -m
+	st = status
+	br = branch
+	f = fetch
+	up = !git pull --rebase --autostash && git submodule init && git submodule update
+	nvm = !git add . && git reset --hard
+        rbi = rebase -i
+	l = "log -i -n 10 --format='%C(auto) %>(12,trunc)%aL | %h %s' --abbrev-commit --no-merges"
 
-[credential]
-	helper = osxkeychain
+[user]
+	name = Trey Wood
+	email = treyw@squareup.com
+	signingkey = F273F66391F2A0B4
 
+[core]
+	pager = delta
+
+[delta]
+	plus-color = "#012800"
+	minus-color = "#340001"
+	syntax-theme = Monokai Extended
+	# navigate = true
+	# side-by-side = true
+
+[interactive]
+	diffFilter = delta --color-only
+[commit]
+	gpgsign = false
+[gpg]
+	program = gpg
 [push]
 	default = simple
-	followTags = true
-[commit]
-	gpgsign = true
-[http]
-[https]
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+# Configuration below this line was copied from your old /Users/treyw/.gitconfig_local
+[user]
+	email = treyw@squareup.com
+	name = Trey Wood
