@@ -9,7 +9,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'haya14busa/incsearch.vim'
-
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
@@ -20,11 +19,15 @@ Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
 Plug 'fladson/vim-kitty'
 
-Plug 'kaicataldo/material.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
+
+Plug 'kaicataldo/material.vim'
+Plug 'rbong/vim-crystalline'
 
 call plug#end()
 
@@ -39,13 +42,56 @@ set incsearch
 set hlsearch
 set path=$PWD/**
 set encoding=UTF-8
-set laststatus=2
+set fillchars+=stl:\ ,stlnc:\ "
+
+autocmd FileType html.handlebars setlocal nofixendofline
 
 let mapleader = ','
 
 syntax on
 colorscheme material
 
+function! StatusLine(current, width)
+  let l:s = ''
+
+  if a:current
+    let l:s .= crystalline#mode() . crystalline#right_mode_sep('')
+  else
+    let l:s .= '%#CrystallineInactive#'
+  endif
+  let l:s .= ' %f%h%w%m%r '
+  if a:current
+    let l:s .= crystalline#right_sep('', 'Fill') . '  %{fugitive#head()}'
+  endif
+
+  let l:s .= '%='
+  if a:current
+    let l:s .= crystalline#left_sep('', 'Fill') . ' %{&paste ?"PASTE ":""}%{&spell?"SPELL ":""}'
+    let l:s .= crystalline#left_mode_sep('')
+  endif
+  if a:width > 80
+    let l:s .= ' %{&ft}[%{&fenc!=#""?&fenc:&enc}][%{&ff}] %l/%L %c%V %P '
+  else
+    let l:s .= ' '
+  endif
+
+  return l:s
+endfunction
+
+function! TabLine()
+  let l:vimlabel = has('nvim') ?  ' NVIM ' : ' VIM '
+  return crystalline#bufferline(2, len(l:vimlabel), 1) . '%=%#CrystallineTab# ' . l:vimlabel
+endfunction
+
+let g:crystalline_enable_sep = 1
+let g:crystalline_statusline_fn = 'StatusLine'
+let g:crystalline_tabline_fn = 'TabLine'
+let g:crystalline_theme = 'onedark'
+
+set showtabline=2
+set guioptions-=e
+set laststatus=2
+set background=dark
 let g:coc_global_extensions = ['coc-tsserver', 'coc-ember', 'coc-css', 'coc-html', 'coc-git']
 let g:coc_node_path = '/Users/treyw/.nvm/versions/node/v14.4.0/bin/node'
 let g:fzf_layout = { 'down': '40%' }
@@ -95,6 +141,4 @@ nnoremap <C-m> :NERDTreeFind<CR>
 
 map <leader>t :call RunNearestSpec()<CR>
 map <leader>r :call RunLastSpec()<CR>
-
-set statusline^=%{pathshorten(finddir('.git/..',expand('%:p:h')),5)}/%t\ [%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}]
 
