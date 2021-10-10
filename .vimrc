@@ -18,6 +18,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
 Plug 'fladson/vim-kitty'
+Plug 'mattn/emmet-vim'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -40,11 +41,9 @@ set number
 set showcmd
 set incsearch
 set hlsearch
+set cursorline
 set path=$PWD/**
 set encoding=UTF-8
-set fillchars+=stl:\ ,stlnc:\ "
-
-autocmd FileType html.handlebars setlocal nofixendofline
 
 let mapleader = ','
 
@@ -92,8 +91,9 @@ set showtabline=2
 set guioptions-=e
 set laststatus=2
 set background=dark
-let g:coc_global_extensions = ['coc-tsserver', 'coc-ember', 'coc-css', 'coc-html', 'coc-git']
-let g:coc_node_path = '/Users/treyw/.nvm/versions/node/v14.4.0/bin/node'
+
+let g:coc_global_extensions = ['coc-tsserver', 'coc-ember', 'coc-css', 'coc-html', 'coc-git', 'coc-emmet']
+" let g:coc_node_path = '/Users/treyw/.nvm/versions/node/v14.4.0/bin/node'
 let g:fzf_layout = { 'down': '40%' }
 
 nnoremap <C-e> :History<CR>
