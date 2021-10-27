@@ -51,8 +51,12 @@ let mapleader = ','
 if (has("termguicolors"))
   set termguicolors
 endif
+augroup bg
+  autocmd!
+  autocmd ColorScheme * hi Normal guibg=NONE ctermbg=NONE
+  autocmd ColorScheme * hi SignColumn guibg=NONE ctermbg=NONE
+augroup end
 let g:material_theme_style = 'default'
-autocmd ColorScheme * hi Normal guibg=NONE ctermbg=NONE
 colorscheme material
 set background=dark
 syntax on
