@@ -13,6 +13,7 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'sbdchd/neoformat'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
@@ -47,8 +48,14 @@ set encoding=UTF-8
 
 let mapleader = ','
 
-syntax on
+if (has("termguicolors"))
+  set termguicolors
+endif
+let g:material_theme_style = 'default'
+autocmd ColorScheme * hi Normal guibg=NONE ctermbg=NONE
 colorscheme material
+set background=dark
+syntax on
 
 function! StatusLine(current, width)
   let l:s = ''
@@ -90,11 +97,16 @@ let g:crystalline_theme = 'onedark'
 set showtabline=2
 set guioptions-=e
 set laststatus=2
-set background=dark
 
-let g:coc_global_extensions = ['coc-tsserver', 'coc-ember', 'coc-css', 'coc-html', 'coc-git', 'coc-emmet']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-ember', 'coc-css', 'coc-html', 'coc-git', 'coc-emmet', 'coc-prettier']
 " let g:coc_node_path = '/Users/treyw/.nvm/versions/node/v14.4.0/bin/node'
 let g:fzf_layout = { 'down': '40%' }
+
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
+let g:neoformat_enabled_haskell = ['hfmt']
 
 nnoremap <C-e> :History<CR>
 nnoremap <C-p> :GFiles<CR>
@@ -132,12 +144,11 @@ xmap <silent> if <Plug>(coc-funcobj-i)
 xmap <silent> ac <Plug>(coc-classobj-a)
 xmap <silent> ic <Plug>(coc-classobj-i)
 
-let g:material_theme_style = 'palenight'
 let g:webdevicons_enable_nerdtree = 1
 let g:webdevicons_conceal_nerdtree_brackets = 1
 
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-m> :NERDTreeFind<CR>
+nnoremap = :NERDTreeToggle<CR>
+nnoremap - :NERDTreeFind<CR>
 
 map <leader>t :call RunNearestSpec()<CR>
 map <leader>r :call RunLastSpec()<CR>
