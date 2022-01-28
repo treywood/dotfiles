@@ -11,6 +11,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'haya14busa/incsearch.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'ojroques/nvim-lspfuzzy'
 
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'simrat39/symbols-outline.nvim'
@@ -25,7 +26,8 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'weilbith/nvim-code-action-menu'
 
 Plug 'sbdchd/neoformat'
-Plug 'sheerun/vim-polyglot'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
@@ -37,7 +39,7 @@ Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 
-Plug 'kaicataldo/material.vim'
+Plug 'marko-cerovac/material.nvim'
 Plug 'rbong/vim-crystalline'
 
 call plug#end()
@@ -55,21 +57,21 @@ set cursorline
 set path=$PWD/**
 set encoding=UTF-8
 set completeopt=menu,menuone,noselect
+set termguicolors
 
 let mapleader = ','
 
-if (has("termguicolors"))
-  set termguicolors
-endif
-augroup bg
-  autocmd!
-  autocmd ColorScheme * hi Normal guibg=NONE ctermbg=NONE
-  autocmd ColorScheme * hi SignColumn guibg=NONE ctermbg=NONE
-augroup end
-let g:material_theme_style = 'default'
-colorscheme material
 set background=dark
 syntax on
+let g:material_theme = 'palenight'
+
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+nnoremap <leader>cg :call <SID>SynStack()<CR>
 
 function! StatusLine(current, width)
   let l:s = ''
@@ -112,20 +114,18 @@ set showtabline=2
 set guioptions-=e
 set laststatus=2
 
-" let g:coc_global_extensions = ['coc-tsserver', 'coc-ember', 'coc-css', 'coc-html', 'coc-git', 'coc-emmet', 'coc-prettier']
-" let g:coc_node_path = '/Users/treyw/.nvm/versions/node/v14.4.0/bin/node'
 let g:fzf_layout = { 'down': '40%' }
 
 augroup fmt
   autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
+  au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
 augroup END
 let g:neoformat_enabled_haskell = ['hfmt']
+let g:neoformat_enabled_ruby = []
 
 nnoremap <C-e> :History<CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <C-f> :Rg<CR>
-" nnoremap <C-j> :CocList outline<CR>
 nnoremap <C-j> :SymbolsOutline<CR>
 nnoremap <C-b> :Buffers<CR>
 
@@ -140,26 +140,6 @@ map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-
-" nmap <silent> ]c <Plug>(coc-diagnostic-next)
-" nmap <silent> [c <Plug>(coc-diagnostic-prev)
-" nmap <silent> ]f <Plug>(coc-fix-current)
-
-" nmap <silent> ]g <Plug>(coc-git-nextchunk)
-" nmap <silent> [g <Plug>(coc-git-prevchunk)
-" nmap <silent> ]G <Plug>(coc-git-nextconflict)
-" nmap <silent> [G <Plug>(coc-git-prevconflict)
-" nmap <silent> gs <Plug>(coc-git-chunkinfo)
-
-" xmap <silent> af <Plug>(coc-funcobj-a)
-" xmap <silent> if <Plug>(coc-funcobj-i)
-" xmap <silent> ac <Plug>(coc-classobj-a)
-" xmap <silent> ic <Plug>(coc-classobj-i)
-
 let g:webdevicons_enable_nerdtree = 1
 let g:webdevicons_conceal_nerdtree_brackets = 1
 
@@ -170,6 +150,35 @@ map <leader>t :call RunNearestSpec()<CR>
 map <leader>r :call RunLastSpec()<CR>
 
 lua << EOF
+vim.g.material_style = 'palenight'
+require'material'.setup {
+  disable = {
+    background = true,
+  }
+}
+vim.cmd [[
+colorscheme material
+  
+hi Normal guibg=#292D3E ctermbg=NONE
+hi LineNr guibg=NONE ctermbg=NONE
+hi SignColumn guibg=#292D3E ctermbg=NONE
+hi EndOfBuffer guibg=#292D3E ctermbg=NONE
+
+hi TSType guifg=#ffcb6b
+hi TSKeyword guifg=#C792EA
+hi TSKeywordReturn guifg=#C792EA
+hi TSVariable guifg=White
+hi TSVariableBuiltin guifg=#C792EA
+hi TSInclude guifg=#C792EA
+hi TSProperty guifg=White
+hi TSOperator guifg=White
+hi TSTagAttribute guifg=White
+
+hi rubyTSSymbol guifg=#f5a790
+
+hi javascriptTSConstructor guifg=#ffcb6b 
+]]
+require'lspfuzzy'.setup{}
 vim.g.symbols_outline = {
   relative_width = false,
   width = 40,
@@ -190,18 +199,18 @@ local on_attach = function(client, bufnr)
   local opts = { noremap=true, silent=true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<leader>ca', '<cmd>CodeActionMenu<CR>', opts)
+  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-  buf_set_keymap('n', '<leader>ca', '<cmd>CodeActionMenu<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
 end
 
@@ -279,4 +288,10 @@ if not nvim_lsp.emmet_ls then
   }
 end
 nvim_lsp.emmet_ls.setup { capabilities = capabilities, on_attach = on_attach }
+
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true
+  }
+}
 EOF
