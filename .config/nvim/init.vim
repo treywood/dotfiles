@@ -28,7 +28,8 @@ Plug 'weilbith/nvim-code-action-menu'
 Plug 'sbdchd/neoformat'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
-Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-endwise'
+Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
 
@@ -176,6 +177,8 @@ hi TSTagAttribute guifg=White
 hi TSStringRegex guifg=#C3E88D
 
 hi rubyTSSymbol guifg=#f5a790
+hi rubyTSLabel guifg=White
+hi rubyTSException guifg=#C792EA
 
 hi javascriptTSConstructor guifg=#ffcb6b 
 ]]
