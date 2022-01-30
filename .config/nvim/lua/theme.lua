@@ -44,7 +44,8 @@ require'lualine'.setup {
 	tabline = {
 		lualine_a = {'buffers'},
 		lualine_z = {'tabs'}
-	}
+	},
+	extensions = {'fzf','fugitive','nerdtree'}
 }
 
 vim.g.webdevicons_enable_nerdtree = 1
