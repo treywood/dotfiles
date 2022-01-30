@@ -1,8 +1,8 @@
 --vim.o.nocompatible=true
 
-require'plugins'
+require('plugins')
 
---filetype plugin indent on
+vim.cmd "filetype plugin indent on"
 
 -- General Settings --
 vim.o.backspace='indent,eol,start'
@@ -99,12 +99,14 @@ hi javascriptTSConstructor guifg=#ffcb6b
 
 vim.g.fzf_layout = { down = '40%' }
 
---augroup fmt
---  autocmd!
---  au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
---augroup END
---let g:neoformat_enabled_haskell = ['hfmt']
---let g:neoformat_enabled_ruby = []
+vim.cmd [[
+	augroup fmt
+		autocmd!
+		au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
+	augroup END
+	let g:neoformat_enabled_haskell = ['hfmt']
+	let g:neoformat_enabled_ruby = []
+]]
 
 local opts = { silent = true, noremap = true }
 vim.api.nvim_set_keymap('n','<C-e>',':History<CR>', opts)
