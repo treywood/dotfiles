@@ -13,5 +13,6 @@ vim.o.path=os.getenv("PWD").."/**"
 vim.o.encoding="UTF-8"
 vim.o.completeopt="menu,menuone,noselect"
 vim.o.termguicolors=true
+vim.o.updatetime=100
 
 vim.g.mapleader = ','

@@ -30,6 +30,7 @@ return require'packer'.startup(function()
 	
 	use 'tpope/vim-fugitive'
 	use 'tpope/vim-rhubarb'
+	use 'airblade/vim-gitgutter'
 
 	use 'preservim/nerdtree'
 	use 'Xuyuanp/nerdtree-git-plugin'
