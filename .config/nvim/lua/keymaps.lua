@@ -1,11 +1,11 @@
-local opts = { silent = true, noremap = true }
+local opts = { noremap = true }
 vim.api.nvim_set_keymap('n','<C-e>',':History<CR>', opts)
 vim.api.nvim_set_keymap('n','<C-p>',':GFiles<CR>', opts)
 vim.api.nvim_set_keymap('n','<C-f>',':Rg<CR>', opts)
 vim.api.nvim_set_keymap('n','<C-j>',':SymbolsOutline<CR>', opts)
 vim.api.nvim_set_keymap('n','<C-b>',':Buffers<CR>', opts)
 
-local opts = { silent = true }
+local opts = {}
 vim.cmd "let g:incsearch#auto_nohlsearch=1"
 vim.api.nvim_set_keymap('','/','<Plug>(incsearch-forward)', opts)
 vim.api.nvim_set_keymap('','?','<Plug>(incsearch-backward)', opts)
