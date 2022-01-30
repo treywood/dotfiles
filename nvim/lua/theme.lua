@@ -37,6 +37,10 @@ require'lualine'.setup {
 	options = {
 		theme = 'onedark'
 	},
+	sections = {
+		lualine_x = {},
+		lualine_y = {'filetype'}
+	},
 	tabline = {
 		lualine_a = {'buffers'},
 		lualine_z = {'tabs'}
