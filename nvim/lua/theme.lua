@@ -31,6 +31,8 @@ hi rubyTSLabel guifg=White
 hi rubyTSException guifg=#C792EA
 
 hi javascriptTSConstructor guifg=#ffcb6b 
+
+hi haskellTSConstructor guifg=#ffcb6b
 ]]
 
 require'lualine'.setup {
