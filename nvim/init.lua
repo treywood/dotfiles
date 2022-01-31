@@ -3,7 +3,7 @@
 require('plugins')
 require('options')
 require('theme')
-require('keymaps')
+require('keymaps').setup_keymaps()
 require('lsp')
 
 vim.g.fzf_layout = { down = '40%' }

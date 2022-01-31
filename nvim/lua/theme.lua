@@ -48,7 +48,7 @@ require'lualine'.setup {
 		lualine_a = {'buffers'},
 		lualine_z = {'tabs'}
 	},
-	extensions = {'fzf','fugitive','nerdtree'}
+	extensions = {'fzf','fugitive','nerdtree','symbols-outline'}
 }
 
 vim.g.webdevicons_enable_nerdtree = 1
