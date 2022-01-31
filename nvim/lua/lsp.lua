@@ -1,4 +1,4 @@
-require'lspfuzzy'.setup{}
+--require'lspfuzzy'.setup{}
 vim.g.symbols_outline = {
   relative_width = false,
   width = 40,

@@ -6,9 +6,36 @@ return require'packer'.startup(function()
 	use '~/.config/nvim/lsp-servers.nvim'
 
 	use 'haya14busa/incsearch.vim'
-	use 'junegunn/fzf'
-	use 'junegunn/fzf.vim'
-	use 'ojroques/nvim-lspfuzzy'
+--	use 'junegunn/fzf'
+--	use 'junegunn/fzf.vim'
+--	use 'ojroques/nvim-lspfuzzy'
+	use {
+		'nvim-telescope/telescope.nvim',
+		requires = {
+			'nvim-lua/plenary.nvim',
+			{'nvim-telescope/telescope-fzf-native.nvim', run='make'}
+		},
+		config = function()
+			local actions = require'telescope.actions'
+
+			--require'telescope'.load_extension('fzf')
+			require'telescope'.setup {
+				defaults = {
+					mappings = {
+						i = {
+							['<C-n>'] = false,
+							['<C-p>'] = false,
+							['<C-j>'] = actions.move_selection_next,
+							['<C-k>'] = actions.move_selection_previous,
+							['<C-c>'] = false,
+							['<Esc>'] = actions.close,
+						}
+					}
+				},
+				extensions = {'fzf'}
+			}
+		end
+	}
 	
 	use 'simrat39/symbols-outline.nvim'
 	use 'neovim/nvim-lspconfig'
