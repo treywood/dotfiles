@@ -40,6 +40,7 @@ require'lualine'.setup {
 		theme = 'onedark'
 	},
 	sections = {
+		lualine_c = {{'filename', file_status=true, path=1}},
 		lualine_x = {},
 		lualine_y = {'filetype'}
 	},
