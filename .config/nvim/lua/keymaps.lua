@@ -6,7 +6,7 @@ function Keymaps.setup_keymaps()
 	vim.api.nvim_set_keymap('n','<C-p>',':Telescope git_files<CR>', opts)
 	vim.api.nvim_set_keymap('n','<C-f>',':Telescope live_grep<CR>', opts)
 	vim.api.nvim_set_keymap('n','<C-b>',':Telescope buffers<CR>', opts)
-	vim.api.nvim_set_keymap('n','<C-j>',':SymbolsOutline<CR>', opts)
+	vim.api.nvim_set_keymap('n','<C-j>',':Telescope lsp_document_symbols<CR>', opts)
 
 	local opts = {}
 	vim.cmd "let g:incsearch#auto_nohlsearch=1"

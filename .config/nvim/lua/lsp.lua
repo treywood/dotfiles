@@ -1,8 +1,4 @@
 --require'lspfuzzy'.setup{}
-vim.g.symbols_outline = {
-  relative_width = false,
-  width = 40,
-}
 local nvim_lsp = require('lspconfig')
 local configs = require('lspconfig/configs')
 

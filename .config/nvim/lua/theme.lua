@@ -22,7 +22,8 @@ augroup telescope
 	au User TelescopeFindPre hi TelescopePromptNormal guibg=#292D3E
 	au User TelescopeFindPre hi TelescopeResultsNormal guibg=#292D3E
 
-	au User TelescopeFindPre hi TelescopeSelection guibg=#30354A
+	au User TelescopeFindPre hi TelescopeSelection guibg=#30354A guifg=White
+	au User TelescopeFindPre hi TelescopeSelectionCaret guibg=#30354A guifg=White
 augroup END
 
 hi TSType guifg=#ffcb6b
