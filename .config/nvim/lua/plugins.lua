@@ -3,6 +3,8 @@ vim.cmd "packadd packer.nvim"
 return require'packer'.startup(function()
 	use 'wbthomason/packer.nvim'
 
+	use '~/.config/nvim/lsp-servers.nvim'
+
 	use 'haya14busa/incsearch.vim'
 	use 'junegunn/fzf'
 	use 'junegunn/fzf.vim'
