@@ -1,14 +1,14 @@
 Keymaps = {}
 
 function Keymaps.setup_keymaps()
-	local opts = { noremap = true }
+	local opts = { noremap=true, silent=true }
 	vim.api.nvim_set_keymap('n','<C-e>',"<cmd>lua require'telescope.builtin'.oldfiles{cwd_only=true}<CR>", opts)
 	vim.api.nvim_set_keymap('n','<C-p>',':Telescope git_files<CR>', opts)
 	vim.api.nvim_set_keymap('n','<C-f>',':Telescope live_grep<CR>', opts)
 	vim.api.nvim_set_keymap('n','<C-b>',':Telescope buffers<CR>', opts)
 	vim.api.nvim_set_keymap('n','<C-j>',':Telescope lsp_document_symbols<CR>', opts)
 
-	local opts = {}
+	local opts = { silent=true }
 	vim.cmd "let g:incsearch#auto_nohlsearch=1"
 	vim.api.nvim_set_keymap('','/','<Plug>(incsearch-forward)', opts)
 	vim.api.nvim_set_keymap('','?','<Plug>(incsearch-backward)', opts)
@@ -25,6 +25,9 @@ function Keymaps.setup_keymaps()
 
 	--vim.api.nvim_set_keymap('n','<leader>t',':call RunNearestSpec()<CR>', opts)
 	--vim.api.nvim_set_keymap('n','<leader>r',':call RunLastSpec()<CR>', opts)
+	vim.api.nvim_set_keymap('n','<leader>tn',':TestNearest<CR>', opts)
+	vim.api.nvim_set_keymap('n','<leader>tf',':TestFile<CR>', opts)
+	vim.api.nvim_set_keymap('n','<leader>tt',':TestLast<CR>', opts)
 end
 
 function Keymaps.setup_lsp_keymaps(bufnr)
