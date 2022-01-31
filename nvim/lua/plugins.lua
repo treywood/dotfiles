@@ -37,9 +37,7 @@ return require'packer'.startup(function()
 		end
 	}
 	
-	use 'simrat39/symbols-outline.nvim'
 	use 'neovim/nvim-lspconfig'
-
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-path'
@@ -101,7 +99,7 @@ return require'packer'.startup(function()
 					lualine_a = {'buffers'},
 					lualine_z = {'tabs'}
 				},
-				extensions = {'fzf','fugitive','nerdtree','symbols-outline'}
+				extensions = {'fugitive','nerdtree'}
 			}
 		end
 	}
