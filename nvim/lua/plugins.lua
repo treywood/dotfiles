@@ -3,12 +3,7 @@ vim.cmd "packadd packer.nvim"
 return require'packer'.startup(function()
 	use 'wbthomason/packer.nvim'
 
-	use '~/.config/nvim/lsp-servers.nvim'
-
 	use 'haya14busa/incsearch.vim'
---	use 'junegunn/fzf'
---	use 'junegunn/fzf.vim'
---	use 'ojroques/nvim-lspfuzzy'
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = {
@@ -38,6 +33,7 @@ return require'packer'.startup(function()
 	}
 	
 	use 'neovim/nvim-lspconfig'
+	use '~/.config/nvim/lsp-servers.nvim'
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-path'
@@ -58,8 +54,7 @@ return require'packer'.startup(function()
 	use 'nvim-treesitter/playground'
 	use 'jiangmiao/auto-pairs'
 
-	use 'tpope/vim-rails'
-	use 'thoughtbot/vim-rspec'
+	use 'vim-test/vim-test'
 	
 	use 'tpope/vim-fugitive'
 	use 'tpope/vim-rhubarb'
