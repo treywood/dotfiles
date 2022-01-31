@@ -2,11 +2,11 @@ Keymaps = {}
 
 function Keymaps.setup_keymaps()
 	local opts = { noremap = true }
-	vim.api.nvim_set_keymap('n','<C-e>',':History<CR>', opts)
-	vim.api.nvim_set_keymap('n','<C-p>',':GFiles<CR>', opts)
-	vim.api.nvim_set_keymap('n','<C-f>',':Rg<CR>', opts)
+	vim.api.nvim_set_keymap('n','<C-e>',"<cmd>lua require'telescope.builtin'.oldfiles{cwd_only=true}<CR>", opts)
+	vim.api.nvim_set_keymap('n','<C-p>',':Telescope git_files<CR>', opts)
+	vim.api.nvim_set_keymap('n','<C-f>',':Telescope live_grep<CR>', opts)
+	vim.api.nvim_set_keymap('n','<C-b>',':Telescope buffers<CR>', opts)
 	vim.api.nvim_set_keymap('n','<C-j>',':SymbolsOutline<CR>', opts)
-	vim.api.nvim_set_keymap('n','<C-b>',':Buffers<CR>', opts)
 
 	local opts = {}
 	vim.cmd "let g:incsearch#auto_nohlsearch=1"
@@ -40,9 +40,9 @@ function Keymaps.setup_lsp_keymaps(bufnr)
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'gd', ':Telescope lsp_definitions<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', 'gr', ':Telescope lsp_references<CR>', opts)
   buf_set_keymap('n', '<leader>a', '<cmd>CodeActionMenu<CR>', opts)
   buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)

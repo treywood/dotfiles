@@ -2,10 +2,28 @@ vim.o.background='dark'
 vim.cmd [[
 colorscheme material
 
-hi Normal guibg=#292D3E ctermbg=NONE
-hi LineNr guibg=NONE ctermbg=NONE
-hi SignColumn guibg=#292D3E ctermbg=NONE
-hi EndOfBuffer guibg=#292D3E ctermbg=NONE
+hi Normal guibg=#292D3E
+hi NormalNC guibg=#292D3E
+hi LineNr guibg=NONE
+hi SignColumn guibg=#292D3E
+hi EndOfBuffer guibg=#292D3E
+hi CursorLine guibg=#30354A
+hi CursorLineNC guibg=#292D3E
+
+augroup telescope
+	autocmd!
+	au User TelescopeFindPre hi TelescopeBorder guibg=#292D3E
+	au User TelescopeFindPre hi TelescopePreviewBorder guibg=#292D3E
+	au User TelescopeFindPre hi TelescopePromptBorder guibg=#292D3E
+	au User TelescopeFindPre hi TelescopeResultsBorder guibg=#292D3E
+
+	au User TelescopeFindPre hi TelescopeNormal guibg=#292D3E
+	au User TelescopeFindPre hi TelescopePreviewNormal guibg=#292D3E
+	au User TelescopeFindPre hi TelescopePromptNormal guibg=#292D3E
+	au User TelescopeFindPre hi TelescopeResultsNormal guibg=#292D3E
+
+	au User TelescopeFindPre hi TelescopeSelection guibg=#30354A
+augroup END
 
 hi TSType guifg=#ffcb6b
 hi TSKeyword guifg=#C792EA
