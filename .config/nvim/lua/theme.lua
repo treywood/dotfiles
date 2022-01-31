@@ -1,10 +1,4 @@
 vim.o.background='dark'
-vim.g.material_style = 'palenight'
-require'material'.setup {
-  disable = {
-    background = true,
-  }
-}
 vim.cmd [[
 colorscheme material
 
@@ -35,21 +29,3 @@ hi javascriptTSConstructor guifg=#ffcb6b
 hi haskellTSConstructor guifg=#ffcb6b
 ]]
 
-require'lualine'.setup {
-	options = {
-		theme = 'onedark'
-	},
-	sections = {
-		lualine_c = {{'filename', file_status=true, path=1}},
-		lualine_x = {},
-		lualine_y = {'filetype'}
-	},
-	tabline = {
-		lualine_a = {'buffers'},
-		lualine_z = {'tabs'}
-	},
-	extensions = {'fzf','fugitive','nerdtree','symbols-outline'}
-}
-
-vim.g.webdevicons_enable_nerdtree = 1
-vim.g.webdevicons_conceal_nerdtree_brackets = 1

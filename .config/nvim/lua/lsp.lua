@@ -80,8 +80,3 @@ nvim_lsp.emmet_ls.setup {
 	filetypes = {'html','css'}
 }
 
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true
-  }
-}
