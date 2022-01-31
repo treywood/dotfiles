@@ -23,7 +23,13 @@ return require'packer'.startup(function()
 	use 'weilbith/nvim-code-action-menu'
 
 	use 'sbdchd/neoformat'
-	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = ':TSUpdate',
+		config = function()
+			require'nvim-treesitter.configs'.setup { highlight = { enable=true } }
+		end
+	}
 	use 'nvim-treesitter/playground'
 	use 'jiangmiao/auto-pairs'
 
@@ -34,13 +40,42 @@ return require'packer'.startup(function()
 	use 'tpope/vim-rhubarb'
 	use 'airblade/vim-gitgutter'
 
-	use 'preservim/nerdtree'
+	use {
+		'preservim/nerdtree',
+		config = function()
+			vim.g.webdevicons_enable_nerdtree = 1
+			vim.g.webdevicons_conceal_nerdtree_brackets = 1
+		end
+	}
 	use 'Xuyuanp/nerdtree-git-plugin'
 	use 'ryanoasis/vim-devicons'
 
-	use 'marko-cerovac/material.nvim'
+	use {
+		'marko-cerovac/material.nvim',
+		config = function()
+			vim.g.material_style = 'palenight'
+			require'material'.setup { disable = { background=true } }
+		end
+	}
 	use {
 		'nvim-lualine/lualine.nvim',
-		requires = {'kyazdani42/nvim-web-devicons',opt=true}
+		requires = {'kyazdani42/nvim-web-devicons',opt=true},
+		config = function()
+			require'lualine'.setup {
+				options = {
+					theme = 'onedark'
+				},
+				sections = {
+					lualine_c = {{'filename', file_status=true, path=1}},
+					lualine_x = {},
+					lualine_y = {'filetype'}
+				},
+				tabline = {
+					lualine_a = {'buffers'},
+					lualine_z = {'tabs'}
+				},
+				extensions = {'fzf','fugitive','nerdtree','symbols-outline'}
+			}
+		end
 	}
 end)
