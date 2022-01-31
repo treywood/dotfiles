@@ -93,18 +93,12 @@ for _, lsp in ipairs(require'lsp_servers') do
   }
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-if not nvim_lsp.emmet_ls then
-  configs.emmet_ls = {
-    default_config = {
-      cmd = {'emmet-ls', '--stdio'};
-      filetypes = {'html','css','html.handlebars'};
-    };
-  }
-end
-nvim_lsp.emmet_ls.setup { capabilities = capabilities, on_attach = on_attach }
+nvim_lsp.emmet_ls.setup {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = {'html','css'}
+}
 
 require'nvim-treesitter.configs'.setup {
   highlight = {
