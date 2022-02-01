@@ -99,7 +99,14 @@ return require'packer'.startup(function()
 					lualine_y = {'filetype'}
 				},
 				tabline = {
-					lualine_a = {'buffers'},
+					lualine_a = {
+						{
+							'buffers',
+							filetype_names = {
+								octo = 'Octo'
+							}
+						}
+					},
 					lualine_z = {'tabs'}
 				},
 				extensions = {'fugitive','nerdtree'}
