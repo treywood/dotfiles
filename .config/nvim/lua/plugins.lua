@@ -56,18 +56,27 @@ return require'packer'.startup(function()
 	use 'vim-test/vim-test'
 	
 	use 'tpope/vim-fugitive'
-	use 'tpope/vim-rhubarb'
+	use {
+		'pwntester/octo.nvim',
+		requires = {
+			'nvim-lua/plenary.nvim',
+			'nvim-telescope/telescope.nvim',
+			'kyazdani42/nvim-web-devicons',
+		},
+		config = function ()
+			require'octo'.setup()
+		end
+	}
 	use 'airblade/vim-gitgutter'
 
 	use {
 		'preservim/nerdtree',
+		requires = {'Xuyuanp/nerdtree-git-plugin','ryanoasis/vim-devicons'},
 		config = function()
 			vim.g.webdevicons_enable_nerdtree = 1
 			vim.g.webdevicons_conceal_nerdtree_brackets = 1
 		end
 	}
-	use 'Xuyuanp/nerdtree-git-plugin'
-	use 'ryanoasis/vim-devicons'
 
 	use {
 		'marko-cerovac/material.nvim',
