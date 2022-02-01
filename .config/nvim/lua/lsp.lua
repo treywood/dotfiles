@@ -60,19 +60,20 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 for _, lsp in ipairs(require'lsp_servers') do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    }
-  }
-end
+	local lsp_name = lsp
+	local config = {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		flags = {
+			debounce_text_changes = 150
+		}
+	}
 
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-nvim_lsp.emmet_ls.setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
-	filetypes = {'html','css'}
-}
+	if type(lsp) == 'table' then
+		lsp_name = table.remove(lsp,1)
+		config = vim.tbl_deep_extend('force', config, lsp) 
+	end
+
+  nvim_lsp[lsp_name].setup(config)
+end
 
