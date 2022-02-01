@@ -64,7 +64,23 @@ return require'packer'.startup(function()
 			'kyazdani42/nvim-web-devicons',
 		},
 		config = function ()
-			require'octo'.setup()
+			require'octo'.setup {
+				mappings = {
+					pull_request = {
+						add_comment = '<leader>ca',
+						delete_comment = '<leader>cd',
+					},
+					review_thread = {
+						add_comment = '<leader>ca',
+						add_suggestion = '<leader>sa',
+						delete_comment = '<leader>cd',
+					},
+					review_diff = {
+						add_review_comment = '<leader>ca',
+						add_review_suggestion = '<leader>sa',
+					}
+				}
+			}
 		end
 	}
 	use 'airblade/vim-gitgutter'
