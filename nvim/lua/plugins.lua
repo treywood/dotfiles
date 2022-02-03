@@ -95,19 +95,20 @@ return require'packer'.startup(function()
 	}
 
 	use {
-		'marko-cerovac/material.nvim',
-		config = function()
-			vim.g.material_style = 'palenight'
-			require'material'.setup { disable = { background=true } }
-		end
-	}
-	use {
 		'nvim-lualine/lualine.nvim',
-		requires = {'kyazdani42/nvim-web-devicons',opt=true},
+		requires = {
+			{'kyazdani42/nvim-web-devicons',opt=true},
+			'sainnhe/everforest',
+		},
 		config = function()
+			-- vim.g.material_style = 'palenight'
+			-- vim.g.material_lualine_style = 'default'
+			-- require'material'.setup { disable = { background=true } }
+			vim.g.everforest_background = 'hard'
+			vim.g.everforest_disable_italic_comment = 1
 			require'lualine'.setup {
 				options = {
-					theme = 'onedark'
+					theme = 'everforest'
 				},
 				sections = {
 					lualine_c = {{'filename', file_status=true, path=1}},
