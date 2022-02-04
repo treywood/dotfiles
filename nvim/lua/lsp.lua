@@ -1,9 +1,9 @@
 --require'lspfuzzy'.setup{}
 local nvim_lsp = require('lspconfig')
-local configs = require('lspconfig/configs')
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
+---@diagnostic disable-next-line: unused-local
 local on_attach = function(client, bufnr)
 	require'keymaps'.setup_lsp_keymaps(bufnr)
 end
@@ -71,7 +71,7 @@ for _, lsp in ipairs(require'lsp_servers') do
 
 	if type(lsp) == 'table' then
 		lsp_name = table.remove(lsp,1)
-		config = vim.tbl_deep_extend('force', config, lsp) 
+		config = vim.tbl_deep_extend('force', config, lsp)
 	end
 
   nvim_lsp[lsp_name].setup(config)
