@@ -31,7 +31,7 @@ return require'packer'.startup(function()
 			}
 		end
 	}
-	
+
 	use 'neovim/nvim-lspconfig'
 	use '~/.config/nvim/lsp-servers.nvim'
 	use 'hrsh7th/cmp-nvim-lsp'
@@ -57,7 +57,7 @@ return require'packer'.startup(function()
 	use 'jiangmiao/auto-pairs'
 
 	use 'vim-test/vim-test'
-	
+
 	use 'tpope/vim-fugitive'
 	use {
 		'pwntester/octo.nvim',
