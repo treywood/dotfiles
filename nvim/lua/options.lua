@@ -15,4 +15,8 @@ vim.o.completeopt="menu,menuone,noselect"
 vim.o.termguicolors=true
 vim.o.updatetime=100
 
+vim.wo.foldmethod="expr"
+vim.wo.foldexpr="nvim_treesitter#foldexpr()"
+vim.o.foldlevelstart=99
+
 vim.g.mapleader = ','

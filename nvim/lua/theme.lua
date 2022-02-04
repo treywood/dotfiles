@@ -2,6 +2,8 @@ vim.o.background='dark'
 vim.cmd [[
 colorscheme everforest
 
-hi! link TSSymbol Orange
+hi TSParameter guifg=#a7b0a4
+hi! link rubyTSSymbol Orange
+hi! link rubyTSLabel TSVariable
 ]]
 
