@@ -20,8 +20,8 @@ function Keymaps.setup_keymaps()
 	vim.api.nvim_set_keymap('','g*','<Plug>(incsearch-nohl-g*)', opts)
 	vim.api.nvim_set_keymap('','g#','<Plug>(incsearch-nohl-g#)', opts)
 
-	vim.api.nvim_set_keymap('n','=',':NERDTreeToggle<CR>', opts)
-	vim.api.nvim_set_keymap('n','-',':NERDTreeFind<CR>', opts)
+	vim.api.nvim_set_keymap('n','-',':NERDTreeToggle<CR>', opts)
+	vim.api.nvim_set_keymap('n','=',':NERDTreeFind<CR>', opts)
 
 	--vim.api.nvim_set_keymap('n','<leader>t',':call RunNearestSpec()<CR>', opts)
 	--vim.api.nvim_set_keymap('n','<leader>r',':call RunLastSpec()<CR>', opts)
