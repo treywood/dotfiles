@@ -44,12 +44,11 @@ return require'packer'.startup(function()
 
 	use 'sbdchd/neoformat'
 	use {
-		'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',
-		requires = {'RRethy/nvim-treesitter-endwise'},
+		'nvim-treesitter/nvim-treesitter',
+		run = ':TSUpdate',
 		config = function()
 			require'nvim-treesitter.configs'.setup {
 				highlight = { enable=true },
-				endwise = { enable=true },
 			}
 		end
 	}
