@@ -12,10 +12,14 @@ return require'packer'.startup(function()
 		},
 		config = function()
 			local actions = require'telescope.actions'
-
-			--require'telescope'.load_extension('fzf')
 			require'telescope'.setup {
 				defaults = {
+					layout_strategy = 'bottom_pane',
+					layout_config = {
+						height = 0.4,
+						prompt_position = 'bottom',
+					},
+					selection_caret = '  ',
 					mappings = {
 						i = {
 							['<C-n>'] = false,
