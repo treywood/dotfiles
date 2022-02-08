@@ -3,6 +3,7 @@ vim.cmd "filetype plugin indent on"
 vim.o.backspace='indent,eol,start'
 vim.o.tabstop=2
 vim.o.shiftwidth=2
+vim.o.expandtab=true
 vim.o.ruler=true
 vim.o.number=true
 vim.o.showcmd=true
