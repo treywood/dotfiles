@@ -46,11 +46,30 @@ return require'packer'.startup(function()
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate',
-		requires = {'RRethy/nvim-treesitter-endwise'},
+		requires = {
+			'RRethy/nvim-treesitter-endwise',
+			'nvim-treesitter/nvim-treesitter-textobjects',
+		},
 		config = function()
 			require'nvim-treesitter.configs'.setup {
-				highlight = { enable=true },
-				endwise = { enable=true }
+				highlight = { enable = true },
+				endwise = { enable = true },
+				textobjects = {
+					select = {
+						enable = true,
+						lookahead = true,
+						keymaps = {
+							['af'] = "@function.outer",
+							['if'] = "@function.inner",
+							['ac'] = "@class.outer",
+							['ic'] = "@class.inner",
+							['ak'] = "@block.outer",
+							['ik'] = "@block.inner",
+							['ae'] = "@conditional.outer",
+							['ie'] = "@conditional.inner",
+						}
+					}
+				}
 			}
 		end
 	}
