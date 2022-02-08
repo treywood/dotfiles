@@ -96,15 +96,13 @@ return require'packer'.startup(function()
 		end
 	}
 
+	use 'sainnhe/everforest'
 	use {
 		'nvim-lualine/lualine.nvim',
 		requires = {
 			{'kyazdani42/nvim-web-devicons',opt=true},
-			'sainnhe/everforest',
 		},
 		config = function()
-			vim.g.everforest_background = 'hard'
-			vim.g.everforest_disable_italic_comment = 1
 			require'lualine'.setup {
 				options = {
 					theme = 'everforest'
