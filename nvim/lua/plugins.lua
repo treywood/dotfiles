@@ -53,6 +53,7 @@ return require'packer'.startup(function()
 		requires = {
 			'RRethy/nvim-treesitter-endwise',
 			'nvim-treesitter/nvim-treesitter-textobjects',
+			'romgrk/nvim-treesitter-context',
 		},
 		config = function()
 			require'nvim-treesitter.configs'.setup {
@@ -75,6 +76,7 @@ return require'packer'.startup(function()
 					}
 				}
 			}
+			require'treesitter-context'.setup {}
 		end
 	}
 	use 'nvim-treesitter/playground'
