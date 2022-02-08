@@ -83,33 +83,6 @@ return require'packer'.startup(function()
 	use 'vim-test/vim-test'
 
 	use 'tpope/vim-fugitive'
-	use {
-		'pwntester/octo.nvim',
-		requires = {
-			'nvim-lua/plenary.nvim',
-			'nvim-telescope/telescope.nvim',
-			'kyazdani42/nvim-web-devicons',
-		},
-		config = function ()
-			require'octo'.setup {
-				mappings = {
-					pull_request = {
-						add_comment = '<leader>ca',
-						delete_comment = '<leader>cd',
-					},
-					review_thread = {
-						add_comment = '<leader>ca',
-						add_suggestion = '<leader>sa',
-						delete_comment = '<leader>cd',
-					},
-					review_diff = {
-						add_review_comment = '<leader>ca',
-						add_review_suggestion = '<leader>sa',
-					}
-				}
-			}
-		end
-	}
 	use 'airblade/vim-gitgutter'
 
 	use {
@@ -128,9 +101,6 @@ return require'packer'.startup(function()
 			'sainnhe/everforest',
 		},
 		config = function()
-			-- vim.g.material_style = 'palenight'
-			-- vim.g.material_lualine_style = 'default'
-			-- require'material'.setup { disable = { background=true } }
 			vim.g.everforest_background = 'hard'
 			vim.g.everforest_disable_italic_comment = 1
 			require'lualine'.setup {
@@ -143,14 +113,7 @@ return require'packer'.startup(function()
 					lualine_y = {'filetype'}
 				},
 				tabline = {
-					lualine_a = {
-						{
-							'buffers',
-							filetype_names = {
-								octo = 'Octo'
-							}
-						}
-					},
+					lualine_a = {'buffers'},
 					lualine_z = {'tabs'}
 				},
 				extensions = {'fugitive','nerdtree'}
