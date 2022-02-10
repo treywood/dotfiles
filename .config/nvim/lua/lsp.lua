@@ -5,7 +5,7 @@ local nvim_lsp = require('lspconfig')
 -- after the language server attaches to the current buffer
 ---@diagnostic disable-next-line: unused-local
 local on_attach = function(client, bufnr)
-	require'keymaps'.setup_lsp_keymaps(bufnr)
+  require'keymaps'.setup_lsp_keymaps(bufnr)
 end
 
 -- Setup nvim-cmp.
@@ -60,19 +60,19 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 for _, lsp in ipairs(require'lsp_servers') do
-	local lsp_name = lsp
-	local config = {
-		on_attach = on_attach,
-		capabilities = capabilities,
-		flags = {
-			debounce_text_changes = 150
-		}
-	}
+  local lsp_name = lsp
+  local config = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150
+    }
+  }
 
-	if type(lsp) == 'table' then
-		lsp_name = table.remove(lsp,1)
-		config = vim.tbl_deep_extend('force', config, lsp)
-	end
+  if type(lsp) == 'table' then
+    lsp_name = table.remove(lsp,1)
+    config = vim.tbl_deep_extend('force', config, lsp)
+  end
 
   nvim_lsp[lsp_name].setup(config)
 end
