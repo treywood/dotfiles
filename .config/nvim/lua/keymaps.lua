@@ -28,6 +28,9 @@ function Keymaps.setup_keymaps()
 	vim.api.nvim_set_keymap('n','<leader>tn',':TestNearest<CR>', opts)
 	vim.api.nvim_set_keymap('n','<leader>tf',':TestFile<CR>', opts)
 	vim.api.nvim_set_keymap('n','<leader>tt',':TestLast<CR>', opts)
+
+  vim.api.nvim_set_keymap('n','<leader>w',':%bd<CR>',opts)
+  vim.api.nvim_set_keymap('n','<leader>W',':%bd|e#|bd#<CR>',opts)
 end
 
 function Keymaps.setup_lsp_keymaps(bufnr)
