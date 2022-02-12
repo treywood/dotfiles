@@ -2,6 +2,7 @@ vim.o.background='dark'
 vim.cmd [[
 let g:everforest_background = 'hard'
 let g:everforest_disable_italic_comment = 1
+let g:everforest_diagnostic_text_highlight = 1
 
 colorscheme everforest
 

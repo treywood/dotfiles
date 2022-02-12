@@ -37,7 +37,6 @@ return require'packer'.startup(function()
   }
 
   use 'neovim/nvim-lspconfig'
-  use '~/.config/nvim/lsp-servers.nvim'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
