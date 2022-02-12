@@ -24,6 +24,8 @@ function Keymaps.setup_keymaps()
 
   vim.api.nvim_set_keymap('n','<leader>W',':%bd<CR>',opts)
   vim.api.nvim_set_keymap('n','<leader>w',':%bd|e#|bd#<CR>',opts)
+
+  vim.api.nvim_set_keymap('','<leader>gy',':GBrowse!<CR>',opts)
 end
 
 function Keymaps.setup_lsp_keymaps(bufnr)
