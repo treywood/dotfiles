@@ -77,3 +77,8 @@ for _, lsp in ipairs(require'lsp_servers') do
   nvim_lsp[lsp_name].setup(config)
 end
 
+require'fidget'.setup {
+  text = {
+    spinner = 'dots_snake'
+  }
+}
