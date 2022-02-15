@@ -26,6 +26,13 @@ function Keymaps.setup_keymaps()
   vim.api.nvim_set_keymap('n','<leader>w',':%bd|e#|bd#<CR>',opts)
 
   vim.api.nvim_set_keymap('','<leader>gy',':GBrowse!<CR>',opts)
+
+  vim.api.nvim_set_keymap('n','<leader>on',':Notes<CR>',opts)
+  vim.cmd [[
+    augroup NeorgMaps
+    autocmd FileType norg nnoremap <buffer><silent><leader>tc :Neorg toc split<CR>
+    augroup END
+  ]]
 end
 
 function Keymaps.setup_lsp_keymaps(bufnr)

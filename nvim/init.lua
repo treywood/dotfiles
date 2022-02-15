@@ -1,12 +1,10 @@
 --vim.o.nocompatible=true
 
-require('plugins')
-require('options')
-require('theme')
-require('keymaps').setup_keymaps()
-require('lsp')
-
-vim.g.fzf_layout = { down = '40%' }
+require'plugins'
+require'options'
+require'theme'
+require'keymaps'.setup_keymaps()
+require'lsp'
 
 vim.cmd [[
   augroup fmt
@@ -15,5 +13,7 @@ vim.cmd [[
   augroup END
   let g:neoformat_enabled_haskell = ['hfmt']
   let g:neoformat_enabled_ruby = []
+
+  command Notes e ~/notes.norg
 ]]
 
