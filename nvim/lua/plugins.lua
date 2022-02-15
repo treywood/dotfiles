@@ -152,6 +152,19 @@ return require'packer'.startup(function()
           ['core.norg.qol.toc'] = {
             config = {}
           },
+          ['core.norg.dirman'] = {
+            config = {
+              workspaces = {
+                notes = '~/notes/',
+              },
+              autochdir = false,
+            }
+          },
+          ['core.gtd.base'] = {
+            config = {
+              workspace = 'notes',
+            }
+          }
         }
       }
     end

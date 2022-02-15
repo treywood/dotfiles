@@ -14,6 +14,11 @@ vim.cmd [[
   let g:neoformat_enabled_haskell = ['hfmt']
   let g:neoformat_enabled_ruby = []
 
-  command Notes e ~/notes.norg
+  command Notes e ~/notes/index.norg
+
+  augroup neorg
+    autocmd!
+    au VimEnter * NeorgStart silent=true
+  augroup END
 ]]
 

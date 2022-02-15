@@ -28,6 +28,8 @@ function Keymaps.setup_keymaps()
   vim.api.nvim_set_keymap('','<leader>gy',':GBrowse!<CR>',opts)
 
   vim.api.nvim_set_keymap('n','<leader>on',':Notes<CR>',opts)
+  vim.api.nvim_set_keymap('n','<leader>oc',':Neorg gtd capture<CR>',opts)
+  vim.api.nvim_set_keymap('n','<leader>ov',':Neorg gtd views<CR>',opts)
   vim.cmd [[
     augroup NeorgMaps
     autocmd FileType norg nnoremap <buffer><silent><leader>tc :Neorg toc split<CR>
