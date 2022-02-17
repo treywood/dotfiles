@@ -99,6 +99,9 @@ return require'packer'.startup(function()
   use 'nvim-treesitter/playground'
   use 'jiangmiao/auto-pairs'
 
+  use 'mracos/mermaid.vim'
+  use {'iamcco/markdown-preview.nvim', ft = 'markdown', run = 'cd app && yarn install' }
+
   use 'vim-test/vim-test'
 
   use 'tpope/vim-fugitive'
