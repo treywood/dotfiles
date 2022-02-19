@@ -1,13 +1,3 @@
---require'lspfuzzy'.setup{}
-local nvim_lsp = require('lspconfig')
-
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
----@diagnostic disable-next-line: unused-local
-local on_attach = function(client, bufnr)
-  require'keymaps'.setup_lsp_keymaps(bufnr)
-end
-
 -- Setup nvim-cmp.
 local cmp = require'cmp'
 
@@ -54,27 +44,58 @@ cmp.setup.cmdline(':', {
   })
 })
 
--- Setup lspconfig.
-local capabilities = require'cmp_nvim_lsp'.update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-for _, lsp in ipairs(require'lsp_servers') do
-  local lsp_name = lsp
-  local config = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150
-    }
-  }
+local have_servers, servers = pcall(require, 'lsp_servers')
+if (have_servers) then
+  local nvim_lsp = require('lspconfig')
+  -- Setup lspconfig.
+  local capabilities = require'cmp_nvim_lsp'.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-  if type(lsp) == 'table' then
-    lsp_name = table.remove(lsp,1)
-    config = vim.tbl_deep_extend('force', config, lsp)
+  -- Use an on_attach function to only map the following keys
+  -- after the language server attaches to the current buffer
+  ---@diagnostic disable-next-line: unused-local
+  local on_attach = function(client, bufnr)
+    require'keymaps'.setup_lsp_keymaps(bufnr)
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
   end
 
-  nvim_lsp[lsp_name].setup(config)
+  for _, lsp in ipairs(servers) do
+    local lsp_name = lsp
+    local config = {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      flags = {
+        debounce_text_changes = 150
+      }
+    }
+
+    if type(lsp) == 'table' then
+      lsp_name = table.remove(lsp,1)
+      config = vim.tbl_deep_extend('force', config, lsp)
+    end
+
+    nvim_lsp[lsp_name].setup(config)
+  end
+end
+
+local have_sources, sources = pcall(require,'null_ls_sources')
+if (have_sources) then
+  require'null-ls'.setup {
+    debug = true,
+    sources = sources,
+    on_attach = function(client)
+      if client.resolved_capabilities.document_formatting then
+          vim.cmd [[
+            augroup LspFormatting
+                autocmd! * <buffer>
+                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+            augroup END
+          ]]
+      end
+    end,
+  }
 end
 
 require'fidget'.setup {
