@@ -37,6 +37,10 @@ return require'packer'.startup(function()
   }
 
   use 'neovim/nvim-lspconfig'
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+  }
   use 'j-hui/fidget.nvim'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
@@ -46,7 +50,6 @@ return require'packer'.startup(function()
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
 
-  use 'sbdchd/neoformat'
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
