@@ -109,7 +109,19 @@ return require'packer'.startup(function()
 
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
-  use 'airblade/vim-gitgutter'
+
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require'gitsigns'.setup {
+        current_line_blame = true,
+        current_line_blame_opts = {
+          ignore_whitespace = true,
+        },
+      }
+    end,
+  }
 
   use {
     'preservim/nerdtree',

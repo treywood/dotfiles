@@ -7,9 +7,7 @@ require'keymaps'.setup_keymaps()
 require'lsp'
 
 vim.cmd [[
-  command Notes e ~/notes/index.norg
-
-  augroup neorg
+  augroup startup
     autocmd!
     au VimEnter * NeorgStart silent=true
   augroup END
