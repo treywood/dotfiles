@@ -14,5 +14,9 @@ hi! link TSField TSVariable
 
 hi! link rubyTSSymbol Orange
 hi! link rubyTSLabel TSVariable
+
+hi! link GitSignsAdd Green
+hi! link GitSignsChange Orange
+hi! link GitSignsDelete Red
 ]]
 
