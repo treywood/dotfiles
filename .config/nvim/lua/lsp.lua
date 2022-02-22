@@ -1,3 +1,7 @@
+vim.diagnostic.config {
+  virtual_text = false,
+}
+
 -- Setup nvim-cmp.
 local cmp = require'cmp'
 
