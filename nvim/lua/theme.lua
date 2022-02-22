@@ -16,9 +16,9 @@ hi! link TSField TSVariable
 hi! link rubyTSSymbol Orange
 hi! link rubyTSLabel TSVariable
 
-hi! link GitSignsAdd Green
-hi! link GitSignsChange Orange
-hi! link GitSignsDelete Red
+hi! link GitSignsAdd GreenSign
+hi! link GitSignsChange OrangeSign
+hi! link GitSignsDelete RedSign
 
 hi! link MiniStarterHeader Green
 hi! link MiniStarterSection Red
