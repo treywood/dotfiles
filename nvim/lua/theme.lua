@@ -16,6 +16,8 @@ hi! link TSField TSVariable
 hi! link rubyTSSymbol Orange
 hi! link rubyTSLabel TSVariable
 
+hi! link yamlTSField Orange
+
 hi! link GitSignsAdd GreenSign
 hi! link GitSignsChange OrangeSign
 hi! link GitSignsDelete RedSign
