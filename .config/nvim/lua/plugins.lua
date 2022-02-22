@@ -143,12 +143,7 @@ return require'packer'.startup(function()
     'lewis6991/gitsigns.nvim',
     requires = 'nvim-lua/plenary.nvim',
     config = function()
-      require'gitsigns'.setup {
-        current_line_blame = true,
-        current_line_blame_opts = {
-          ignore_whitespace = true,
-        },
-      }
+      require'gitsigns'.setup()
     end,
   }
 
@@ -189,7 +184,11 @@ return require'packer'.startup(function()
   use {
     'lukas-reineke/indent-blankline.nvim',
     config = function()
-      vim.g.indent_blankline_filetype_exclude = {'starter'}
+      vim.g.indent_blankline_filetype_exclude = {
+        'starter',
+        'packer',
+        'nerdtree',
+      }
       require("indent_blankline").setup {
         char = "",
         char_highlight_list = {

@@ -18,13 +18,16 @@ hi! link rubyTSLabel TSVariable
 
 hi! link yamlTSField Orange
 
+hi CursorLine guibg=NONE
+hi CursorLineNr guibg=NONE
+
 hi! link GitSignsAdd GreenSign
 hi! link GitSignsChange OrangeSign
 hi! link GitSignsDelete RedSign
 
 hi! link MiniStarterHeader Green
 hi! link MiniStarterSection Red
-hi! link MiniStarterItem Fg
+hi! link MiniStarterItem Gray
 hi! link MiniStarterItemBullet GreenBold
 hi! link MiniStarterItemPrefix GreenBold
 hi! link MiniStarterQuery Orange
