@@ -100,7 +100,36 @@ return require'packer'.startup(function()
     end
   }
   use 'nvim-treesitter/playground'
-  use 'jiangmiao/auto-pairs'
+  -- use 'jiangmiao/auto-pairs'
+
+  use {
+    'echasnovski/mini.nvim',
+    config = function()
+      require'mini.comment'.setup {
+        mappings = {
+          comment = 'm',
+          comment_line = 'mm',
+          textobject = 'm',
+        }
+      }
+
+      local starter = require'mini.starter'
+      starter.setup {
+        items = {
+          starter.sections.sessions(5, true),
+          starter.sections.recent_files(10, true),
+        },
+        content_hooks = {
+          starter.gen_hook.adding_bullet('· '),
+          starter.gen_hook.aligning('center','center'),
+        },
+      }
+
+      require'mini.sessions'.setup()
+      require'mini.pairs'.setup()
+      require'mini.surround'.setup()
+    end
+  }
 
   use 'mracos/mermaid.vim'
   use {'iamcco/markdown-preview.nvim', ft = 'markdown', run = 'cd app && yarn install' }
@@ -153,6 +182,25 @@ return require'packer'.startup(function()
           lualine_z = {'tabs'}
         },
         extensions = {'fugitive','nerdtree'}
+      }
+    end
+  }
+
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    config = function()
+      vim.g.indent_blankline_filetype_exclude = {'starter'}
+      require("indent_blankline").setup {
+        char = "",
+        char_highlight_list = {
+          "IndentBlanklineIndent1",
+          "IndentBlanklineIndent2",
+        },
+        space_char_highlight_list = {
+          "IndentBlanklineIndent1",
+          "IndentBlanklineIndent2",
+        },
+        show_trailing_blankline_indent = false,
       }
     end
   }
