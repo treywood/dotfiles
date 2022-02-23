@@ -35,6 +35,9 @@ function Keymaps.setup_keymaps()
   vim.api.nvim_set_keymap('n','[c','<cmd>Gitsigns prev_hunk<CR>',opts)
   vim.api.nvim_set_keymap('n','<leader>hp','<cmd>Gitsigns preview_hunk<CR>',opts)
   vim.api.nvim_set_keymap('n','<leader>hu','<cmd>Gitsigns reset_hunk<CR>',opts)
+
+  vim.api.nvim_set_keymap('n','<leader>cn',':cnext<CR>',opts)
+  vim.api.nvim_set_keymap('n','<leader>cN',':cprevious<CR>',opts)
 end
 
 function Keymaps.setup_lsp_keymaps(bufnr)
