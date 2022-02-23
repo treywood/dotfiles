@@ -93,6 +93,7 @@
 
 [core]
 	pager = delta
+	editor = nvim
 
 [delta]
 	plus-style = syntax "#012800"
