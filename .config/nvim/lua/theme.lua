@@ -17,6 +17,7 @@ hi! link rubyTSSymbol Orange
 hi! link rubyTSLabel TSVariable
 
 hi! link yamlTSField Orange
+hi! link yamlBlockMappingKey Orange
 
 hi CursorLine guibg=NONE
 hi CursorLineNr guibg=NONE

@@ -189,6 +189,9 @@ return require'packer'.startup(function()
         'packer',
         'nerdtree',
       }
+      vim.g.indent_blankline_buftype_exclude = {
+        'nofile',
+      }
       require("indent_blankline").setup {
         char = "",
         char_highlight_list = {
