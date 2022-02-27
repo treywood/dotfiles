@@ -1,11 +1,11 @@
 M = {}
 
-local function exec(cmd)
+function M.header()
   local tmp = os.tmpname()
-  local exit = os.execute(cmd .. ' > ' .. tmp)
+  local exit = os.execute('fortune > ' .. tmp)
   if exit > 0 then
     os.remove(tmp)
-    return exit, nil
+    return nil
   end
 
   local f = io.open(tmp)
@@ -13,17 +13,6 @@ local function exec(cmd)
   f:close()
 
   os.remove(tmp)
-  return exit, text
-end
-
-function M.header(cols)
-  cols = cols or 70
-
-  local exit, text = exec('fortune')
-  if exit > 0 then
-    return nil
-  end
-
   return text
 end
 

@@ -122,7 +122,8 @@ return require'packer'.startup(function()
         },
         content_hooks = {
           starter.gen_hook.adding_bullet('· '),
-          starter.gen_hook.aligning('center','center'),
+          starter.gen_hook.padding(15),
+          starter.gen_hook.aligning('left','center'),
         },
       }
 
