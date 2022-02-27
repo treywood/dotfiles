@@ -100,7 +100,6 @@ return require'packer'.startup(function()
     end
   }
   use 'nvim-treesitter/playground'
-  -- use 'jiangmiao/auto-pairs'
 
   use {
     'echasnovski/mini.nvim',
@@ -150,11 +149,52 @@ return require'packer'.startup(function()
   }
 
   use {
-    'preservim/nerdtree',
-    requires = {'Xuyuanp/nerdtree-git-plugin','ryanoasis/vim-devicons'},
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+    },
     config = function()
-      vim.g.webdevicons_enable_nerdtree = 1
-      vim.g.webdevicons_conceal_nerdtree_brackets = 1
+      vim.cmd [[
+        let g:nvim_tree_show_icons = {
+          \ 'git': 1,
+          \ 'folders': 1,
+          \ 'files': 1,
+          \ 'folder_arrows': 0,
+          \ }
+
+        let g:nvim_tree_icons = {
+          \ 'default': '',
+          \ 'symlink': '',
+          \ 'git': {
+          \   'unstaged': "✗",
+          \   'staged': "✓",
+          \   'unmerged': "",
+          \   'renamed': "➜",
+          \   'untracked': "★",
+          \   'deleted': "",
+          \   'ignored': "◌"
+          \   },
+          \ 'folder': {
+          \   'arrow_open': "",
+          \   'arrow_closed': "",
+          \   'default': "",
+          \   'open': "",
+          \   'empty': "",
+          \   'empty_open': "",
+          \   'symlink': "",
+          \   'symlink_open': "",
+          \   }
+          \ }
+      ]]
+      require'nvim-tree'.setup {
+        view = {
+          mappings = {
+            list = {
+              { key = '-', action = 'close' },
+            }
+          }
+        }
+      }
     end
   }
 
