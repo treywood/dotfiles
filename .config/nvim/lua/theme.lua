@@ -18,6 +18,8 @@ hi! link rubyTSLabel TSVariable
 
 hi! link yamlTSField Orange
 hi! link yamlBlockMappingKey Orange
+hi! link yamlPlainScalar String
+hi! link yamlBlockCollectionItemStart Gray
 
 hi CursorLine guibg=NONE
 hi CursorLineNr guibg=NONE
@@ -39,5 +41,7 @@ hi IndentBlanklineIndent2 guibg=#323c41 gui=nocombine
 
 hi! link DevIconRb Red
 
+hi! link NvimTreeGitDirty Orange
+hi! link NvimTreeFolderIcon Yellow
 ]]
 
