@@ -18,6 +18,14 @@ vim.o.completeopt="menu,menuone,noselect"
 vim.o.termguicolors=true
 vim.o.updatetime=100
 
+vim.o.cursorline=false
+vim.cmd [[
+augroup cursorline
+  autocmd!
+  au BufEnter NvimTree setlocal cursorline
+augroup end
+]]
+
 vim.wo.foldmethod="expr"
 vim.wo.foldexpr="nvim_treesitter#foldexpr()"
 vim.o.foldlevelstart=99

@@ -42,13 +42,19 @@ return require'packer'.startup(function()
     requires = 'nvim-lua/plenary.nvim',
   }
   use 'j-hui/fidget.nvim'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-vsnip'
-  use 'hrsh7th/vim-vsnip'
+
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+      'onsails/lspkind-nvim',
+    }
+  }
 
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -159,7 +165,7 @@ return require'packer'.startup(function()
           \ 'git': 1,
           \ 'folders': 1,
           \ 'files': 1,
-          \ 'folder_arrows': 0,
+          \ 'folder_arrows': 1,
           \ }
 
         let g:nvim_tree_icons = {
@@ -175,18 +181,21 @@ return require'packer'.startup(function()
           \   'ignored': "◌"
           \   },
           \ 'folder': {
-          \   'arrow_open': "",
-          \   'arrow_closed': "",
+          \   'arrow_open': "",
+          \   'arrow_closed': "",
           \   'default': "",
-          \   'open': "",
-          \   'empty': "",
-          \   'empty_open': "",
+          \   'open': "",
+          \   'empty': "",
+          \   'empty_open': "",
           \   'symlink': "",
-          \   'symlink_open': "",
+          \   'symlink_open': "",
           \   }
           \ }
       ]]
       require'nvim-tree'.setup {
+        filters = {
+          dotfiles = true,
+        },
         view = {
           mappings = {
             list = {
@@ -207,7 +216,8 @@ return require'packer'.startup(function()
     config = function()
       require'lualine'.setup {
         options = {
-          theme = 'everforest'
+          theme = 'everforest',
+          disabled_filetypes = {'NvimTree'},
         },
         sections = {
           lualine_c = {{'filename', file_status=true, path=1}},
@@ -230,6 +240,7 @@ return require'packer'.startup(function()
         'starter',
         'packer',
         'nerdtree',
+        'help',
       }
       vim.g.indent_blankline_buftype_exclude = {
         'nofile',

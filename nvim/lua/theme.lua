@@ -21,9 +21,6 @@ hi! link yamlBlockMappingKey Orange
 hi! link yamlPlainScalar String
 hi! link yamlBlockCollectionItemStart Gray
 
-hi CursorLine guibg=NONE
-hi CursorLineNr guibg=NONE
-
 hi! link GitSignsAdd GreenSign
 hi! link GitSignsChange OrangeSign
 hi! link GitSignsDelete RedSign
