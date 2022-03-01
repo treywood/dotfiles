@@ -1,7 +1,7 @@
 Keymaps = {}
 
 function Keymaps.setup_keymaps()
-  local opts = { noremap=true, silent=true }
+  local opts = { silent=true }
   vim.api.nvim_set_keymap('n','<C-e>',':Telescope oldfiles cwd_only=true<CR>',opts)
   vim.api.nvim_set_keymap('n','<C-p>',':Telescope git_files<CR>',opts)
   vim.api.nvim_set_keymap('n','<C-f>',':Telescope live_grep<CR>',opts)
