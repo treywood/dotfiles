@@ -30,6 +30,4 @@ vim.wo.foldmethod="expr"
 vim.wo.foldexpr="nvim_treesitter#foldexpr()"
 vim.o.foldlevelstart=99
 
-vim.g.NERDTreeHijackNetrw=0
-
 vim.g.mapleader = ','
