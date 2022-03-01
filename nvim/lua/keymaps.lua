@@ -8,7 +8,6 @@ function Keymaps.setup_keymaps()
   vim.api.nvim_set_keymap('n','<C-b>',':Telescope buffers<CR>',opts)
   vim.api.nvim_set_keymap('n','<C-j>',':Telescope lsp_document_symbols<CR>',opts)
 
-  opts = { silent=true }
   vim.cmd "let g:incsearch#auto_nohlsearch=1"
   vim.api.nvim_set_keymap('','/','<Plug>(incsearch-forward)',opts)
   vim.api.nvim_set_keymap('','?','<Plug>(incsearch-backward)',opts)
@@ -38,6 +37,8 @@ function Keymaps.setup_keymaps()
 
   vim.api.nvim_set_keymap('n','<leader>cn',':cnext<CR>',opts)
   vim.api.nvim_set_keymap('n','<leader>cN',':cprevious<CR>',opts)
+
+  vim.api.nvim_set_keymap('n','<leader>gy',':GBrowse<CR>',opts)
 end
 
 function Keymaps.setup_lsp_keymaps(bufnr)
