@@ -220,6 +220,7 @@ return require'packer'.startup(function()
           disabled_filetypes = {'NvimTree'},
         },
         sections = {
+          lualine_b = {{'branch', icon=''}},
           lualine_c = {{'filename', file_status=true, path=1}},
           lualine_x = {},
           lualine_y = {'filetype'}
