@@ -26,10 +26,6 @@ function Keymaps.setup_keymaps()
 
   vim.api.nvim_set_keymap('','<leader>gy',':GBrowse!<CR>',opts)
 
-  vim.api.nvim_set_keymap('n','<leader>on',':Notes<CR>',opts)
-  vim.api.nvim_set_keymap('n','<leader>oc',':Neorg gtd capture<CR>',opts)
-  vim.api.nvim_set_keymap('n','<leader>ov',':Neorg gtd views<CR>',opts)
-
   vim.api.nvim_set_keymap('n',']c','<cmd>Gitsigns next_hunk<CR>',opts)
   vim.api.nvim_set_keymap('n','[c','<cmd>Gitsigns prev_hunk<CR>',opts)
   vim.api.nvim_set_keymap('n','<leader>hp','<cmd>Gitsigns preview_hunk<CR>',opts)
