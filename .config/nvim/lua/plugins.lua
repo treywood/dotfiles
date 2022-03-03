@@ -65,8 +65,15 @@ return require'packer'.startup(function()
       'romgrk/nvim-treesitter-context',
     },
     config = function()
+      require'orgmode'.setup_ts_grammar()
+
       require'nvim-treesitter.configs'.setup {
-        highlight = { enable = true },
+        ensure_installed = {'org'},
+        highlight = {
+          enable = true,
+          disable = {'org'},
+          additional_vim_regex_highlighting = {'org'},
+        },
         endwise = { enable = true },
         textobjects = {
           select = {
@@ -240,6 +247,19 @@ return require'packer'.startup(function()
           "IndentBlanklineIndent2",
         },
         show_trailing_blankline_indent = false,
+      }
+    end
+  }
+
+  use {
+    'nvim-orgmode/orgmode',
+    config = function()
+      require'orgmode'.setup {
+        org_agenda_files = {'~/notes/*'},
+        org_agenda_templates = {
+          t = { description = 'Task', template = '* %?\n  %t' }
+        },
+        org_default_notes_file = '~/notes/notes.org',
       }
     end
   }
