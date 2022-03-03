@@ -9,7 +9,6 @@ require'lsp'
 vim.cmd [[
   augroup startup
     autocmd!
-    au VimEnter * NeorgStart silent=true
   augroup END
 ]]
 
