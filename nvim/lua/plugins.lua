@@ -42,6 +42,7 @@ return require'packer'.startup(function()
     requires = 'nvim-lua/plenary.nvim',
   }
   use 'j-hui/fidget.nvim'
+  use 'RRethy/vim-illuminate'
 
   use {
     'hrsh7th/nvim-cmp',
