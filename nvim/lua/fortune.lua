@@ -3,14 +3,13 @@ M = {}
 function M.header()
   local tmp = os.tmpname()
   local exit = os.execute('fortune > ' .. tmp)
-  if exit > 0 then
-    os.remove(tmp)
-    return nil
-  end
+  local text = nil
 
-  local f = io.open(tmp)
-  local text = f:read('a')
-  f:close()
+  if exit == 0 then
+    local f = io.open(tmp)
+    text = f:read('a')
+    f:close()
+  end
 
   os.remove(tmp)
   return text
