@@ -148,41 +148,39 @@ return require'packer'.startup(function()
   use {
     'kyazdani42/nvim-tree.lua',
     requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+      'kyazdani42/nvim-web-devicons',
     },
     config = function()
-      vim.cmd [[
-        let g:nvim_tree_show_icons = {
-          \ 'git': 1,
-          \ 'folders': 1,
-          \ 'files': 1,
-          \ 'folder_arrows': 1,
-          \ }
+      vim.g.nvim_tree_show_icons = {
+        git = 1,
+        folders = 1,
+        files = 1,
+        folder_arrows = 1,
+      }
+      vim.g.nvim_tree_icons = {
+        default = '',
+        symlink = '',
+        git = {
+          unstaged = '✗',
+          staged = '✓',
+          unmerged = '',
+          renamed = '➜',
+          untracked = '★',
+          deleted = '',
+          ignored = '◌',
+        },
+        folder = {
+          arrow_open = '',
+          arrow_closed = '',
+          default = '',
+          open = '',
+          empty = '',
+          empty_open = '',
+          symlink = '',
+          symlink_open = '',
+        },
+      }
 
-        let g:nvim_tree_icons = {
-          \ 'default': '',
-          \ 'symlink': '',
-          \ 'git': {
-          \   'unstaged': "✗",
-          \   'staged': "✓",
-          \   'unmerged': "",
-          \   'renamed': "➜",
-          \   'untracked': "★",
-          \   'deleted': "",
-          \   'ignored': "◌"
-          \   },
-          \ 'folder': {
-          \   'arrow_open': "",
-          \   'arrow_closed': "",
-          \   'default': "",
-          \   'open': "",
-          \   'empty': "",
-          \   'empty_open': "",
-          \   'symlink': "",
-          \   'symlink_open': "",
-          \   }
-          \ }
-      ]]
       require'nvim-tree'.setup {
         filters = {
           dotfiles = true,
