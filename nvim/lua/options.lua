@@ -21,7 +21,7 @@ vim.o.termguicolors=true
 vim.o.updatetime=100
 
 vim.o.cursorline = false
-util.define_augroups {
+util.augroups {
   nvimtree_cursorline = {
     'FileType NvimTree au BufEnter <buffer> setlocal cursorline',
   }
