@@ -1,6 +1,6 @@
 local M = {}
 
-function M.define_augroups(config)
+function M.augroups(config)
   for group, commands in pairs(config) do
     vim.cmd('augroup ' .. group)
     vim.cmd('au!')
