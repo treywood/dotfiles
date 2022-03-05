@@ -1,3 +1,5 @@
+local util = require'util'
+
 vim.cmd "filetype plugin indent on"
 
 vim.o.backspace='indent,eol,start'
@@ -18,13 +20,12 @@ vim.o.completeopt="menu,menuone,noselect"
 vim.o.termguicolors=true
 vim.o.updatetime=100
 
-vim.o.cursorline=false
-vim.cmd [[
-augroup cursorline
-  autocmd!
-  au BufEnter NvimTree setlocal cursorline
-augroup end
-]]
+vim.o.cursorline = false
+util.define_augroups {
+  nvimtree_cursorline = {
+    'FileType NvimTree au BufEnter <buffer> setlocal cursorline',
+  }
+}
 
 vim.wo.foldmethod="expr"
 vim.wo.foldexpr="nvim_treesitter#foldexpr()"

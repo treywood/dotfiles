@@ -1,3 +1,5 @@
+local util = require'util'
+
 vim.diagnostic.config {
   virtual_text = false,
 }
@@ -131,12 +133,11 @@ if (have_sources) then
     sources = sources,
     on_attach = function(client)
       if client.resolved_capabilities.document_formatting then
-          vim.cmd [[
-            augroup LspFormatting
-                autocmd! * <buffer>
-                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-            augroup END
-          ]]
+        util.define_augroups {
+          lsp_formatting = {
+            'BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()',
+          }
+        }
       end
     end,
   }

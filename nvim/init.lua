@@ -5,10 +5,3 @@ require'options'
 require'theme'
 require'keymaps'.setup_keymaps()
 require'lsp'
-
-vim.cmd [[
-  augroup startup
-    autocmd!
-  augroup END
-]]
-
