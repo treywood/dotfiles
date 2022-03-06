@@ -1,10 +1,10 @@
-vim.o.background='dark'
+vim.o.background = "dark"
 
-vim.g.everforest_background = 'hard'
+vim.g.everforest_background = "hard"
 vim.g.everforest_disable_italic_comment = 1
 vim.g.everforest_diagnostic_text_highlight = 1
 
-vim.cmd [[
+vim.cmd([[
 colorscheme everforest
 
 hi Gray guifg=#a7b0a4
@@ -41,5 +41,4 @@ hi! link DevIconRb Red
 
 hi! link NvimTreeGitDirty Orange
 hi! link NvimTreeFolderIcon Yellow
-]]
-
+]])
