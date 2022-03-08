@@ -121,6 +121,7 @@ return require('packer').startup(function()
           starter.gen_hook.padding(15),
           starter.gen_hook.aligning('left', 'center'),
         },
+        query_updaters = [[abcdefghijklmnopqrstuvwxyz0123456789_.]],
       }
 
       require('mini.sessions').setup()
