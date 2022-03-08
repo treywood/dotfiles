@@ -1,6 +1,6 @@
 Keymaps = {}
 
-function Keymaps.setup_keymaps()
+function Keymaps.setup()
   local opts = { silent = true }
   vim.api.nvim_set_keymap('n', '<C-e>', ':Telescope oldfiles cwd_only=true<CR>', opts)
   vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope git_files<CR>', opts)
@@ -37,7 +37,7 @@ function Keymaps.setup_keymaps()
   vim.api.nvim_set_keymap('n', '<leader>gy', ':GBrowse<CR>', opts)
 end
 
-function Keymaps.setup_lsp_keymaps(bufnr)
+function Keymaps.lsp_keymaps(bufnr)
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
   end
