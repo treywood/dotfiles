@@ -34,9 +34,6 @@ hi! link MiniStarterItemPrefix GreenBold
 hi! link MiniStarterQuery Orange
 hi! link MiniStarterFooter Gray
 
-hi IndentBlanklineIndent1 guibg=NONE gui=nocombine
-hi IndentBlanklineIndent2 guibg=#323c41 gui=nocombine
-
 hi! link DevIconRb Red
 
 hi! link NvimTreeGitDirty Orange
