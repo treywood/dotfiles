@@ -64,6 +64,7 @@ return require('packer').startup(function()
       'RRethy/nvim-treesitter-endwise',
       'nvim-treesitter/nvim-treesitter-textobjects',
       'romgrk/nvim-treesitter-context',
+      'andymass/vim-matchup',
     },
     config = function()
       require('orgmode').setup_ts_grammar()
@@ -76,6 +77,7 @@ return require('packer').startup(function()
           additional_vim_regex_highlighting = { 'org' },
         },
         endwise = { enable = true },
+        matchup = { enable = true },
         textobjects = {
           select = {
             enable = true,
