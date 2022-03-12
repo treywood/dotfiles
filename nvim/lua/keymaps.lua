@@ -33,6 +33,9 @@ function Keymaps.setup()
   vim.api.nvim_set_keymap('n', '<leader>cn', ':cnext<CR>', opts)
   vim.api.nvim_set_keymap('n', '<leader>cN', ':cprevious<CR>', opts)
 
+  vim.api.nvim_set_keymap('n', '<M-K>', 'ddkP', opts)
+  vim.api.nvim_set_keymap('n', '<M-J>', 'ddp', opts)
+
   vim.api.nvim_set_keymap('n', '<leader>gy', ':GBrowse<CR>', opts)
 
   vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', opts)
