@@ -70,7 +70,7 @@ return require('packer').startup(function()
       require('orgmode').setup_ts_grammar()
 
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'org' },
+        ensure_installed = { 'org', 'http', 'json' },
         highlight = {
           enable = true,
           disable = { 'org' },
@@ -129,6 +129,14 @@ return require('packer').startup(function()
       require('mini.sessions').setup()
       require('mini.pairs').setup()
       require('mini.surround').setup()
+    end,
+  }
+
+  use {
+    'NTBBloodbath/rest.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('rest-nvim').setup {}
     end,
   }
 
@@ -218,7 +226,7 @@ return require('packer').startup(function()
           lualine_y = { 'filetype' },
         },
         tabline = {
-          lualine_a = { 'buffers' },
+          lualine_a = { { 'buffers', filetype_names = { http = 'curl' } } },
           lualine_z = { 'tabs' },
         },
         extensions = { 'fugitive' },
@@ -236,6 +244,13 @@ return require('packer').startup(function()
         },
         org_default_notes_file = '~/notes/notes.org',
       }
+    end,
+  }
+
+  use {
+    '~/workspace/connect-curl.nvim',
+    config = function()
+      require('connect-curl').setup()
     end,
   }
 end)
