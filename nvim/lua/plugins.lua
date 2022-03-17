@@ -248,9 +248,9 @@ return require('packer').startup(function()
   }
 
   use {
-    '~/workspace/connect-curl.nvim',
+    '~/workspace/sq-connect-repl.nvim',
     config = function()
-      require('connect-curl').setup()
+      require('sq-connect-repl').setup()
     end,
   }
 end)
