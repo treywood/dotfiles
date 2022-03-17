@@ -83,6 +83,8 @@ cmp.setup.cmdline(':', {
     { name = 'path' },
   }, {
     { name = 'cmdline' },
+  }, {
+    { name = 'connect-curl' },
   }),
 })
 
