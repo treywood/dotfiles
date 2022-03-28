@@ -10,6 +10,7 @@ return require('packer').startup(function()
     requires = {
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+      'nvim-telescope/telescope-ui-select.nvim',
     },
     config = function()
       local actions = require('telescope.actions')
@@ -32,8 +33,16 @@ return require('packer').startup(function()
             },
           },
         },
-        extensions = { 'fzf' },
+        extensions = {
+          'fzf',
+          ['ui-select'] = {
+            require('telescope.themes').get_cursor(),
+          },
+        },
       }
+
+      require('telescope').load_extension('fzf')
+      require('telescope').load_extension('ui-select')
     end,
   }
 
@@ -241,12 +250,12 @@ return require('packer').startup(function()
       }
     end,
   }
-  use {
-    'stevearc/dressing.nvim',
-    config = function()
-      require('dressing').setup()
-    end,
-  }
+  -- use {
+  --   'stevearc/dressing.nvim',
+  --   config = function()
+  --     require('dressing').setup()
+  --   end,
+  -- }
 
   -- org
   use {
