@@ -129,6 +129,7 @@ return require('packer').startup(function()
       require('mini.sessions').setup()
       require('mini.pairs').setup()
       require('mini.surround').setup()
+      require('mini.bufremove').setup()
     end,
   }
 
