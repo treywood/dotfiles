@@ -17,6 +17,7 @@ vim.o.completeopt = 'menu,menuone,noselect'
 vim.o.termguicolors = true
 vim.o.updatetime = 100
 vim.o.cursorline = false
+vim.o.splitright = true
 
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'

@@ -1,4 +1,5 @@
 local util = require('util')
+require('sq-connect-repl.completion')
 
 vim.diagnostic.config {
   virtual_text = false,
@@ -86,6 +87,13 @@ cmp.setup.cmdline(':', {
   }, {
     { name = 'connect-curl' },
   }),
+})
+
+cmp.setup.filetype('http', {
+  sources = cmp.config.sources {
+    { name = 'luasnip' },
+    { name = 'sq-connect-repl.locations' },
+  },
 })
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
