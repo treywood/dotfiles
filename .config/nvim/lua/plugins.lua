@@ -3,6 +3,7 @@ vim.cmd('packadd packer.nvim')
 return require('packer').startup(function()
   use('wbthomason/packer.nvim')
 
+  -- search
   use('haya14busa/incsearch.vim')
   use {
     'nvim-telescope/telescope.nvim',
@@ -36,6 +37,7 @@ return require('packer').startup(function()
     end,
   }
 
+  -- LSP
   use('neovim/nvim-lspconfig')
   use {
     'jose-elias-alvarez/null-ls.nvim',
@@ -44,6 +46,7 @@ return require('packer').startup(function()
   use('j-hui/fidget.nvim')
   use('RRethy/vim-illuminate')
 
+  -- completion
   use {
     'hrsh7th/nvim-cmp',
     requires = {
@@ -57,6 +60,7 @@ return require('packer').startup(function()
     },
   }
 
+  -- syntax
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -101,6 +105,33 @@ return require('packer').startup(function()
   use('nvim-treesitter/playground')
 
   use {
+    'NTBBloodbath/rest.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('rest-nvim').setup {}
+    end,
+  }
+
+  -- documentation
+  use('mracos/mermaid.vim')
+  use { 'iamcco/markdown-preview.nvim', ft = 'markdown', run = 'cd app && yarn install' }
+
+  -- testing
+  use('vim-test/vim-test')
+
+  -- git
+  use('tpope/vim-fugitive')
+  use('tpope/vim-rhubarb')
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end,
+  }
+
+  -- misc
+  use {
     'echasnovski/mini.nvim',
     config = function()
       require('mini.comment').setup {
@@ -132,31 +163,6 @@ return require('packer').startup(function()
       require('mini.bufremove').setup()
     end,
   }
-
-  use {
-    'NTBBloodbath/rest.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('rest-nvim').setup {}
-    end,
-  }
-
-  use('mracos/mermaid.vim')
-  use { 'iamcco/markdown-preview.nvim', ft = 'markdown', run = 'cd app && yarn install' }
-
-  use('vim-test/vim-test')
-
-  use('tpope/vim-fugitive')
-  use('tpope/vim-rhubarb')
-
-  use {
-    'lewis6991/gitsigns.nvim',
-    requires = 'nvim-lua/plenary.nvim',
-    config = function()
-      require('gitsigns').setup()
-    end,
-  }
-
   use {
     'kyazdani42/nvim-tree.lua',
     requires = {
@@ -208,6 +214,7 @@ return require('packer').startup(function()
     end,
   }
 
+  -- theme
   use('sainnhe/everforest')
   use {
     'nvim-lualine/lualine.nvim',
@@ -234,7 +241,14 @@ return require('packer').startup(function()
       }
     end,
   }
+  use {
+    'stevearc/dressing.nvim',
+    config = function()
+      require('dressing').setup()
+    end,
+  }
 
+  -- org
   use {
     'nvim-orgmode/orgmode',
     config = function()
@@ -248,6 +262,7 @@ return require('packer').startup(function()
     end,
   }
 
+  -- custom
   use {
     '~/workspace/sq-connect-repl.nvim',
     config = function()
