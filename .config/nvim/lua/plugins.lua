@@ -10,7 +10,7 @@ return require('packer').startup(function()
     requires = {
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-      'nvim-telescope/telescope-ui-select.nvim',
+      -- 'nvim-telescope/telescope-ui-select.nvim',
     },
     config = function()
       local actions = require('telescope.actions')
@@ -35,14 +35,14 @@ return require('packer').startup(function()
         },
         extensions = {
           'fzf',
-          ['ui-select'] = {
-            require('telescope.themes').get_cursor(),
-          },
+          -- ['ui-select'] = {
+          --   require('telescope.themes').get_cursor(),
+          -- },
         },
       }
 
       require('telescope').load_extension('fzf')
-      require('telescope').load_extension('ui-select')
+      -- require('telescope').load_extension('ui-select')
     end,
   }
 
@@ -250,12 +250,6 @@ return require('packer').startup(function()
       }
     end,
   }
-  -- use {
-  --   'stevearc/dressing.nvim',
-  --   config = function()
-  --     require('dressing').setup()
-  --   end,
-  -- }
 
   -- org
   use {
@@ -273,7 +267,12 @@ return require('packer').startup(function()
 
   -- custom
   use {
-    '~/workspace/sq-connect-repl.nvim',
+    -- '~/Development/sq-connect-repl.nvim',
+    'squareup/sq-connect-repl.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'NTBBloodbath/rest.nvim',
+    },
     config = function()
       require('sq-connect-repl').setup()
     end,
