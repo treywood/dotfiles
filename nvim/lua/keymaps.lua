@@ -43,6 +43,8 @@ function Keymaps.setup()
   vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', opts)
 
   vim.api.nvim_set_keymap('i', '<C-j>', "<C-O>:lua require('luasnip').change_choice(1)<CR>", opts)
+  vim.api.nvim_set_keymap('i', '<C-I>l', '<C-O><Plug>(sq-connect-insert-location-id)', opts)
+  vim.api.nvim_set_keymap('i', '<C-I>m', '<C-O><Plug>(sq-connect-insert-merchant-id)', opts)
 
   opts = { noremap = true, silent = true }
   vim.api.nvim_set_keymap('n', ';', 'm', opts)
