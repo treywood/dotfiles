@@ -1,5 +1,5 @@
 local util = require('util')
-require('sq-connect-repl.completion')
+pcall(require, 'sq-connect-repl.completion')
 
 vim.diagnostic.config {
   virtual_text = false,

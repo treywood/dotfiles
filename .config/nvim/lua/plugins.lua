@@ -269,6 +269,7 @@ return require('packer').startup(function()
   use {
     -- '~/Development/sq-connect-repl.nvim',
     'squareup/sq-connect-repl.nvim',
+    opt = true,
     requires = {
       'nvim-lua/plenary.nvim',
       'NTBBloodbath/rest.nvim',
