@@ -113,14 +113,6 @@ return require('packer').startup(function()
   }
   use('nvim-treesitter/playground')
 
-  use {
-    'NTBBloodbath/rest.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('rest-nvim').setup {}
-    end,
-  }
-
   -- documentation
   use('mracos/mermaid.vim')
   use { 'iamcco/markdown-preview.nvim', ft = 'markdown', run = 'cd app && yarn install' }
@@ -169,7 +161,6 @@ return require('packer').startup(function()
       require('mini.sessions').setup()
       require('mini.pairs').setup()
       require('mini.surround').setup()
-      require('mini.bufremove').setup()
     end,
   }
   use {
@@ -267,15 +258,19 @@ return require('packer').startup(function()
 
   -- custom
   use {
-    -- '~/Development/sq-connect-repl.nvim',
-    'squareup/sq-connect-repl.nvim',
-    opt = true,
+    '~/Development/sq-connect-repl.nvim',
+    -- 'squareup/sq-connect-repl.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
       'NTBBloodbath/rest.nvim',
     },
     config = function()
-      require('sq-connect-repl').setup()
+      require('rest-nvim').setup {}
+      require('sq-connect-repl').setup {
+        config_file = function()
+          return os.getenv('HOME') .. '/sq-connect-repl.json'
+        end,
+      }
     end,
   }
 end)
