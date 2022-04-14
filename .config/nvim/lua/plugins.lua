@@ -264,6 +264,7 @@ return require('packer').startup(function()
       'nvim-lua/plenary.nvim',
       'NTBBloodbath/rest.nvim',
     },
+    opt = true,
     config = function()
       require('rest-nvim').setup {}
       require('sq-connect-repl').setup {
