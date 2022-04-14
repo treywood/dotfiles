@@ -256,22 +256,8 @@ return require('packer').startup(function()
     end,
   }
 
-  -- custom
-  use {
-    '~/Development/sq-connect-repl.nvim',
-    -- 'squareup/sq-connect-repl.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'NTBBloodbath/rest.nvim',
-    },
-    opt = true,
-    config = function()
-      require('rest-nvim').setup {}
-      require('sq-connect-repl').setup {
-        config_file = function()
-          return os.getenv('HOME') .. '/sq-connect-repl.json'
-        end,
-      }
-    end,
-  }
+  local ok, setup = pcall(require, 'local_plugins')
+  if ok then
+    setup(use)
+  end
 end)
