@@ -38,26 +38,24 @@ function Keymaps.setup()
 
   vim.api.nvim_set_keymap('n', '<leader>gy', ':GBrowse<CR>', opts)
 
-  vim.api.nvim_set_keymap('n', 'bd', 'lua MiniBufremove.delete()<CR>', opts)
-
   vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', opts)
 
   vim.api.nvim_set_keymap('i', '<C-j>', "<C-O>:lua require('luasnip').change_choice(1)<CR>", opts)
 
-  vim.api.nvim_set_keymap('i', '<C-k>i', '<Plug>(sq-connect-insert-id)', opts)
-  vim.api.nvim_set_keymap('i', '<C-k>l', '<Plug>(sq-connect-insert-location-id)', opts)
-  vim.api.nvim_set_keymap('i', '<C-k>m', '<Plug>(sq-connect-insert-merchant-id)', opts)
-  vim.api.nvim_set_keymap('i', '<C-k>c', '<Plug>(sq-connect-insert-customer-id)', opts)
+  vim.api.nvim_set_keymap('i', '<C-Space>i', '<Plug>(sq-connect-insert-id)', opts)
+  vim.api.nvim_set_keymap('i', '<C-Space>l', '<Plug>(sq-connect-insert-location-id)', opts)
+  vim.api.nvim_set_keymap('i', '<C-Space>m', '<Plug>(sq-connect-insert-merchant-id)', opts)
+  vim.api.nvim_set_keymap('i', '<C-Space>c', '<Plug>(sq-connect-insert-customer-id)', opts)
 
-  vim.api.nvim_set_keymap('v', '<C-k>i', '<Plug>(sq-connect-insert-id)', opts)
-  vim.api.nvim_set_keymap('v', '<C-k>l', '<Plug>(sq-connect-insert-location-id)', opts)
-  vim.api.nvim_set_keymap('v', '<C-k>m', '<Plug>(sq-connect-insert-merchant-id)', opts)
-  vim.api.nvim_set_keymap('v', '<C-k>c', '<Plug>(sq-connect-insert-customer-id)', opts)
+  vim.api.nvim_set_keymap('v', '<C-Space>i', '<Plug>(sq-connect-insert-id)', opts)
+  vim.api.nvim_set_keymap('v', '<C-Space>l', '<Plug>(sq-connect-insert-location-id)', opts)
+  vim.api.nvim_set_keymap('v', '<C-Space>m', '<Plug>(sq-connect-insert-merchant-id)', opts)
+  vim.api.nvim_set_keymap('v', '<C-Space>c', '<Plug>(sq-connect-insert-customer-id)', opts)
 
-  vim.api.nvim_set_keymap('s', '<C-k>i', '<Plug>(sq-connect-insert-id)', opts)
-  vim.api.nvim_set_keymap('s', '<C-k>l', '<Plug>(sq-connect-insert-location-id)', opts)
-  vim.api.nvim_set_keymap('s', '<C-k>m', '<Plug>(sq-connect-insert-merchant-id)', opts)
-  vim.api.nvim_set_keymap('s', '<C-k>c', '<Plug>(sq-connect-insert-customer-id)', opts)
+  vim.api.nvim_set_keymap('s', '<C-Space>i', '<Plug>(sq-connect-insert-id)', opts)
+  vim.api.nvim_set_keymap('s', '<C-Space>l', '<Plug>(sq-connect-insert-location-id)', opts)
+  vim.api.nvim_set_keymap('s', '<C-Space>m', '<Plug>(sq-connect-insert-merchant-id)', opts)
+  vim.api.nvim_set_keymap('s', '<C-Space>c', '<Plug>(sq-connect-insert-customer-id)', opts)
 
   opts = { noremap = true, silent = true }
   vim.api.nvim_set_keymap('n', ';', 'm', opts)
