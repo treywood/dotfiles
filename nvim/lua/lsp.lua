@@ -142,10 +142,11 @@ if have_sources then
   require('null-ls').setup {
     debug = true,
     sources = sources,
-    on_attach = function(client)
+    on_attach = function(client, bufnr)
       if client.resolved_capabilities.document_formatting then
         vim.api.nvim_create_autocmd('BufWritePre', {
           callback = vim.lsp.buf.formatting_sync,
+          buffer = bufnr,
         })
       end
     end,
