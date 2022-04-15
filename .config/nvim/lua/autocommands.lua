@@ -1,9 +1,9 @@
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'NvimTree',
-  callback = function()
+  callback = function(args)
     vim.api.nvim_create_autocmd('BufEnter', {
-      once = true,
       command = 'setlocal cursorline',
+      buffer = args.buf,
     })
   end,
 })
