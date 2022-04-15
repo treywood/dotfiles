@@ -1,4 +1,3 @@
-local util = require('util')
 pcall(require, 'sq-connect-repl.completion')
 
 vim.diagnostic.config {
@@ -145,11 +144,9 @@ if have_sources then
     sources = sources,
     on_attach = function(client)
       if client.resolved_capabilities.document_formatting then
-        util.augroups {
-          lsp_formatting = {
-            'BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()',
-          },
-        }
+        vim.api.nvim_create_autocmd('BufWritePre', {
+          callback = vim.lsp.buf.formatting_sync,
+        })
       end
     end,
   }
