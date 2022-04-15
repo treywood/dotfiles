@@ -44,27 +44,19 @@ function Keymaps.setup()
     require('luasnip').change_choice(1)
   end, opts)
 
-  vim.keymap.set('i', '<C-Space>i', '<Plug>(sq-connect-insert-id)', opts)
-  vim.keymap.set('i', '<C-Space>l', '<Plug>(sq-connect-insert-location-id)', opts)
-  vim.keymap.set('i', '<C-Space>m', '<Plug>(sq-connect-insert-merchant-id)', opts)
-  vim.keymap.set('i', '<C-Space>c', '<Plug>(sq-connect-insert-customer-id)', opts)
-
-  vim.keymap.set('v', '<C-Space>i', '<Plug>(sq-connect-insert-id)', opts)
-  vim.keymap.set('v', '<C-Space>l', '<Plug>(sq-connect-insert-location-id)', opts)
-  vim.keymap.set('v', '<C-Space>m', '<Plug>(sq-connect-insert-merchant-id)', opts)
-  vim.keymap.set('v', '<C-Space>c', '<Plug>(sq-connect-insert-customer-id)', opts)
-
-  vim.keymap.set('s', '<C-Space>i', '<Plug>(sq-connect-insert-id)', opts)
-  vim.keymap.set('s', '<C-Space>l', '<Plug>(sq-connect-insert-location-id)', opts)
-  vim.keymap.set('s', '<C-Space>m', '<Plug>(sq-connect-insert-merchant-id)', opts)
-  vim.keymap.set('s', '<C-Space>c', '<Plug>(sq-connect-insert-customer-id)', opts)
+  for _, m in pairs { 'i', 'v', 's' } do
+    vim.keymap.set(m, '<C-Space>i', '<Plug>(sq-connect-insert-id)', opts)
+    vim.keymap.set(m, '<C-Space>l', '<Plug>(sq-connect-insert-location-id)', opts)
+    vim.keymap.set(m, '<C-Space>m', '<Plug>(sq-connect-insert-merchant-id)', opts)
+    vim.keymap.set(m, '<C-Space>c', '<Plug>(sq-connect-insert-customer-id)', opts)
+  end
 
   opts = { noremap = true, silent = true }
   vim.keymap.set('n', ';', 'm', opts)
   vim.keymap.set('n', "'", '`', opts)
 end
 
-function Keymaps.lsp_keymaps(bufnr)
+function Keymaps.setup_lsp(bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)

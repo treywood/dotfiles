@@ -112,7 +112,7 @@ if have_servers then
   -- after the language server attaches to the current buffer
   ---@diagnostic disable-next-line: unused-local
   local on_attach = function(client, bufnr)
-    require('keymaps').lsp_keymaps(bufnr)
+    require('keymaps').setup_lsp(bufnr)
     require('illuminate').on_attach(client)
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
