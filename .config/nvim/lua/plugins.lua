@@ -10,7 +10,6 @@ return require('packer').startup(function()
     requires = {
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-      -- 'nvim-telescope/telescope-ui-select.nvim',
     },
     config = function()
       local actions = require('telescope.actions')
@@ -35,14 +34,10 @@ return require('packer').startup(function()
         },
         extensions = {
           'fzf',
-          -- ['ui-select'] = {
-          --   require('telescope.themes').get_cursor(),
-          -- },
         },
       }
 
       require('telescope').load_extension('fzf')
-      -- require('telescope').load_extension('ui-select')
     end,
   }
 
@@ -251,7 +246,7 @@ return require('packer').startup(function()
         org_agenda_templates = {
           t = { description = 'Task', template = '* %?\n  %t' },
         },
-        org_default_notes_file = '~/notes/notes.org',
+        org_default_notes_file = '~/notes/refile.org',
       }
     end,
   }

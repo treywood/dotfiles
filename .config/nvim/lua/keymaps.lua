@@ -25,6 +25,8 @@ function Keymaps.setup()
 
   vim.keymap.set('', '<leader>gy', ':GBrowse!<CR>', opts)
 
+  vim.keymap.set('n', '<leader>on', ':vsplit ~/notes/notes.org<CR>', opts)
+
   vim.keymap.set('n', ']c', '<cmd>Gitsigns next_hunk<CR>', opts)
   vim.keymap.set('n', '[c', '<cmd>Gitsigns prev_hunk<CR>', opts)
   vim.keymap.set('n', '<leader>hp', '<cmd>Gitsigns preview_hunk<CR>', opts)
