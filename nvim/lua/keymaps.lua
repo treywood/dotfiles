@@ -6,7 +6,6 @@ function Keymaps.setup()
   vim.keymap.set('n', '<C-p>', ':Telescope git_files<CR>', opts)
   vim.keymap.set('n', '<C-f>', ':Telescope live_grep<CR>', opts)
   vim.keymap.set('n', '<C-b>', ':Telescope buffers<CR>', opts)
-  vim.keymap.set('n', '<C-j>', ':Telescope lsp_document_symbols<CR>', opts)
 
   vim.keymap.set('', '/', '<Plug>(incsearch-forward)', opts)
   vim.keymap.set('', '?', '<Plug>(incsearch-backward)', opts)
@@ -70,6 +69,7 @@ function Keymaps.setup_lsp(bufnr)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+  vim.keymap.set('n', '<C-j>', ':Telescope lsp_document_symbols<CR>', opts)
 end
 
 return Keymaps
