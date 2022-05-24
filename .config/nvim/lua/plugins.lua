@@ -32,6 +32,15 @@ return require('packer').startup(function()
             },
           },
         },
+        pickers = {
+          buffers = {
+            mappings = {
+              i = {
+                ['<C-w>'] = actions.delete_buffer,
+              },
+            },
+          },
+        },
         extensions = {
           'fzf',
         },
