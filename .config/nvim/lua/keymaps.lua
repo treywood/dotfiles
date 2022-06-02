@@ -1,3 +1,5 @@
+local diff_files = require('pickers.diff_files')
+
 Keymaps = {}
 
 function Keymaps.setup()
@@ -6,6 +8,7 @@ function Keymaps.setup()
   vim.keymap.set('n', '<C-p>', ':Telescope git_files<CR>', opts)
   vim.keymap.set('n', '<C-f>', ':Telescope live_grep<CR>', opts)
   vim.keymap.set('n', '<C-b>', ':Telescope buffers<CR>', opts)
+  vim.keymap.set('n', '<C-y>', diff_files, opts)
 
   vim.keymap.set('', '/', '<Plug>(incsearch-forward)', opts)
   vim.keymap.set('', '?', '<Plug>(incsearch-backward)', opts)
