@@ -241,8 +241,9 @@ return require('packer').startup(function()
           lualine_y = { 'filetype' },
         },
         tabline = {
-          lualine_a = { { 'buffers', filetype_names = { http = 'curl' } } },
-          lualine_z = { 'tabs' },
+          -- lualine_a = { { 'buffers', filetype_names = { http = 'curl' } } },
+          lualine_a = { 'tabs', mode = 2 },
+          lualine_z = {},
         },
         extensions = { 'fugitive' },
       }

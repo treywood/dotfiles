@@ -15,3 +15,10 @@ end, {
     return vim.fn.readdir(string.format('%s/notes/', os.getenv('HOME')))
   end,
 })
+
+vim.api.nvim_create_user_command('Kochiku', function()
+  vim.cmd('!sq kochiku')
+end, {})
+vim.api.nvim_create_user_command('Migrate', function()
+  vim.cmd('!rails db:migrate && rails db:migrate RAILS_ENV=test')
+end, {})
