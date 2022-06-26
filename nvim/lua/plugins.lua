@@ -190,7 +190,7 @@ return require('packer').startup(function()
               git = true,
               folder = true,
               file = true,
-              folder_arrow = false,
+              folder_arrow = true,
             },
             glyphs = {
               default = '',
@@ -205,6 +205,8 @@ return require('packer').startup(function()
                 ignored = '◌',
               },
               folder = {
+                arrow_closed = '',
+                arrow_open = '',
                 default = '',
                 open = '',
                 empty = '',
