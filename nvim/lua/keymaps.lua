@@ -15,9 +15,6 @@ function Keymaps.setup()
   vim.keymap.set('', 'n', '<Plug>(incsearch-nohl-n)', opts)
   vim.keymap.set('', 'N', '<Plug>(incsearch-nohl-N)', opts)
 
-  vim.keymap.set('n', '-', ':NvimTreeToggle<CR>', opts)
-  vim.keymap.set('n', '=', ':NvimTreeFindFile<CR>', opts)
-
   vim.keymap.set('n', '<leader>tn', ':TestNearest<CR>', opts)
   vim.keymap.set('n', '<leader>tf', ':TestFile<CR>', opts)
   vim.keymap.set('n', '<leader>tt', ':TestLast<CR>', opts)

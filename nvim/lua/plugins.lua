@@ -159,65 +159,11 @@ return require('packer').startup(function()
           starter.gen_hook.padding(15),
           starter.gen_hook.aligning('left', 'center'),
         },
-        query_updaters = [[abcdefghijklmnopqrstuvwxyz0123456789_.]],
       }
 
       require('mini.sessions').setup()
       require('mini.pairs').setup()
       require('mini.surround').setup()
-    end,
-  }
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons',
-    },
-    config = function()
-      require('nvim-tree').setup {
-        filters = {
-          dotfiles = true,
-        },
-        view = {
-          mappings = {
-            list = {
-              { key = '-', action = 'close' },
-            },
-          },
-        },
-        renderer = {
-          icons = {
-            show = {
-              git = true,
-              folder = true,
-              file = true,
-              folder_arrow = true,
-            },
-            glyphs = {
-              default = '',
-              symlink = '',
-              git = {
-                unstaged = '✗',
-                staged = '✓',
-                unmerged = '',
-                renamed = '➜',
-                untracked = '★',
-                deleted = '',
-                ignored = '◌',
-              },
-              folder = {
-                arrow_closed = '',
-                arrow_open = '',
-                default = '',
-                open = '',
-                empty = '',
-                empty_open = '',
-                symlink = '',
-                symlink_open = '',
-              },
-            },
-          },
-        },
-      }
     end,
   }
 
