@@ -50,8 +50,14 @@ end
 
 vim.api.nvim_create_autocmd('VimEnter', {
   callback = function()
-    local repo_name = vim.fn.system([[git remote get-url --all origin | sed -E 's/.+\/(.+)\.git$/\1/']])
-    local tab_name = string.format('nvim (%s)', repo_name:gsub('%s*$', ''))
+    local tab_name
+    if vim.fn.argc() == 0 then
+      local repo_name = vim.fn.system([[git remote get-url --all origin | sed -E 's/.+\/(.+)\.git$/\1/']])
+      tab_name = string.format('nvim (%s)', repo_name:gsub('%s*$', ''))
+    else
+      local file_name = vim.fn.argv(0)
+      tab_name = string.format('nvim (%s)', file_name)
+    end
     set_tab_title(tab_name)
   end,
 })
