@@ -2,6 +2,7 @@ local Job = require('plenary.job')
 local Kitty = {}
 
 local kitty_listen_on = os.getenv('KITTY_LISTEN_ON')
+local kitty_pid = os.getenv('KITTY_PID')
 
 function Kitty.run(args, opts)
   print(string.format('kitty %s', table.concat(args, ' ')))
@@ -26,7 +27,20 @@ function Kitty.remote(args, opts)
 end
 
 function Kitty.is_kitty()
-  return kitty_listen_on ~= nil
+  return kitty_pid ~= nil
+end
+
+function Kitty.reload_config()
+  Job
+    :new({
+      cwd = vim.fn.getcwd(),
+      command = 'kill',
+      args = { '-s', 'SIGUSR1', kitty_pid },
+      on_stderr = function(_, err)
+        print(string.format('error reloading kitty config: %s', err))
+      end,
+    })
+    :start()
 end
 
 return Kitty

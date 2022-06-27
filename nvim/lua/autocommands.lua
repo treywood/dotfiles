@@ -47,8 +47,10 @@ if Kitty.is_kitty() then
       set_tab_title(nil)
     end,
   })
-  -- vim.api.nvim_create_autocmd('BufWritePost', {
-  --   pattern = 'kitty.conf',
-  --   callback = function() end,
-  -- })
+  vim.api.nvim_create_autocmd('BufWritePost', {
+    pattern = 'kitty.conf',
+    callback = function()
+      Kitty.reload_config()
+    end,
+  })
 end
