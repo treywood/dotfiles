@@ -29,8 +29,10 @@ vim.api.nvim_create_autocmd('User', {
 })
 
 if Kitty.is_kitty() then
+  local kitty_window_id = os.getenv('KITTY_WINDOW_ID')
+
   local function set_tab_title(tab_title)
-    Kitty.remote { 'set-tab-title', tab_title }
+    Kitty.remote { 'set-tab-title', '--match', 'window_id:' .. kitty_window_id, tab_title }
   end
 
   vim.api.nvim_create_autocmd('VimEnter', {
