@@ -94,6 +94,7 @@
 [core]
 	pager = delta
 	editor = nvim
+	fsmonitor = true
 
 [delta]
 	plus-style = syntax "#012800"
