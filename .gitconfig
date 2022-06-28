@@ -9,7 +9,7 @@
 	renames = true
 	indentHeuristic = on
 [status]
-	showUntrackedFiles = all
+	showUntrackedFiles = normal
 [branch]
 	autosetupmerge = true
 [merge]
