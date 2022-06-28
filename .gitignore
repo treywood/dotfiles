@@ -1,3 +1,5 @@
 nvim/lua/lsp_servers.lua
 nvim/lua/null_ls_sources.lua
 nvim/lua/local_plugins.lua
+
+kitty/*.session
