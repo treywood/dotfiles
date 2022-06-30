@@ -53,8 +53,8 @@ function Keymaps.setup()
   end
 
   opts = { noremap = true, silent = true }
-  vim.keymap.set('n', ';', 'm', opts)
-  vim.keymap.set('n', "'", '`', opts)
+  vim.keymap.set('n', 'n', 'nzzzv')
+  vim.keymap.set('n', 'N', 'Nzzzv')
 end
 
 function Keymaps.setup_lsp(bufnr)
