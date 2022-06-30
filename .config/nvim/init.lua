@@ -16,9 +16,13 @@ end, {
   end,
 })
 
-vim.api.nvim_create_user_command('Kochiku', function()
-  vim.cmd('!sq kochiku')
-end, {})
+vim.api.nvim_create_user_command('Kochiku', function(opts)
+  local command = '!sq kochiku'
+  if #opts.fargs > 0 then
+    command = string.format('%s %s', command, table.concat(opts.fargs, ' '))
+  end
+  vim.cmd(command)
+end, { nargs = '?' })
 vim.api.nvim_create_user_command('Migrate', function()
   vim.cmd('!rails db:migrate && rails db:migrate RAILS_ENV=test')
 end, {})
