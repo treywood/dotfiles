@@ -149,7 +149,7 @@ return require('packer').startup(function()
 
       local starter = require('mini.starter')
       starter.setup {
-        header = require('fortune').header(),
+        header = vim.fn.system('fortune'),
         items = {
           starter.sections.sessions(5, true),
           starter.sections.recent_files(10, true),
