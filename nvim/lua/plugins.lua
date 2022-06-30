@@ -4,7 +4,7 @@ return require('packer').startup(function()
   use('wbthomason/packer.nvim')
 
   -- search
-  use('haya14busa/incsearch.vim')
+  use('haya14busa/is.vim')
   use {
     'nvim-telescope/telescope.nvim',
     requires = {

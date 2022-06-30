@@ -10,10 +10,13 @@ function Keymaps.setup()
   vim.keymap.set('n', '<C-b>', ':Telescope buffers<CR>', opts)
   vim.keymap.set('n', '<C-y>', diff_files, opts)
 
-  vim.keymap.set('', '/', '<Plug>(incsearch-forward)', opts)
-  vim.keymap.set('', '?', '<Plug>(incsearch-backward)', opts)
-  vim.keymap.set('', 'n', '<Plug>(incsearch-nohl-n)', opts)
-  vim.keymap.set('', 'N', '<Plug>(incsearch-nohl-N)', opts)
+  -- vim.keymap.set('', '/', '<Plug>(incsearch-forward)', opts)
+  -- vim.keymap.set('', '?', '<Plug>(incsearch-backward)', opts)
+
+  vim.keymap.set('', 'n', '<Plug>(is-n)zzzv', opts)
+  vim.keymap.set('', 'N', '<Plug>(is-N)zzzv', opts)
+  vim.keymap.set('', '*', '<Plug>(is-*)', opts)
+  vim.keymap.set('', '#', '<Plug>(is-#)', opts)
 
   vim.keymap.set('n', '<leader>tn', ':TestNearest<CR>', opts)
   vim.keymap.set('n', '<leader>tf', ':TestFile<CR>', opts)
@@ -51,10 +54,6 @@ function Keymaps.setup()
     vim.keymap.set(m, '<C-Space>m', '<Plug>(sq-connect-insert-merchant-id)', opts)
     vim.keymap.set(m, '<C-Space>c', '<Plug>(sq-connect-insert-customer-id)', opts)
   end
-
-  opts = { noremap = true, silent = true }
-  vim.keymap.set('n', 'n', 'nzzzv')
-  vim.keymap.set('n', 'N', 'Nzzzv')
 end
 
 function Keymaps.setup_lsp(bufnr)
