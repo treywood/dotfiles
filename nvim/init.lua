@@ -22,7 +22,13 @@ vim.api.nvim_create_user_command('Kochiku', function(opts)
     command = string.format('%s %s', command, table.concat(opts.fargs, ' '))
   end
   vim.cmd(command)
-end, { nargs = '?' })
+end, {
+  nargs = '?',
+  force = true,
+  complete = function()
+    return { '--canary' }
+  end,
+})
 vim.api.nvim_create_user_command('Migrate', function()
   vim.cmd('!rails db:migrate && rails db:migrate RAILS_ENV=test')
 end, {})
