@@ -1,15 +1,5 @@
 local Kitty = require('kitty')
 
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'NvimTree',
-  callback = function(args)
-    vim.api.nvim_create_autocmd('BufEnter', {
-      command = 'setlocal cursorline',
-      buffer = args.buf,
-    })
-  end,
-})
-
 vim.api.nvim_create_autocmd('User', {
   pattern = 'MiniStarterOpened',
   callback = function(args)
