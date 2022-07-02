@@ -15,6 +15,7 @@ vim.api.nvim_create_autocmd('User', {
     vim.keymap.set('n', '<C-j>', next_item, options)
     vim.keymap.set('n', '<C-k>', prev_item, options)
     vim.keymap.set('n', '<C-p>', ':Telescope git_files<CR>', options)
+    vim.keymap.set('n', '-', ':Telescope file_browser<CR>', options)
   end,
 })
 
