@@ -9,11 +9,13 @@ return require('packer').startup(function()
     'nvim-telescope/telescope.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-file-browser.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
     },
     config = function()
+      local telescope = require('telescope')
       local actions = require('telescope.actions')
-      require('telescope').setup {
+      telescope.setup {
         defaults = {
           layout_strategy = 'bottom_pane',
           layout_config = {
@@ -43,10 +45,16 @@ return require('packer').startup(function()
         },
         extensions = {
           'fzf',
+          file_browser = {
+            grouped = true,
+            hijack_netrw = true,
+            respect_gitignore = true,
+          },
         },
       }
 
-      require('telescope').load_extension('fzf')
+      telescope.load_extension('fzf')
+      telescope.load_extension('file_browser')
     end,
   }
 
