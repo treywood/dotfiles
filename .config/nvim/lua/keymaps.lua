@@ -12,9 +12,6 @@ function Keymaps.setup()
 
   vim.keymap.set('n', '-', ':Telescope file_browser<CR>', opts)
 
-  -- vim.keymap.set('', '/', '<Plug>(incsearch-forward)', opts)
-  -- vim.keymap.set('', '?', '<Plug>(incsearch-backward)', opts)
-
   vim.keymap.set('', 'n', '<Plug>(is-n)zzzv', opts)
   vim.keymap.set('', 'N', '<Plug>(is-N)zzzv', opts)
   vim.keymap.set('', '*', '<Plug>(is-*)', opts)
@@ -24,12 +21,10 @@ function Keymaps.setup()
   vim.keymap.set('n', '<leader>tf', ':TestFile<CR>', opts)
   vim.keymap.set('n', '<leader>tt', ':TestLast<CR>', opts)
 
-  vim.keymap.set('n', '<leader>W', ':%bd<CR>', opts)
-  vim.keymap.set('n', '<leader>w', ':%bd|e#|bd#<CR>', opts)
+  vim.keymap.set('n', '<leader>W', ':%bd!<CR>', opts)
+  vim.keymap.set('n', '<leader>w', ':%bd!|e#|bd!#<CR>', opts)
 
   vim.keymap.set('', '<leader>gy', ':GBrowse!<CR>', opts)
-
-  vim.keymap.set('n', '<leader>on', ':vsplit ~/notes/notes.org<CR>', opts)
 
   vim.keymap.set('n', ']c', '<cmd>Gitsigns next_hunk<CR>', opts)
   vim.keymap.set('n', '[c', '<cmd>Gitsigns prev_hunk<CR>', opts)
@@ -38,9 +33,6 @@ function Keymaps.setup()
 
   vim.keymap.set('n', '<leader>cn', ':cnext<CR>', opts)
   vim.keymap.set('n', '<leader>cN', ':cprevious<CR>', opts)
-
-  vim.keymap.set('n', '<M-K>', 'ddkP', opts)
-  vim.keymap.set('n', '<M-J>', 'ddp', opts)
 
   vim.keymap.set('n', '<leader>gy', ':GBrowse<CR>', opts)
 
