@@ -127,7 +127,14 @@ return require('packer').startup(function()
 
   -- documentation
   use('mracos/mermaid.vim')
-  use { 'iamcco/markdown-preview.nvim', ft = 'markdown', run = 'cd app && yarn install' }
+  use {
+    'iamcco/markdown-preview.nvim',
+    ft = 'markdown',
+    run = 'cd app && yarn install',
+    setup = function()
+      vim.g.mkdp_theme = 'light'
+    end,
+  }
 
   -- testing
   use('vim-test/vim-test')
