@@ -31,16 +31,14 @@ function Kitty.is_kitty()
 end
 
 function Kitty.reload_config()
-  Job
-    :new({
-      cwd = vim.fn.getcwd(),
-      command = 'kill',
-      args = { '-s', 'SIGUSR1', kitty_pid },
-      on_stderr = function(_, err)
-        print(string.format('error reloading kitty config: %s', err))
-      end,
-    })
-    :start()
+  Job:new({
+    cwd = vim.fn.getcwd(),
+    command = 'kill',
+    args = { '-s', 'SIGUSR1', kitty_pid },
+    on_stderr = function(_, err)
+      print(string.format('error reloading kitty config: %s', err))
+    end,
+  }):start()
 end
 
 return Kitty
