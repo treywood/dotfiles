@@ -3,12 +3,14 @@ vim.cmd('packadd packer.nvim')
 return require('packer').startup(function()
   use('wbthomason/packer.nvim')
 
+  -- utility
+  use('nvim-lua/plenary.nvim')
+
   -- search
   use('haya14busa/is.vim')
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
-      'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-file-browser.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
     },
@@ -47,7 +49,6 @@ return require('packer').startup(function()
           'fzf',
           file_browser = {
             grouped = true,
-            hijack_netrw = true,
             respect_gitignore = true,
           },
         },
@@ -60,10 +61,7 @@ return require('packer').startup(function()
 
   -- LSP
   use('neovim/nvim-lspconfig')
-  use {
-    'jose-elias-alvarez/null-ls.nvim',
-    requires = 'nvim-lua/plenary.nvim',
-  }
+  use('jose-elias-alvarez/null-ls.nvim')
   use('j-hui/fidget.nvim')
   use('RRethy/vim-illuminate')
 
@@ -118,12 +116,28 @@ return require('packer').startup(function()
               ['ie'] = '@conditional.inner',
             },
           },
+          move = {
+            enable = true,
+            set_jumps = true,
+            goto_next_start = {
+              [']f'] = '@function.outer',
+            },
+            goto_next_end = {
+              [']F'] = '@function.outer',
+            },
+            goto_previous_start = {
+              ['[f'] = '@function.outer',
+            },
+            goto_previous_end = {
+              ['[F'] = '@function.outer',
+            },
+          },
         },
       }
       require('treesitter-context').setup {}
     end,
   }
-  use('nvim-treesitter/playground')
+  use { 'nvim-treesitter/playground', opt = true }
 
   -- documentation
   use('mracos/mermaid.vim')
@@ -140,11 +154,9 @@ return require('packer').startup(function()
   use('vim-test/vim-test')
 
   -- git
-  use('tpope/vim-fugitive')
-  use('tpope/vim-rhubarb')
+  use { 'tpope/vim-fugitive', requires = 'tpope/vim-rhubarb' }
   use {
     'lewis6991/gitsigns.nvim',
-    requires = 'nvim-lua/plenary.nvim',
     config = function()
       require('gitsigns').setup()
     end,
@@ -193,7 +205,6 @@ return require('packer').startup(function()
       require('lualine').setup {
         options = {
           theme = 'everforest',
-          disabled_filetypes = { 'NvimTree' },
         },
         sections = {
           lualine_b = { { 'branch', icon = '' } },
@@ -205,7 +216,14 @@ return require('packer').startup(function()
           lualine_a = { { 'tabs', mode = 1 } },
           lualine_z = {},
         },
-        extensions = { 'fugitive' },
+        extensions = {
+          {
+            filetypes = { 'fugitive' },
+            sections = {
+              lualine_a = { { 'branch', icon = '' } },
+            },
+          },
+        },
       }
     end,
   }
