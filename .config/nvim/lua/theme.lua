@@ -42,4 +42,5 @@ hi! link NvimTreeFolderIcon Yellow
 hi ErrorText gui=none
 hi WarningText gui=none
 hi HintText gui=none
+hi InfoText gui=none
 ]])
