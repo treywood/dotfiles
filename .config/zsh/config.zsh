@@ -29,3 +29,5 @@ source ~/.config/zsh/p10k.zsh
 
 export GPG_TTY=$(tty)
 export EDITOR="nvim"
+
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
