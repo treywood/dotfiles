@@ -66,11 +66,6 @@
 	enabled = 1
 [pull]
 	rebase = true
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [feature]
 	manyFiles = true
 [log]
@@ -111,12 +106,6 @@
 	program = gpg
 [push]
 	default = simple
-[filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-# Configuration below this line was copied from your old /Users/treyw/.gitconfig_local
 [user]
 	email = treyw@squareup.com
 	name = Trey Wood
