@@ -13,6 +13,7 @@ return require('packer').startup(function()
     requires = {
       'nvim-telescope/telescope-file-browser.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+      'nvim-telescope/telescope-live-grep-args.nvim',
     },
     config = function()
       local telescope = require('telescope')
@@ -51,11 +52,21 @@ return require('packer').startup(function()
             grouped = true,
             respect_gitignore = true,
           },
+          live_grep_args = {
+            mappings = {
+              i = {
+                ['<C-k>'] = actions.move_selection_previous,
+                ['<C-l>g'] = false,
+                ['<C-l>t'] = false,
+              },
+            },
+          },
         },
       }
 
       telescope.load_extension('fzf')
       telescope.load_extension('file_browser')
+      telescope.load_extension('live_grep_args')
     end,
   }
 
