@@ -26,15 +26,21 @@ if Kitty.is_kitty() then
     Kitty.remote { 'set-tab-title', '--match', 'window_id:' .. kitty_window_id, tab_title }
   end
 
-  vim.api.nvim_create_autocmd('VimEnter', {
-    callback = function()
-      if vim.fn.argc() == 0 then
+  if vim.fn.argc() == 0 then
+    vim.api.nvim_create_autocmd('VimEnter', {
+      callback = function()
+        local tab_name
         local repo_name = vim.fn.system([[git remote get-url --all origin | sed -E 's/.+\/(.+)\.git$/\1/']])
-        local tab_name = string.format('nvim (%s)', repo_name:gsub('%s*$', ''))
+        if vim.v.shell_error ~= nil then
+          local dir_name = string.gsub(vim.fn.getcwd(), '.+/', '')
+          tab_name = string.format('nvim (%s)', dir_name)
+        elseif repo_name ~= nil then
+          tab_name = string.format('nvim (%s)', repo_name:gsub('%s*$', ''))
+        end
         set_tab_title(tab_name)
-      end
-    end,
-  })
+      end,
+    })
+  end
   vim.api.nvim_create_autocmd('VimLeave', {
     callback = function()
       set_tab_title(nil)
