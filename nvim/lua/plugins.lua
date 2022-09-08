@@ -1,6 +1,15 @@
 vim.cmd('packadd packer.nvim')
+local packer = require('packer')
 
-return require('packer').startup(function()
+packer.init {
+  git = {
+    subcommands = {
+      update = 'pull --ff-only --progress --rebase=false --autostash',
+    },
+  },
+}
+
+return packer.startup(function()
   use('wbthomason/packer.nvim')
 
   -- utility
