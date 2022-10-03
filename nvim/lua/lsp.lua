@@ -112,8 +112,8 @@ if have_servers then
   local on_attach = function(client, bufnr)
     require('keymaps').setup_lsp(bufnr)
     require('illuminate').on_attach(client)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.document_range_formatting = false
   end
 
   for _, lsp in ipairs(servers) do
@@ -141,9 +141,9 @@ if have_sources then
     debug = true,
     sources = sources,
     on_attach = function(client, bufnr)
-      if client.resolved_capabilities.document_formatting then
+      if client.server_capabilities.document_formatting then
         vim.api.nvim_create_autocmd('BufWritePre', {
-          callback = vim.lsp.buf.formatting_sync,
+          callback = vim.lsp.buf.format,
           buffer = bufnr,
         })
       end
