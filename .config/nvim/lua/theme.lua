@@ -14,10 +14,10 @@ hi! link TSParameter Gray
 hi! link TSOperator Gray
 hi! link TSField TSVariable
 
-hi! link rubyTSSymbol Orange
-hi! link rubyTSLabel TSVariable
+hi! link @symbol.ruby Orange
+hi! link @label.ruby @variable
 
-hi! link yamlTSField Orange
+hi! link @field.yaml Orange
 hi! link yamlBlockMappingKey Orange
 hi! link yamlPlainScalar String
 hi! link yamlBlockCollectionItemStart Gray
