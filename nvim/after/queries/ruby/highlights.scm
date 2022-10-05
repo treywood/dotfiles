@@ -1,4 +1,3 @@
-;; inherits: ruby
 ;; extends
 
 [
