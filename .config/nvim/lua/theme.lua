@@ -22,6 +22,9 @@ hi! link yamlBlockMappingKey Orange
 hi! link yamlPlainScalar String
 hi! link yamlBlockCollectionItemStart Gray
 
+hi! link @label.json Orange
+hi! link @string.json TSString
+
 hi! link GitSignsAdd GreenSign
 hi! link GitSignsChange OrangeSign
 hi! link GitSignsDelete RedSign
