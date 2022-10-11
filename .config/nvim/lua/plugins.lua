@@ -15,12 +15,11 @@ return packer.startup(function()
   -- utility
   use('nvim-lua/plenary.nvim')
 
-  -- search
+  -- find things
   use('haya14busa/is.vim')
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
-      'nvim-telescope/telescope-file-browser.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       'nvim-telescope/telescope-live-grep-args.nvim',
     },
@@ -57,16 +56,10 @@ return packer.startup(function()
         },
         extensions = {
           'fzf',
-          file_browser = {
-            grouped = true,
-            respect_gitignore = true,
-          },
           live_grep_args = {
             mappings = {
               i = {
                 ['<C-k>'] = actions.move_selection_previous,
-                ['<C-l>g'] = false,
-                ['<C-l>t'] = false,
               },
             },
           },
@@ -74,8 +67,39 @@ return packer.startup(function()
       }
 
       telescope.load_extension('fzf')
-      telescope.load_extension('file_browser')
       telescope.load_extension('live_grep_args')
+    end,
+  }
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require('nvim-tree').setup {
+        actions = {
+          change_dir = {
+            enabled = false,
+          },
+        },
+        filters = {
+          dotfiles = true,
+        },
+        renderer = {
+          icons = {
+            show = {
+              folder_arrow = false,
+            },
+          },
+        },
+        view = {
+          mappings = {
+            list = {
+              { key = '-', action = 'close' },
+            },
+          },
+        },
+      }
     end,
   }
 
@@ -225,6 +249,9 @@ return packer.startup(function()
       require('lualine').setup {
         options = {
           theme = 'everforest',
+          disabled_filetypes = {
+            statusline = { 'NvimTree' },
+          },
         },
         sections = {
           lualine_b = { { 'branch', icon = '' } },
