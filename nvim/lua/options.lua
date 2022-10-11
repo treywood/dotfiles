@@ -26,4 +26,3 @@ vim.o.foldlevelstart = 99
 vim.o.lazyredraw = true
 
 vim.g.mapleader = ','
-vim.g.netrw_winsize = 25
