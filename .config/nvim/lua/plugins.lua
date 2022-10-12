@@ -79,7 +79,7 @@ return packer.startup(function()
       require('nvim-tree').setup {
         actions = {
           change_dir = {
-            enabled = false,
+            enable = false,
           },
         },
         filters = {
