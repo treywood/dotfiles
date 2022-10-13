@@ -1,4 +1,7 @@
-vim.cmd('filetype plugin indent on')
+vim.cmd([[
+  filetype plugin indent on
+  set mouse=
+]])
 
 vim.o.backspace = 'indent,eol,start'
 

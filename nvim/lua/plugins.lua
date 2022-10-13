@@ -93,6 +93,7 @@ return packer.startup(function()
           },
         },
         view = {
+          adaptive_size = true,
           mappings = {
             list = {
               { key = '-', action = 'close' },
