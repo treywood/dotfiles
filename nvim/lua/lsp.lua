@@ -102,8 +102,7 @@ if have_servers then
   local nvim_lsp = require('lspconfig')
 
   -- Setup lspconfig.
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+  capabilities = require('cmp_nvim_lsp').default_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
 
   -- Use an on_attach function to only map the following keys
