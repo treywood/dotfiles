@@ -182,7 +182,10 @@ return packer.startup(function()
       require('treesitter-context').setup {
         patterns = {
           ['ruby.rspec'] = {
-            'block',
+            'do_block',
+          },
+          ruby = {
+            'do_block',
           },
         },
       }
