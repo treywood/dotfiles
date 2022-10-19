@@ -95,6 +95,25 @@ cmp.setup.filetype('http', {
   },
 })
 
+local lspKinds = require('cmp.types').lsp.CompletionItemKind
+cmp.setup.filetype('TelescopePrompt', {
+  enabled = true,
+  completion = { autocomplete = false },
+  sources = cmp.config.sources {
+    {
+      name = 'path',
+      option = {
+        get_cwd = function()
+          return vim.fn.getcwd()
+        end,
+      },
+      entry_filter = function(entry)
+        return lspKinds[entry:get_kind()] == 'Folder'
+      end,
+    },
+  },
+})
+
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local have_servers, servers = pcall(require, 'lsp_servers')
@@ -102,7 +121,7 @@ if have_servers then
   local nvim_lsp = require('lspconfig')
 
   -- Setup lspconfig.
-  capabilities = require('cmp_nvim_lsp').default_capabilities()
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
 
   -- Use an on_attach function to only map the following keys
