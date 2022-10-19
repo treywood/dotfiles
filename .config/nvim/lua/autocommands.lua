@@ -19,6 +19,15 @@ vim.api.nvim_create_autocmd('User', {
   end,
 })
 
+vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
+  pattern = '**/spec/**/*_spec.rb',
+  callback = function()
+    vim.schedule(function()
+      vim.cmd('setfiletype ruby.rspec')
+    end)
+  end,
+})
+
 if Kitty.is_kitty() then
   local kitty_window_id = os.getenv('KITTY_WINDOW_ID')
 
