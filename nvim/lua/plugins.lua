@@ -179,7 +179,13 @@ return packer.startup(function()
           },
         },
       }
-      require('treesitter-context').setup {}
+      require('treesitter-context').setup {
+        patterns = {
+          ['ruby.rspec'] = {
+            'block',
+          },
+        },
+      }
     end,
   }
   use { 'nvim-treesitter/playground', opt = true }
