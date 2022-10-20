@@ -102,11 +102,6 @@ cmp.setup.filetype('TelescopePrompt', {
   sources = cmp.config.sources {
     {
       name = 'path',
-      option = {
-        get_cwd = function()
-          return vim.fn.getcwd()
-        end,
-      },
       entry_filter = function(entry)
         return lspKinds[entry:get_kind()] == 'Folder'
       end,
