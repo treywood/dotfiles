@@ -4,48 +4,48 @@ vim.g.everforest_background = 'hard'
 vim.g.everforest_disable_italic_comment = 1
 vim.g.everforest_diagnostic_text_highlight = 1
 
+vim.cmd('colorscheme everforest')
+
+vim.api.nvim_set_hl(0, 'Gray', { fg = '#a7b0a4' })
+vim.api.nvim_set_hl(0, 'GreenBold', { fg = '#a7c080', bold = true })
+
+vim.api.nvim_set_hl(0, 'TSParameter', { link = 'Gray' })
+vim.api.nvim_set_hl(0, 'TSOperator', { link = 'Gray' })
+vim.api.nvim_set_hl(0, 'TSField', { link = 'TSVariable' })
+
+vim.api.nvim_set_hl(0, '@symbol.ruby', { link = 'Orange' })
+vim.api.nvim_set_hl(0, '@label.ruby', { link = '@variable' })
+
+vim.api.nvim_set_hl(0, '@field.yaml', { link = 'Orange' })
+vim.api.nvim_set_hl(0, 'yamlBlockMappingKey', { link = 'Orange' })
+vim.api.nvim_set_hl(0, 'yamlPlainScalar', { link = 'String' })
+vim.api.nvim_set_hl(0, 'yamlBlockCollectionItemStart', { link = 'Gray' })
+
+vim.api.nvim_set_hl(0, '@label.json', { link = 'Orange' })
+vim.api.nvim_set_hl(0, '@string.json', { link = 'TSString' })
+
+vim.api.nvim_set_hl(0, '@property.go', { link = 'TSField' })
+
+vim.api.nvim_set_hl(0, 'GitSignsAdd', { link = 'GreenSign' })
+vim.api.nvim_set_hl(0, 'GitSignsChange', { link = 'OrangeSign' })
+vim.api.nvim_set_hl(0, 'GitSignsDelete', { link = 'RedSign' })
+
+vim.api.nvim_set_hl(0, 'MiniStarterHeader', { link = 'Green' })
+vim.api.nvim_set_hl(0, 'MiniStarterSection', { link = 'Red' })
+vim.api.nvim_set_hl(0, 'MiniStarterItem', { link = 'Gray' })
+vim.api.nvim_set_hl(0, 'MiniStarterItemBullet', { link = 'GreenBold' })
+vim.api.nvim_set_hl(0, 'MiniStarterItemPrefix', { link = 'GreenBold' })
+vim.api.nvim_set_hl(0, 'MiniStarterQuery', { link = 'Orange' })
+vim.api.nvim_set_hl(0, 'MiniStarterFooter', { link = 'Gray' })
+
+vim.api.nvim_set_hl(0, 'DevIconRb', { link = 'Red' })
+
+vim.api.nvim_set_hl(0, 'NvimTreeGitDirty', { link = 'Orange' })
+vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { link = 'Yellow' })
+
 vim.cmd([[
-colorscheme everforest
-
-hi Gray guifg=#a7b0a4
-hi GreenBold guifg=#a7c080 gui=bold
-
-hi! link TSParameter Gray
-hi! link TSOperator Gray
-hi! link TSField TSVariable
-
-hi! link @symbol.ruby Orange
-hi! link @label.ruby @variable
-
-hi! link @field.yaml Orange
-hi! link yamlBlockMappingKey Orange
-hi! link yamlPlainScalar String
-hi! link yamlBlockCollectionItemStart Gray
-
-hi! link @label.json Orange
-hi! link @string.json TSString
-
-hi! link @property.go TSField
-
-hi! link GitSignsAdd GreenSign
-hi! link GitSignsChange OrangeSign
-hi! link GitSignsDelete RedSign
-
-hi! link MiniStarterHeader Green
-hi! link MiniStarterSection Red
-hi! link MiniStarterItem Gray
-hi! link MiniStarterItemBullet GreenBold
-hi! link MiniStarterItemPrefix GreenBold
-hi! link MiniStarterQuery Orange
-hi! link MiniStarterFooter Gray
-
-hi! link DevIconRb Red
-
-hi! link NvimTreeGitDirty Orange
-hi! link NvimTreeFolderIcon Yellow
-
-hi ErrorText gui=none
-hi WarningText gui=none
-hi HintText gui=none
-hi InfoText gui=none
+  hi ErrorText gui=none |
+  hi WarningText gui=none |
+  hi HintText gui=none |
+  hi InfoText gui=none 
 ]])
