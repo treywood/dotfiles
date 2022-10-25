@@ -5,6 +5,9 @@ require('keymaps').setup()
 require('lsp')
 require('autocommands')
 
+vim.api.nvim_create_user_command('PC', 'PackerCompile', {})
+vim.api.nvim_create_user_command('PS', 'PackerSync', {})
+
 vim.api.nvim_create_user_command('Notes', function(opts)
   local name = opts.fargs[1] or 'notes'
   vim.cmd(string.format('tabe ~/notes/%s', name))

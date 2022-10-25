@@ -17,6 +17,7 @@ return packer.startup(function()
 
   -- find things
   use('haya14busa/is.vim')
+  use('ggandor/leap.nvim')
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
@@ -26,6 +27,8 @@ return packer.startup(function()
     config = function()
       local telescope = require('telescope')
       local actions = require('telescope.actions')
+      local lga_actions = require('telescope-live-grep-args.actions')
+
       telescope.setup {
         defaults = {
           layout_strategy = 'bottom_pane',
@@ -60,6 +63,7 @@ return packer.startup(function()
             mappings = {
               i = {
                 ['<C-k>'] = actions.move_selection_previous,
+                ['<C-l>'] = lga_actions.quote_prompt(),
               },
             },
           },
