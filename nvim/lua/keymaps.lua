@@ -38,6 +38,9 @@ function Keymaps.setup()
 
   vim.keymap.set('n', '<leader>gy', ':GBrowse<CR>', opts)
 
+  vim.keymap.set('n', '<leader>s', '<Plug>(leap-forward-to)', opts)
+  vim.keymap.set('n', '<leader>S', '<Plug>(leap-backward-to)', opts)
+
   vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', opts)
 
   vim.keymap.set('i', '<C-j>', function()
