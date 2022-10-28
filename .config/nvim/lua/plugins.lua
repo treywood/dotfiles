@@ -139,15 +139,9 @@ return packer.startup(function()
       'andymass/vim-matchup',
     },
     config = function()
-      require('orgmode').setup_ts_grammar()
-
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'org', 'http', 'json' },
-        highlight = {
-          enable = true,
-          disable = { 'org' },
-          additional_vim_regex_highlighting = { 'org' },
-        },
+        ensure_installed = { 'http', 'json' },
+        highlight = { enable = true },
         endwise = { enable = true },
         matchup = { enable = true },
         textobjects = {
@@ -157,12 +151,6 @@ return packer.startup(function()
             keymaps = {
               ['af'] = '@function.outer',
               ['if'] = '@function.inner',
-              ['ac'] = '@class.outer',
-              ['ic'] = '@class.inner',
-              ['ak'] = '@block.outer',
-              ['ik'] = '@block.inner',
-              ['ae'] = '@conditional.outer',
-              ['ie'] = '@conditional.inner',
             },
           },
           move = {
@@ -186,9 +174,6 @@ return packer.startup(function()
       require('treesitter-context').setup {
         patterns = {
           ['ruby.rspec'] = {
-            'do_block',
-          },
-          ruby = {
             'do_block',
           },
         },
@@ -236,7 +221,6 @@ return packer.startup(function()
       starter.setup {
         header = vim.fn.system('fortune'),
         items = {
-          starter.sections.sessions(5, true),
           starter.sections.recent_files(10, true),
         },
         content_hooks = {
@@ -246,7 +230,6 @@ return packer.startup(function()
         },
       }
 
-      require('mini.sessions').setup()
       require('mini.pairs').setup()
       require('mini.surround').setup()
     end,
@@ -285,20 +268,6 @@ return packer.startup(function()
             },
           },
         },
-      }
-    end,
-  }
-
-  -- org
-  use {
-    'nvim-orgmode/orgmode',
-    config = function()
-      require('orgmode').setup {
-        org_agenda_files = { '~/notes/*' },
-        org_agenda_templates = {
-          t = { description = 'Task', template = '* %?\n  %t' },
-        },
-        org_default_notes_file = '~/notes/refile.org',
       }
     end,
   }

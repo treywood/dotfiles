@@ -95,7 +95,7 @@ cmp.setup.filetype('http', {
   },
 })
 
-local lspKinds = require('cmp.types').lsp.CompletionItemKind
+local lsp_kinds = require('cmp.types').lsp.CompletionItemKind
 cmp.setup.filetype('TelescopePrompt', {
   enabled = true,
   completion = { autocomplete = false },
@@ -103,7 +103,7 @@ cmp.setup.filetype('TelescopePrompt', {
     {
       name = 'path',
       entry_filter = function(entry)
-        return lspKinds[entry:get_kind()] == 'Folder'
+        return lsp_kinds[entry:get_kind()] == 'Folder'
       end,
     },
   },
