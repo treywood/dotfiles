@@ -7,3 +7,5 @@
 [
  "&."
 ] @punctuation.delimiter
+
+(symbol_array (bare_symbol) @symbol)
