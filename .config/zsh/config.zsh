@@ -8,16 +8,22 @@ fi
 source "$(brew --prefix)/share/antigen/antigen.zsh"
 
 antigen bundle git
-antigen bundle zsh-users/zsh-history-substring-search
 antigen bundle command-not-found
 
 export ZSH_TAB_TITLE_DEFAULT_DISABLE_PREFIX=true
 export ZSH_TAB_TITLE_ADDITIONAL_TERMS='kitty'
 antigen bundle trystan2k/zsh-tab-title
 
-# last
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-history-substring-search
+
+export ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+export ZVM_VI_SURROUND_BINDKEY='s-prefix'
+export ZVM_CURSOR_STYLE_ENABLED=false
+export ZVM_VI_HIGHLIGHT_BACKGROUND='green'
+export ZVM_VI_HIGHLIGHT_FOREGROUND='black'
+antigen bundle jeffreytse/zsh-vi-mode
 
 antigen theme romkatv/powerlevel10k
 
@@ -25,6 +31,9 @@ antigen apply
 
 POWERLEVEL9k_DISABLE_CONFIGURATION_WIZARD=true
 source ~/.config/zsh/p10k.zsh
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 export GPG_TTY=$(tty)
 export EDITOR="nvim"
