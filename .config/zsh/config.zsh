@@ -36,6 +36,8 @@ antigen theme romkatv/powerlevel10k
 
 antigen apply
 
+bindkey '^@' autosuggest-accept
+
 POWERLEVEL9k_DISABLE_CONFIGURATION_WIZARD=true
 source ~/.config/zsh/p10k.zsh
 
