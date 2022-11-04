@@ -17,15 +17,14 @@ antigen bundle trystan2k/zsh-tab-title
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 
-export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=green,bold'
-export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=red,bold'
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='underline'
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=red,underline'
 antigen bundle zsh-users/zsh-history-substring-search
 
 export ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 export ZVM_VI_SURROUND_BINDKEY='s-prefix'
-export ZVM_CURSOR_STYLE_ENABLED=false
-export ZVM_VI_HIGHLIGHT_BACKGROUND='green'
-export ZVM_VI_HIGHLIGHT_FOREGROUND='black'
+export ZVM_VI_HIGHLIGHT_BACKGROUND='#503946'
+export ZVM_VI_HIGHLIGHT_FOREGROUND='#d3c6aa'
 export ZVM_READKEY_ENGINE=$ZVM_READKEY_ENGINE_ZLE
 function zvm_after_init() {
   bindkey '^P' history-substring-search-up
