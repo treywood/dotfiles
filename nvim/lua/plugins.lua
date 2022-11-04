@@ -112,7 +112,14 @@ return packer.startup(function()
   use('neovim/nvim-lspconfig')
   use('jose-elias-alvarez/null-ls.nvim')
   use('j-hui/fidget.nvim')
-  use('RRethy/vim-illuminate')
+  use {
+    'RRethy/vim-illuminate',
+    config = function()
+      require('illuminate').configure {
+        filetypes_denylist = { 'NvimTree' },
+      }
+    end,
+  }
 
   -- completion
   use {
