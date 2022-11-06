@@ -27,7 +27,9 @@ export ZVM_VI_HIGHLIGHT_BACKGROUND='#503946'
 export ZVM_VI_HIGHLIGHT_FOREGROUND='#d3c6aa'
 export ZVM_READKEY_ENGINE=$ZVM_READKEY_ENGINE_ZLE
 function zvm_after_init() {
+  bindkey '^K' history-substring-search-up
   bindkey '^P' history-substring-search-up
+  bindkey '^J' history-substring-search-down
   bindkey '^N' history-substring-search-down
   bindkey '^@' autosuggest-accept
 }
