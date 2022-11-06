@@ -29,14 +29,13 @@ export ZVM_READKEY_ENGINE=$ZVM_READKEY_ENGINE_ZLE
 function zvm_after_init() {
   bindkey '^P' history-substring-search-up
   bindkey '^N' history-substring-search-down
+  bindkey '^@' autosuggest-accept
 }
 antigen bundle jeffreytse/zsh-vi-mode
 
 antigen theme romkatv/powerlevel10k
 
 antigen apply
-
-bindkey '^@' autosuggest-accept
 
 POWERLEVEL9k_DISABLE_CONFIGURATION_WIZARD=true
 source ~/.config/zsh/p10k.zsh
