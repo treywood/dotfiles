@@ -158,6 +158,8 @@ return packer.startup(function()
             keymaps = {
               ['af'] = '@function.outer',
               ['if'] = '@function.inner',
+              ['ak'] = '@block.outer',
+              ['ik'] = '@block.inner',
             },
           },
           move = {
