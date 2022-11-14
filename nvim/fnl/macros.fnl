@@ -4,10 +4,10 @@
 (fn cfg! [name opts]
   (if (= opts nil)
       name
-      `(let [plg# [,name]]
+      `(let [pkg# [,name]]
          (each [k# v# (pairs ,opts)]
-           (tset plg# k# v#))
-         plg#)))
+           (tset pkg# k# v#))
+         pkg#)))
 
 (fn au! [...]
   `(vim.api.nvim_create_autocmd ,...))
