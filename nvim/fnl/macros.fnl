@@ -21,13 +21,8 @@
   `(use (cfg! ,...)))
 
 (fn packer! [...]
-  `(packer.startup (=> ,...)))
+  `(packer.startup (=>  
+     (use! :wbthomason/packer.nvim)
+     ,...)))
 
-(fn dig! [obj ...]
-  `(do
-     (var tgt# ,obj)
-     (each [_# k# (ipairs [,...])]
-       (set tgt# (. tgt# k#)))
-     tgt#))
-
-{: setup! : cfg! : au! : use! : packer! : dig! : =>}
+{: setup! : cfg! : au! : use! : packer! : =>}
