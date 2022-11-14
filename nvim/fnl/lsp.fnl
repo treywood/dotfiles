@@ -101,5 +101,3 @@
                                    (au! :BufWritePre
                                         {:buffer bufnr
                                          :callback (=> (vim.lsp.buf.format {:async false}))})))})))
-
-((. (require :fidget) :setup) {:text {:spinner :dots_snake}})

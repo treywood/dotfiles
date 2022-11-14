@@ -41,7 +41,8 @@
                                             :mappings {:list {:key "-"
                                                               :action :close}}}}))})
          (use! :neovim/nvim-lspconfig) (use! :jose-elias-alvarez/null-ls.nvim)
-         (use! :j-hui/fidget.nvim)
+         (use! :j-hui/fidget.nvim
+               {:config (=> (setup! :fidget {:text {:spinner :dots_snake}}))})
          (use! :RRethy/vim-illuminate
                {:config (=> ((. (require :illuminate) :configure) {:filetypes_denylist [:NvimTree]}))})
          (use! :hrsh7th/nvim-cmp

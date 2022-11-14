@@ -5,56 +5,70 @@
 
 (local Keymaps {})
 
+(local general-maps {:n {:<C-e> ":Telescope oldfiles cwd_only=true<CR>"
+                         :<C-p> ":Telescope git_files<CR>"
+                         :<C-f> telescope.extensions.live_grep_args.live_grep_args
+                         :<C-b> ":Telescope buffers<CR>"
+                         :<C-y> diff_files
+                         :- ":NvimTreeToggle<CR>"
+                         :+ ":NvimTreeFindFileToggle<CR>"
+                         :<leader>tn ":TestNearest<CR>"
+                         :<leader>tf ":TestFile<CR>"
+                         :<leader>tt ":TestLast<CR>"
+                         :<leader>W ":%bd!<CR>"
+                         :<leader>w ":%bd!|e#|bd!<CR>"
+                         "]c" "<cmd>Gitsigns next_hunk<CR>"
+                         "[c" "<cmd>Gitsigns prev_hunk<CR>"
+                         :<leader>hp "<cmd>Gitsigns preview_hunk<CR>"
+                         :<leader>hu "<cmd>Gitsigns reset_hunk<CR>"
+                         :<leader>cn ":cnext<CR>"
+                         :<leader>cN ":cprevious<CR>"
+                         :<leader>gy ":GBrowse<CR>"
+                         :<leader>s "<Plug>(leap-forward-to)"
+                         :<leader>S "<Plug>(leap-backward-to)"}
+                     :i {:<C-j> (=> (let [luasnip (require :luasnip)]
+                                      (luasnip:change_choice 1)))
+                         :<C-Space>i "<Plug>(sq-connect-insert-id)"
+                         :<C-Space>l "<Plug>(sq-connect-insert-location-id)"
+                         :<C-Space>m "<Plug>(sq-connect-insert-merchant-id)"
+                         :<C-Space>c "<Plug>(sq-connect-insert-customer-id)"}
+                     :v {:<C-Space>i "<Plug>(sq-connect-insert-id)"
+                         :<C-Space>l "<Plug>(sq-connect-insert-location-id)"
+                         :<C-Space>m "<Plug>(sq-connect-insert-merchant-id)"
+                         :<C-Space>c "<Plug>(sq-connect-insert-customer-id)"}
+                     :s {:<C-Space>i "<Plug>(sq-connect-insert-id)"
+                         :<C-Space>l "<Plug>(sq-connect-insert-location-id)"
+                         :<C-Space>m "<Plug>(sq-connect-insert-merchant-id)"
+                         :<C-Space>c "<Plug>(sq-connect-insert-customer-id)"}
+                     :t {:<Esc> "<C-\\><C-n>"}
+                     "" {:n "<Plug>(is-n)zzzv"
+                         :N "<Plug>(is-N)zzzv"
+                         :* "<Plug>(is-*)"
+                         "#" "<Plug>(is-#)"}})
+
+(local lsp-maps
+       {:n {:K vim.lsp.buf.hover
+            :gD vim.lsp.buf.declaration
+            :gd ":Telescope lsp_definitions<CR>"
+            :gi ":Telescope lsp_implementations<CR>"
+            :gr ":Telescope lsp_references<CR>"
+            :<leader>a vim.lsp.buf.code_action
+            :<leader>e vim.diagnostic.open_float
+            :<leader>rn vim.lsp.buf.rename
+            "[d" vim.diagnostic.goto_prev
+            "]d" vim.diagnostic.goto_next
+            :<C-j> ":Telescope lsp_document_symbols<CR>"}})
+
+(fn set-maps [mode-maps opts]
+  (each [mode maps (pairs mode-maps)]
+    (each [lhs rhs (pairs maps)]
+      (vim.keymap.set mode lhs rhs opts))))
+
 (fn Keymaps.setup []
-  (local opts {:silent true})
-  (vim.keymap.set :n :<C-e> "Telescope oldfiles cwd_only=true<CR>" opts)
-  (vim.keymap.set :n :<C-p> ":Telescope git_files<CR>" opts)
-  (vim.keymap.set :n :<C-f> telescope.extensions.live_grep_args.live_grep_args
-                  opts)
-  (vim.keymap.set :n :<C-b> ":Telescope buffers<CR>" opts)
-  (vim.keymap.set :n :<C-y> diff_files opts)
-  (vim.keymap.set :n "-" ":NvimTreeToggle<CR>" opts)
-  (vim.keymap.set :n "+" ":NvimTreeFindFileToggle<CR>" opts)
-  (vim.keymap.set "" :n "<Plug>(is-n)zzzv" opts)
-  (vim.keymap.set "" :N "<Plug>(is-N)zzzv" opts)
-  (vim.keymap.set "" "*" "<Plug>(is-*)" opts)
-  (vim.keymap.set "" "#" "<Plug>(is-#)" opts)
-  (vim.keymap.set :n :<leader>tn ":TestNearest<CR>" opts)
-  (vim.keymap.set :n :<leader>tf ":TestFile<CR>" opts)
-  (vim.keymap.set :n :<leader>tt ":TestLast<CR>" opts)
-  (vim.keymap.set :n :<leader>W ":%bd!<CR>" opts)
-  (vim.keymap.set :n :<leader>w ":%bd!|e#|bd!#<CR>" opts)
-  (vim.keymap.set "" :<leader>gy ":GBrowse!<CR>" opts)
-  (vim.keymap.set :n "]c" "<cmd>Gitsigns next_hunk<CR>" opts)
-  (vim.keymap.set :n "[c" "<cmd>Gitsigns prev_hunk<CR>" opts)
-  (vim.keymap.set :n :<leader>hp "<cmd>Gitsigns preview_hunk<CR>" opts)
-  (vim.keymap.set :n :<leader>hu "<cmd>Gitsigns reset_hunk<CR>" opts)
-  (vim.keymap.set :n :<leader>cn ":cnext<CR>" opts)
-  (vim.keymap.set :n :<leader>cN ":cprevious<CR>" opts)
-  (vim.keymap.set :n :<leader>gy ":GBrowse<CR>" opts)
-  (vim.keymap.set :n :<leader>s "<Plug>(leap-forward-to)" opts)
-  (vim.keymap.set :n :<leader>S "<Plug>(leap-backward-to)" opts)
-  (vim.keymap.set :t :<Esc> "<C-\\><C-n>" opts)
-  (vim.keymap.set :i :<C-j> (=> ((: (require :luasnip) :change_choice) 1) opts))
-  (each [_ m (pairs [:i :v :s])]
-    (vim.keymap.set m :<C-Space>i "<Plug>(sq-connect-insert-id)" opts)
-    (vim.keymap.set m :<C-Space>l "<Plug>(sq-connect-insert-location-id)" opts)
-    (vim.keymap.set m :<C-Space>m "<Plug>(sq-connect-insert-merchant-id)" opts)
-    (vim.keymap.set m :<C-Space>c "<Plug>(sq-connect-insert-customer-id)" opts)))
+  (set-maps general-maps {:silent true}))
 
 (fn Keymaps.setup-lsp [bufnr]
-  (local opts {:noremap true :silent true :buffer bufnr})
-  (vim.keymap.set :n :K vim.lsp.buf.hover opts)
-  (vim.keymap.set :n :gD vim.lsp.buf.declaration opts)
-  (vim.keymap.set :n :gd ":Telescope lsp_definitions<CR>" opts)
-  (vim.keymap.set :n :gi ":Telescope lsp_implementations<CR>" opts)
-  (vim.keymap.set :n :gr ":Telescope lsp_references<CR>" opts)
-  (vim.keymap.set :n :<leader>a vim.lsp.buf.code_action opts)
-  (vim.keymap.set :n :<leader>e vim.diagnostic.open_float opts)
-  (vim.keymap.set :n :<leader>rn vim.lsp.buf.rename opts)
-  (vim.keymap.set :n "[d" vim.diagnostic.goto_prev opts)
-  (vim.keymap.set :n "]d" vim.diagnostic.goto_next opts)
-  (vim.keymap.set :n :<C-j> ":Telescope lsp_document_symbols<CR>" opts))
+  (set-maps lsp-maps {:noremap true :silent true :buffer bufnr}))
 
 :return
 
