@@ -9,11 +9,10 @@
 (local lspkind (require :lspkind))
 
 (fn has-words-before []
-  (local [line col] (vim.api.nvim_win_get_cursor 0))
-  (local f (. (vim.api.nvim_buf_get_lines 0 (- line 1) line true) 1))
-  (and (not= col 0) (= nil ((f:sub col col) :match "%s"))))
-
-(local cmap cmp.mapping)
+  (let [[line col] (vim.api.nvim_win_get_cursor 0)
+        fst (. (vim.api.nvim_buf_get_lines 0 (- line 1) line true) 1)
+        fst-space (string.match (fst:sub col col) "%s")]
+    (and (not= col 0) (= nil fst-space))))
 
 (cmp.setup {:snippet {:expand (fn [args]
                                 (luasnip.lsp_expand args.body))}
