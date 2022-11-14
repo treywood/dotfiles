@@ -41,7 +41,8 @@
                                                                              (luasnip.jumpable -1)
                                                                              (luasnip.jump -1)
                                                                              (fallback)))
-                                                                       [:i :s])})
+                                                                       [:i :s])
+                                                 :<CR> (cmp.mapping.confirm {:select false})})
             :sources (cmp.config.sources [{:name :nvim_lsp}
                                           {:name :luasnip}
                                           {:name :buffer}])
@@ -57,7 +58,7 @@
 
 (cmp.setup.filetype :http {:sources (cmp.config.sources [{:name :luasnip}])})
 
-(let [lsp-kinds (. (. (require :cmp.types) :lsp) :CompletionItemKind)
+(let [lsp-kinds (dig! (require :cmp.types) :lsp :CompletionItemKind)
       entry_filter (fn [entry]
                      (let [kind (. lsp-kinds (entry:get_kind))]
                        (= kind :Folder)))]
