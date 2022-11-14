@@ -98,6 +98,7 @@
     timewarrior             # timewarrior tracking status (https://timewarrior.net/)
     taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
     # time                  # current time
+    ski_context             # SKI context
     # =========================[ Line #2 ]=========================
     newline
     # ip                    # ip address and bandwidth usage for a specified network interface
@@ -1503,6 +1504,10 @@
     p10k segment -f 208 -i '⭐' -t 'hello, %n'
   }
 
+  function prompt_ski_context() {
+    p10k segment -f 13 -i '⎈' -t "$(sq ski context current)"
+  }
+
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
   # is to generate the prompt segment for display in instant prompt. See
   # https://github.com/romkatv/powerlevel10k/blob/master/README.md#instant-prompt.
@@ -1520,6 +1525,10 @@
     # instant_prompt_example. This will give us the same `example` prompt segment in the instant
     # and regular prompts.
     prompt_example
+  }
+
+  instant_prompt_ski_context() {
+    prompt_ski_context
   }
 
   # User-defined prompt segments can be customized the same way as built-in segments.
