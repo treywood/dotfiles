@@ -22,4 +22,11 @@
 (fn packer! [...]
   `(packer.startup (=> ,...)))
 
-{: setup! : cfg! : au! : use! : packer! : =>}
+(fn dig! [obj ...]
+  `(do
+     (var tgt# ,obj)
+     (each [_# k# (ipairs [,...])]
+       (set tgt# (. tgt# k#)))
+     tgt#))
+
+{: setup! : cfg! : au! : use! : packer! : dig! : =>}

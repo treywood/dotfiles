@@ -1,4 +1,4 @@
-(import-macros {: au! : =>} :macros)
+(import-macros {: au! : => : dig!} :macros)
 
 (vim.diagnostic.config {:virtual_text false})
 (set vim.g.Illuminate_delay 500)
@@ -55,9 +55,7 @@
                     :sources (cmp.config.sources [{:name :path}
                                                   {:name :cmdline}])})
 
-(cmp.setup.filetype :http
-                    {:sources (cmp.config.sources [{:name :luasnip}
-                                                   {:name :sq-connect-repl.locations}])})
+(cmp.setup.filetype :http {:sources (cmp.config.sources [{:name :luasnip}])})
 
 (let [lsp-kinds (. (. (require :cmp.types) :lsp) :CompletionItemKind)
       entry_filter (fn [entry]
@@ -71,26 +69,26 @@
 
 (let [(have-servers? servers) (pcall require :lsp-servers)]
   (when have-servers?
-    (local nvim-lsp (require :lspconfig))
-    (local capabilities ((. (require :cmp_nvim_lsp) :default_capabilities)))
-    (set capabilities.textDocument.completion.completionItem.snippetSupport
-         true)
+    (let [nvim-lsp (require :lspconfig)
+          capabilities ((. (require :cmp_nvim_lsp) :default_capabilities))]
+      (set capabilities.textDocument.completion.completionItem.snippetSupport
+           true)
 
-    (fn on-attach [client bufnr]
-      ((. (require :keymaps) :setup-lsp) bufnr)
-      ((. (require :illuminate) :on_attach) client)
-      (set client.server_capabilities.documentFormattingProvider false)
-      (set client.server_capabilities.documentRangeFormattingProvider false))
+      (fn on-attach [client bufnr]
+        ((. (require :keymaps) :setup-lsp) bufnr)
+        ((. (require :illuminate) :on_attach) client)
+        (set client.server_capabilities.documentFormattingProvider false)
+        (set client.server_capabilities.documentRangeFormattingProvider false))
 
-    (each [_ lsp (ipairs servers)]
-      (var lsp-name lsp)
-      (var config {:on_attach on-attach
-                   : capabilities
-                   :flags {:debounce_text_changes 150}})
-      (when (= (type lsp) :table)
-        (set lsp-name (table.remove lsp 1))
-        (set config (vim.tbl_deep_extend :force config lsp)))
-      ((. (. nvim-lsp lsp-name) :setup) config))))
+      (each [_ lsp (ipairs servers)]
+        (var lsp-name lsp)
+        (var config {:on_attach on-attach
+                     : capabilities
+                     :flags {:debounce_text_changes 150}})
+        (when (= (type lsp) :table)
+          (set lsp-name (table.remove lsp 1))
+          (set config (vim.tbl_deep_extend :force config lsp)))
+        ((dig! nvim-lsp lsp-name :setup) config)))))
 
 (let [(have-sources? sources) (pcall require :null-ls-sources)]
   (when have-sources?
