@@ -1,41 +1,15 @@
-(import-macros {: setup! : opt! : use! : packer! : =>} :macros)
+(import-macros {: setup! : cfg! : use! : packer! : =>} :macros)
 
 (vim.cmd "packadd packer.nvim")
 (local packer (require :packer))
 
 (packer.init {:git {:subcommands {:update "pull --ff-only --progress --rebase=false --autostash"}}})
 
-(packer! {:use [:nvim-lua/plenary.nvim
-                :haya14busa/is.vim
-                :ggandor/leap.nvim
-                :nvim-telescope/telescope.nvim
-                :]
-          :configure {:nvim-telescope/telescope.nvim (=> (let [telescope (require :telescope)
-                                                               actions (require :telescope.actions)
-                                                               lga_actions (require :telescope-live-grep-args.actions)]
-                                                           (telescope.setup {:defaults {:layout_strategy :bottom_pane
-                                                                                        :layout_config {:height 0.4
-                                                                                                        :prompt_position :bottom}
-                                                                                        :selection_caret "  "
-                                                                                        :mappings {:i {:<C-n> false
-                                                                                                       :<C-p> false
-                                                                                                       :<C-j> actions.move_selection_next
-                                                                                                       :<C-k> actions.move_selection_previous
-                                                                                                       :<C-c> false
-                                                                                                       :<Esc> actions.close}}}
-                                                                             :pickers {:buffers {:mappings {:i {:<C-w> actions.delete_buffer}}}}
-                                                                             :extensions (doto [:fzf]
-                                                                                           (tset :live_grep_args
-                                                                                                 {:mappings {:i {:<C-k> actions.move_selection_previous
-                                                                                                                 :<C-l> (lga_actions.quote_prompt)}}}))})
-                                                           (telescope.load_extension :fzf)
-                                                           (telescope.load_extension :live_grep_args)))}})
-
 (packer! (use! :wbthomason/packer.nvim) (use! :nvim-lua/plenary.nvim)
          (use! :haya14busa/is.vim) (use! :ggandor/leap.nvim)
          (use! :nvim-telescope/telescope.nvim
                {:requires [:nvim-telescope/telescope-live-grep-args.nvim
-                           (opt! :nvim-telescope/telescope-fzf-native
+                           (cfg! :nvim-telescope/telescope-fzf-native
                                  {:run :make})]
                 :config (=> (let [telescope (require :telescope)
                                   actions (require :telescope.actions)
@@ -128,9 +102,9 @@
                                                                                          :center)]})))})
          (use! :sainnhe/everforest)
          (use! :nvim-lualine/lualine.nvim
-               {:requires [(opt! :kyazdani42/nvim-web-devicons {:opt true})]
-                :config (=> (let [branch (opt! :branch {:icon ""})
-                                  tabs (opt! :tabs {:mode 1})]
+               {:requires [(cfg! :kyazdani42/nvim-web-devicons {:opt true})]
+                :config (=> (let [branch (cfg! :branch {:icon ""})
+                                  tabs (cfg! :tabs {:mode 1})]
                               (setup! :lualine
                                       {:options {:theme :everforest
                                                  :disabled_filetypes {:statusline [:NvimTree]}}

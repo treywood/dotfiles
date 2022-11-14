@@ -1,7 +1,7 @@
 (fn setup! [name config]
   `((. (require ,name) :setup) ,config))
 
-(fn opt! [name opts]
+(fn cfg! [name opts]
   (if (= opts nil)
       name
       `(let [plg# [,name]]
@@ -17,9 +17,9 @@
      ,...))
 
 (fn use! [...]
-  `(use (opt! ,...)))
+  `(use (cfg! ,...)))
 
 (fn packer! [...]
   `(packer.startup (=> ,...)))
 
-{: setup! : opt! : au! : use! : packer! : =>}
+{: setup! : cfg! : au! : use! : packer! : =>}
