@@ -15,20 +15,20 @@
                                     actions (require :telescope.actions)
                                     lga_actions (require :telescope-live-grep-args.actions)]
                       (telescope.setup {:defaults {
-                                       :layout_strategy :bottom_pane
-                                       :layout_config {:height 0.4 :prompt_position :bottom}
-                                       :selection_caret "  "
-                                       :mappings {:i {:<C-n> false
-                                       :<C-p> false
-                                       :<C-j> actions.move_selection_next
-                                       :<C-k> actions.move_selection_previous
-                                       :<C-c> false
-                                       :<Esc> actions.close}}}
-                                       :pickers {:buffers {:mappings {:i {:<C-w> actions.delete_buffer}}}}
-                                       :extensions (doto [:fzf]
-                                                     (tset :live_grep_args
-                                                           {:mappings {:i {:<C-k> actions.move_selection_previous
-                                                           :<C-l> (lga_actions.quote_prompt)}}}))})
+                                        :layout_strategy :bottom_pane
+                                        :layout_config {:height 0.4 :prompt_position :bottom}
+                                        :selection_caret "  "
+                                        :mappings {:i {:<C-n> false
+                                        :<C-p> false
+                                        :<C-j> actions.move_selection_next
+                                        :<C-k> actions.move_selection_previous
+                                        :<C-c> false
+                                        :<Esc> actions.close}}}
+                                        :pickers {:buffers {:mappings {:i {:<C-w> actions.delete_buffer}}}}
+                                        :extensions (doto [:fzf]
+                                                      (tset :live_grep_args
+                                                            {:mappings {:i {:<C-k> actions.move_selection_previous
+                                                                            :<C-l> (lga_actions.quote_prompt)}}}))})
                       (telescope.load_extension :fzf)
                       (telescope.load_extension :live_grep_args))))
   (use! :nvim-tree/nvim-tree.lua
@@ -97,11 +97,12 @@
   (use! :nvim-lualine/lualine.nvim
         :requires [(cfg! :kyazdani42/nvim-web-devicons :opt true)]
         :config (=> (let [branch (cfg! :branch :icon "")
-                                 tabs   (cfg! :tabs :mode 1)]
+                          tabs   (cfg! :tabs :mode 1)
+                          filename (cfg! :filename :file_status true :path 1)]
                       (setup! :lualine {:options {:theme :everforest
                                                   :disabled_filetypes {:statusline [:NvimTree]}}
                                         :sections {:lualine_b [branch]
-                                                   :lualine_c [branch]
+                                                   :lualine_c [filename]
                                                    :lualine_x []
                                                    :lualine_y [:filetype]}
                                         :tabline {:lualine_a [tabs]
@@ -109,5 +110,4 @@
                                         :extensions [{:filetypes [:fugitive]
                                                       :sections {:lualine_a [branch]}}]}))))
   (let [(ok? setup) (pcall require :local_plugins)]
-    (when ok?
-      (setup use))))
+    (when ok? (setup use))))

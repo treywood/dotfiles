@@ -22,20 +22,15 @@
                                                  :<C-e> (cmp.mapping {:i (cmp.mapping.abort)
                                                                       :c (cmp.mapping.close)})
                                                  :<Tab> (cmp.mapping (fn [fallback]
-                                                                       (if (cmp.visible)
-                                                                             (cmp.select_next_item)
-                                                                           (luasnip.expand_or_jumpable)
-                                                                             (luasnip.expand_or_jump)
-                                                                           (has-words-before)
-                                                                             (cmp.complete)
-                                                                             (fallback)))
+                                                                       (if (cmp.visible) (cmp.select_next_item)
+                                                                           (luasnip.expand_or_jumpable) (luasnip.expand_or_jump)
+                                                                           (has-words-before) (cmp.complete)
+                                                                           (fallback)))
                                                                      [:i :s])
                                                  :<S-Tab> (cmp.mapping (fn [fallback]
-                                                                         (if (cmp.visible)
-                                                                               (cmp.select_prev_item)
-                                                                             (luasnip.jumpable -1)
-                                                                               (luasnip.jump -1)
-                                                                               (fallback)))
+                                                                         (if (cmp.visible) (cmp.select_prev_item)
+                                                                             (luasnip.jumpable -1) (luasnip.jump -1)
+                                                                             (fallback)))
                                                                        [:i :s])
                                                  :<CR> (cmp.mapping.confirm {:select false})})
             :sources (cmp.config.sources [{:name :nvim_lsp} {:name :luasnip} {:name :buffer}])
@@ -44,13 +39,12 @@
 (cmp.setup.cmdline "/" {:mapping (cmp.mapping.preset.cmdline)
                         :sources [{:name :buffer}]})
 
-(cmp.setup.cmdline ":"
-                   {:mapping (cmp.mapping.preset.cmdline)
-                    :sources (cmp.config.sources [{:name :path} {:name :cmdline}])})
+(cmp.setup.cmdline ":" {:mapping (cmp.mapping.preset.cmdline)
+                        :sources (cmp.config.sources [{:name :path} {:name :cmdline}])})
 
 (cmp.setup.filetype :http {:sources (cmp.config.sources [{:name :luasnip}])})
 
-(let [lsp-kinds (-> (require :cmp.types) (. :lsp) (. :CompletionItemKind))
+(let [lsp-kinds (?. (require :cmp.types) :lsp :CompletionItemKind)
       entry_filter (fn [entry] (let [kind (. lsp-kinds (entry:get_kind))] (= kind :Folder)))]
   (cmp.setup.filetype :TelescopePrompt
                       {:enabled true
@@ -77,13 +71,12 @@
         (when (= (type lsp) :table)
           (set lsp-name (table.remove lsp 1))
           (set config (vim.tbl_deep_extend :force config lsp)))
-        ((-> nvim-lsp (. lsp-name) (. :setup)) config)))))
+        ((?. nvim-lsp lsp-name :setup) config)))))
 
 (let [(have-sources? sources) (pcall require :null-ls-sources)]
   (when have-sources?
     (let [null-ls (require :null-ls)]
       (fn on_attach [client bufnr]
         (when client.server_capabilities.documentFormattingProvider
-          (au! :BufWritePre {:buffer bufnr
-               :callback (=> (vim.lsp.buf.format {:async false}))})))
+          (au! :BufWritePre {:buffer bufnr :callback (=> (vim.lsp.buf.format {:async false}))})))
       (null-ls.setup {:debug true : sources : on_attach}))))
