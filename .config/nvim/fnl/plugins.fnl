@@ -9,21 +9,20 @@
   (use! :ggandor/leap.nvim)
   (use! :nvim-telescope/telescope.nvim
         :requires [:nvim-telescope/telescope-live-grep-args.nvim
-                    (cfg! :nvim-telescope/telescope-fzf-native.nvim
-                          :run :make)]
+                   (cfg! :nvim-telescope/telescope-fzf-native.nvim :run :make)]
         :config (=> (let [telescope (require :telescope)
-                                    actions (require :telescope.actions)
-                                    lga_actions (require :telescope-live-grep-args.actions)]
+                          actions (require :telescope.actions)
+                          lga_actions (require :telescope-live-grep-args.actions)]
                       (telescope.setup {:defaults {
                                         :layout_strategy :bottom_pane
                                         :layout_config {:height 0.4 :prompt_position :bottom}
                                         :selection_caret "  "
                                         :mappings {:i {:<C-n> false
-                                        :<C-p> false
-                                        :<C-j> actions.move_selection_next
-                                        :<C-k> actions.move_selection_previous
-                                        :<C-c> false
-                                        :<Esc> actions.close}}}
+                                                       :<C-p> false
+                                                       :<C-c> false
+                                                       :<C-j> actions.move_selection_next
+                                                       :<C-k> actions.move_selection_previous
+                                                       :<Esc> actions.close}}}
                                         :pickers {:buffers {:mappings {:i {:<C-w> actions.delete_buffer}}}}
                                         :extensions (doto [:fzf]
                                                       (tset :live_grep_args
@@ -55,22 +54,23 @@
                     :nvim-treesitter/nvim-treesitter-textobjects
                     :romgrk/nvim-treesitter-context
                     :andymass/vim-matchup]
-        :config (=> (setup! :nvim-treesitter.configs {:ensure_installed [:http :json]
-                            :highlight {:enable true}
-                            :endwise {:enable true}
-                            :matchup {:enable true}
-                            :textobjects {:select {:enable true
-                            :lookahead true
-                            :keymaps {:af "@function.outer"
-                            :if "@function.inner"
-                            :ak "@block.outer"
-                            :ik "@block.inner"}}
-                            :move {:enable true
-                            :set_jumps true
-                            :goto_next_start {"]f" "@function.outer"}
-                            :goto_next_end {"]F" "@function.outer"}
-                            :goto_previous_start {"[f" "@function.outer"}
-                            :goto_previous_end {"[F" "@function.outer"}}}})
+        :config (=> (setup! :nvim-treesitter.configs
+                            {:ensure_installed [:http :json]
+                             :highlight {:enable true}
+                             :endwise {:enable true}
+                             :matchup {:enable true}
+                             :textobjects {:select {:enable true
+                                                    :lookahead true
+                                                    :keymaps {:af "@function.outer"
+                                                              :if "@function.inner"
+                                                              :ak "@block.outer"
+                                                              :ik "@block.inner"}}
+                                           :move {:enable true
+                                                  :set_jumps true
+                                                  :goto_next_start {"]f" "@function.outer"}
+                                                  :goto_next_end {"]F" "@function.outer"}
+                                                  :goto_previous_start {"[f" "@function.outer"}
+                                                  :goto_previous_end {"[F" "@function.outer"}}}})
                     (setup! :treesitter-context {:patterns {:ruby.rspec [:do_block]}})))
   (use! :nvim-treesitter/playground :opt true)
   (use! :mracos/mermaid.vim)
