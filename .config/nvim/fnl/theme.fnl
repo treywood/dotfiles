@@ -6,42 +6,54 @@
 
 (vim.cmd "colorscheme everforest")
 
-(vim.api.nvim_set_hl 0 :Gray {:fg "#a7b0a4"})
-(vim.api.nvim_set_hl 0 :GreenBold {:fg "#a7c080" :bold true})
+(macro hi! [name ...]
+  `(let [args# [,...]
+         opts# {}]
+     (each [i# v# (ipairs args#)]
+       (let [next-i# (+ i# 1)]
+         (if (= (% i# 2) 1)
+             (tset opts# v# (. args# next-i#)))))
+     (vim.api.nvim_set_hl 0 ,name opts#)))
 
-(vim.api.nvim_set_hl 0 :TSParameter {:link :Gray})
-(vim.api.nvim_set_hl 0 :TSOperator {:link :Gray})
-(vim.api.nvim_set_hl 0 :TSField {:link :TSVariable})
+(macro hi-link! [name target]
+  `(hi! ,name :link ,target))
 
-(vim.api.nvim_set_hl 0 "@symbol.ruby" {:link :Orange})
-(vim.api.nvim_set_hl 0 "@label.ruby" {:link "@variable"})
+(hi! :Gray :fg "#a7b0a4")
+(hi! :GreenBold :fg "#a7c080" :bold true)
 
-(vim.api.nvim_set_hl 0 "@field.yaml" {:link :Orange})
-(vim.api.nvim_set_hl 0 :yamlBlockMappingKey {:link :Orange})
-(vim.api.nvim_set_hl 0 :yamlPlainScalar {:link :String})
-(vim.api.nvim_set_hl 0 :yamlBlockCollectionItemStart {:link :Gray})
+(hi-link! :TSParameter :Gray)
+(hi-link! :TSOperator :Gray)
+(hi-link! :TSField :TSVariable)
 
-(vim.api.nvim_set_hl 0 "@label.json" {:link :Orange})
-(vim.api.nvim_set_hl 0 "@string.json" {:link :TSString})
+(hi-link! "@symbol.ruby" :Orange)
+(hi-link! "@label.ruby" "@variable")
 
-(vim.api.nvim_set_hl 0 "@property.go" {:link :TSField})
+(hi-link! "@field.yaml" :Orange)
+(hi-link! :yamlBlockMappingKey :Orange)
+(hi-link! :yamlPlainScalar :String)
+(hi-link! :yamlBlockCollectionItemStart :Gray)
 
-(vim.api.nvim_set_hl 0 :GitSignsAdd {:link :GreenSign})
-(vim.api.nvim_set_hl 0 :GitSignsChange {:link :OrangeSign})
-(vim.api.nvim_set_hl 0 :GitSignsDelete {:link :RedSign})
+(hi-link! "@label.json" :Orange)
+(hi-link! "@string.json" :TSString)
 
-(vim.api.nvim_set_hl 0 :MiniStarterHeader {:link :Green})
-(vim.api.nvim_set_hl 0 :MiniStarterSection {:link :Red})
-(vim.api.nvim_set_hl 0 :MiniStarterItem {:link :Gray})
-(vim.api.nvim_set_hl 0 :MiniStarterItemBullet {:link :GreenBold})
-(vim.api.nvim_set_hl 0 :MiniStarterItemPrefix {:link :GreenBold})
-(vim.api.nvim_set_hl 0 :MiniStarterQuery {:link :Orange})
-(vim.api.nvim_set_hl 0 :MiniStarterFooter {:link :Gray})
+(hi-link! "@property.go" :TSField)
 
-(vim.api.nvim_set_hl 0 :DevIconRb {:link :Red})
+(hi-link! :GitSignsAdd :GreenSign)
+(hi-link! :GitSignsChange :OrangeSign)
+(hi-link! :GitSignsDelete :RedSign)
 
-(vim.api.nvim_set_hl 0 :NvimTreeGitDirty {:link :Orange})
-(vim.api.nvim_set_hl 0 :NvimTreeFolderIcon {:link :Yellow})
+(hi-link! :MiniStarterHeader :Green)
+(hi-link! :MiniStarterSection :Red)
+(hi-link! :MiniStarterItem :Gray)
+(hi-link! :MiniStarterItemBullet :GreenBold)
+(hi-link! :MiniStarterItemPrefix :GreenBold)
+(hi-link! :MiniStarterQuery :Orange)
+(hi-link! :MiniStarterFooter :Gray)
+
+(hi-link! :DevIconRb :Red)
+
+(hi-link! :NvimTreeGitDirty :Orange)
+(hi-link! :NvimTreeFolderIcon :Yellow)
 
 (vim.cmd "hi ErrorText gui=none")
 (vim.cmd "hi WarningText gui=none")
