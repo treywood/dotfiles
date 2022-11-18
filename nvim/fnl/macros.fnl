@@ -1,14 +1,17 @@
 (fn setup! [name config]
   `((. (require ,name) :setup) ,config))
 
-(fn cfg! [name ...]
-  `(let [tbl# [,name]
-         opts# [,...]]
-     (each [i# v# (ipairs opts#)]
+(fn args-tbl! [...]
+  `(let [tbl# {}
+         args# [,...]]
+     (each [i# v# (ipairs args#)]
        (let [next-i# (+ i# 1)]
          (if (= (% i# 2) 1)
-             (tset tbl# v# (. opts# next-i#)))))
+             (tset tbl# v# (. args# next-i#)))))
      tbl#))
+
+(fn cfg! [name ...]
+  `(vim.tbl_extend :keep [,name] (args-tbl! ,...)))
 
 (fn au! [...]
   `(vim.api.nvim_create_autocmd ,...))
@@ -25,4 +28,4 @@
      (use! :wbthomason/packer.nvim)
      ,...)))
 
-{: setup! : cfg! : au! : use! : packer! : =>}
+{: setup! : args-tbl! : cfg! : au! : use! : packer! : =>}
