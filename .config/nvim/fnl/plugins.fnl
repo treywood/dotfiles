@@ -1,4 +1,4 @@
-(import-macros {: setup! : cfg! : use! : packer! : =>} :macros)
+(import-macros {: setup! : cfg! : args-tbl! : use! : packer! : =>} :macros)
 (local packer (require :packer))
 
 (packer.init {:git {:subcommands {:update "pull --ff-only --progress --rebase=false --autostash"}}})

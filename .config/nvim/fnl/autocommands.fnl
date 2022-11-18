@@ -36,17 +36,13 @@
 
   (when (= (vim.fn.argc) 0)
     (au! :VimEnter
-         {:callback (fn []
-                      (let [git-command "git remote get-url --all origin | sed -E 's/.+\\/(.+)\\.git$/\\1/'"
-                            repo-name (-> (vim.fn.system git-command)
-                                          (: :gsub "%s*$" ""))
-                            dir-name (-> (vim.fn.getcwd)
-                                         (: :gsub ".+/" ""))
-                            tab-name (if (not= vim.v.shell_error 0)
-                                         (string.format "nvim (%s)" dir-name)
-                                         (not= repo-name nil)
-                                         (string.format "nvim (%s)" repo-name))]
-                        (set-tab-title tab-name)))})
-    (au! :VimLeave {:callback (=> (set-tab-title nil))})
-    (au! :BufWritePre
-         {:pattern :kitty.conf :callback (=> (Kitty.reload-config))})))
+         {:callback (=> (let [git-command "git remote get-url --all origin | sed -E 's/.+\\/(.+)\\.git$/\\1/'"
+                              repo-name (-> (vim.fn.system git-command) (: :gsub "%s*$" ""))
+                              dir-name (-> (vim.fn.getcwd) (: :gsub ".+/" ""))
+                              tab-name (if (not= vim.v.shell_error 0) (string.format "nvim (%s)" dir-name)
+                                           (not= repo-name nil) (string.format "nvim (%s)" repo-name))]
+                          (set-tab-title tab-name)))})
+    (au! :VimLeave {:callback (=> (set-tab-title nil))}))
+
+  (au! :BufWritePre
+       {:pattern :kitty.conf :callback (=> (Kitty.reload-config))}))

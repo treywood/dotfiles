@@ -1,3 +1,4 @@
+(import-macros {: args-tbl!} :macros)
 (set vim.o.background :dark)
 
 (set vim.g.everforest_background :hard)
@@ -7,12 +8,7 @@
 (vim.cmd "colorscheme everforest")
 
 (macro hi! [name ...]
-  `(let [args# [,...]
-         opts# {}]
-     (each [i# v# (ipairs args#)]
-       (let [next-i# (+ i# 1)]
-         (if (= (% i# 2) 1)
-             (tset opts# v# (. args# next-i#)))))
+  `(let [opts# (args-tbl! ,...)]
      (vim.api.nvim_set_hl 0 ,name opts#)))
 
 (macro hi-link! [name target]
