@@ -1505,7 +1505,7 @@
   }
 
   function prompt_ski_context() {
-    if type "$sq" > /dev/null; then
+    if type "sq" > /dev/null; then
       p10k segment -f 13 -i '⎈' -t "$(sq ski context current)"
     fi
   }
