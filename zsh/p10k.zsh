@@ -1505,7 +1505,9 @@
   }
 
   function prompt_ski_context() {
-    p10k segment -f 13 -i '⎈' -t "$(sq ski context current)"
+    if type "$sq" > /dev/null; then
+      p10k segment -f 13 -i '⎈' -t "$(sq ski context current)"
+    fi
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
