@@ -4,6 +4,7 @@
 (packer.init {:git {:subcommands {:update "pull --ff-only --progress --rebase=false --autostash"}}})
 
 (packer!
+  (use! :rktjmp/hotpot.nvim)
   (use! :nvim-lua/plenary.nvim)
   (use! :haya14busa/is.vim)
   (use! :ggandor/leap.nvim)
