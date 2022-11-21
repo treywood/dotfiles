@@ -1,6 +1,6 @@
-nvim/lua/lsp_servers.lua
-nvim/lua/null_ls_sources.lua
-nvim/lua/local_plugins.lua
+nvim/fnl/lsp-servers.fnl
+nvim/fnl/null-ls-sources.fnl
+nvim/fnl/local-plugins.fnl
 nvim/plugin/
 
 kitty/*.session

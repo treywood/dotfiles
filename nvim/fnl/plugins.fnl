@@ -110,5 +110,5 @@
                                                   :lualine_z []}
                                         :extensions [{:filetypes [:fugitive]
                                                       :sections {:lualine_a [branch]}}]}))))
-  (let [(ok? setup) (pcall require :local_plugins)]
+  (let [(ok? setup) (pcall require :local-plugins)]
     (when ok? (setup use))))
