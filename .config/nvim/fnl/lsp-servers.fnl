@@ -1,4 +1,4 @@
-(import-macros {: cfg!} :macros)
+(import-macros {: cfg! : args-tbl!} :macros)
 
 :return
 
