@@ -34,6 +34,9 @@
 
 (hi-link! "@property.go" :TSField)
 (hi-link! "@property.javascript" :TSField)
+(hi-link! "@property.tsx" :TSField)
+
+(hi-link! "@constructor.tsx" "@constructor.javascript")
 
 (hi-link! :GitSignsAdd :GreenSign)
 (hi-link! :GitSignsChange :OrangeSign)
