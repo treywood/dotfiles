@@ -2,8 +2,7 @@
   `((. (require ,name) :setup) ,config))
 
 (fn args-tbl! [...]
-  `(let [tbl# {}
-         args# [,...]]
+  `(let [tbl# {} args# [,...]]
      (each [i# v# (ipairs args#)]
        (let [next-i# (+ i# 1)]
          (if (= (% i# 2) 1)
@@ -25,7 +24,7 @@
 
 (fn packer! [...]
   `(packer.startup (=>  
-     (use! :wbthomason/packer.nvim)
+     (use :wbthomason/packer.nvim)
      ,...)))
 
 {: setup! : args-tbl! : cfg! : au! : use! : packer! : =>}
