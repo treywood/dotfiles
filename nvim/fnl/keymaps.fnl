@@ -2,6 +2,7 @@
 
 (local diff_files (require :pickers.diff-files))
 (local telescope (require :telescope))
+(local luasnip (require :luasnip))
 
 (local Keymaps {})
 
@@ -26,7 +27,16 @@
                          :<leader>gy ":GBrowse<CR>"
                          :<leader>s "<Plug>(leap-forward-to)"
                          :<leader>S "<Plug>(leap-backward-to)"}
-                     :i {:<C-j> (=> (let [luasnip (require :luasnip)] (luasnip:change_choice 1)))}
+                     :i {:<C-j> (=> (luasnip:change_choice 1))
+                         :<C-Space>c "<Plug>(sq-connect-insert-customer-id)"
+                         :<C-Space>m "<Plug>(sq-connect-insert-merchant-id)"
+                         :<C-Space>l "<Plug>(sq-connect-insert-location-id)"}
+                     :v {:<C-Space>c "<Plug>(sq-connect-insert-customer-id)"
+                         :<C-Space>m "<Plug>(sq-connect-insert-merchant-id)"
+                         :<C-Space>l "<Plug>(sq-connect-insert-location-id)"}
+                     :s {:<C-Space>c "<Plug>(sq-connect-insert-customer-id)"
+                         :<C-Space>m "<Plug>(sq-connect-insert-merchant-id)"
+                         :<C-Space>l "<Plug>(sq-connect-insert-location-id)"}
                      :t {:<Esc> "<C-\\><C-n>"}
                      "" {:n "<Plug>(is-n)zzzv"
                          :N "<Plug>(is-N)zzzv"
