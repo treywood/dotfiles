@@ -26,20 +26,7 @@
                          :<leader>gy ":GBrowse<CR>"
                          :<leader>s "<Plug>(leap-forward-to)"
                          :<leader>S "<Plug>(leap-backward-to)"}
-                     :i {:<C-j> (=> (let [luasnip (require :luasnip)]
-                                      (luasnip:change_choice 1)))
-                         :<C-Space>i "<Plug>(sq-connect-insert-id)"
-                         :<C-Space>l "<Plug>(sq-connect-insert-location-id)"
-                         :<C-Space>m "<Plug>(sq-connect-insert-merchant-id)"
-                         :<C-Space>c "<Plug>(sq-connect-insert-customer-id)"}
-                     :v {:<C-Space>i "<Plug>(sq-connect-insert-id)"
-                         :<C-Space>l "<Plug>(sq-connect-insert-location-id)"
-                         :<C-Space>m "<Plug>(sq-connect-insert-merchant-id)"
-                         :<C-Space>c "<Plug>(sq-connect-insert-customer-id)"}
-                     :s {:<C-Space>i "<Plug>(sq-connect-insert-id)"
-                         :<C-Space>l "<Plug>(sq-connect-insert-location-id)"
-                         :<C-Space>m "<Plug>(sq-connect-insert-merchant-id)"
-                         :<C-Space>c "<Plug>(sq-connect-insert-customer-id)"}
+                     :i {:<C-j> (=> (let [luasnip (require :luasnip)] (luasnip:change_choice 1)))}
                      :t {:<Esc> "<C-\\><C-n>"}
                      "" {:n "<Plug>(is-n)zzzv"
                          :N "<Plug>(is-N)zzzv"
