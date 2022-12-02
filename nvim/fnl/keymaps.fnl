@@ -33,7 +33,8 @@
                          :<C-Space>l "<Plug>(sq-connect-insert-location-id)"}
                      :v {:<C-Space>c "<Plug>(sq-connect-insert-customer-id)"
                          :<C-Space>m "<Plug>(sq-connect-insert-merchant-id)"
-                         :<C-Space>l "<Plug>(sq-connect-insert-location-id)"}
+                         :<C-Space>l "<Plug>(sq-connect-insert-location-id)"
+                         :<leader>gy ":'<,'>GBrowse!<CR>"}
                      :s {:<C-Space>c "<Plug>(sq-connect-insert-customer-id)"
                          :<C-Space>m "<Plug>(sq-connect-insert-merchant-id)"
                          :<C-Space>l "<Plug>(sq-connect-insert-location-id)"}
