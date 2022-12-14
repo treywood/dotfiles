@@ -46,4 +46,5 @@ export GPG_TTY=$(tty)
 export EDITOR="nvim"
 
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
+export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:$HOME/.ghcup/bin"
