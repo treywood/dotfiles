@@ -25,6 +25,7 @@
 (hi-link! "@label.ruby" "@variable")
 
 (hi-link! "@field.yaml" :Orange)
+(hi-link! "@string.yaml" :Aqua)
 (hi-link! :yamlBlockMappingKey :Orange)
 (hi-link! :yamlPlainScalar :String)
 (hi-link! :yamlBlockCollectionItemStart :Gray)
