@@ -10,6 +10,7 @@
   (use! :ggandor/leap.nvim)
   (use! :nvim-telescope/telescope.nvim
         :requires [:nvim-telescope/telescope-live-grep-args.nvim
+                   :psiska/telescope-hoogle.nvim
                    (cfg! :nvim-telescope/telescope-fzf-native.nvim :run :make)]
         :config (=> (let [telescope (require :telescope)
                           actions (require :telescope.actions)
@@ -28,9 +29,13 @@
                                         :extensions (doto [:fzf]
                                                       (tset :live_grep_args
                                                             {:mappings {:i {:<C-k> actions.move_selection_previous
-                                                                            :<C-l> (lga_actions.quote_prompt)}}}))})
+                                                                            :<C-l> (lga_actions.quote_prompt)}}})
+                                                      (tset :hoogle
+                                                            {:render :treesitter
+                                                             :renders {:treesitter {:remove_wrap true}}}))})
                       (telescope.load_extension :fzf)
-                      (telescope.load_extension :live_grep_args))))
+                      (telescope.load_extension :live_grep_args)
+                      (telescope.load_extension :hoogle))))
   (use! :nvim-tree/nvim-tree.lua
         :requires [:nvim-tree/nvim-web-devicons]
         :config (=> (setup! :nvim-tree {:actions {:change_dir {:enable false}}
