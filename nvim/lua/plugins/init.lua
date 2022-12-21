@@ -1,27 +1,12 @@
-vim.cmd('packadd packer.nvim')
-local packer = require('packer')
-
-packer.init {
-  git = {
-    subcommands = {
-      update = 'pull --ff-only --progress --rebase=false --autostash',
-    },
-  },
-}
-
-return packer.startup(function()
-  use('wbthomason/packer.nvim')
-
-  -- utility
-  use('nvim-lua/plenary.nvim')
-
-  -- find things
-  use('haya14busa/is.vim')
-  use('ggandor/leap.nvim')
-  use {
+return {
+  'wbthomason/packer.nvim',
+  'nvim-lua/plenary.nvim',
+  'haya14busa/is.vim',
+  'ggandor/leap.nvim',
+  {
     'nvim-telescope/telescope.nvim',
-    requires = {
-      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+    dependencies = {
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
       'nvim-telescope/telescope-live-grep-args.nvim',
     },
     config = function()
@@ -72,11 +57,11 @@ return packer.startup(function()
 
       telescope.load_extension('fzf')
       telescope.load_extension('live_grep_args')
-    end,
-  }
-  use {
+    end
+  },
+  {
     'nvim-tree/nvim-tree.lua',
-    requires = {
+    dependencies = {
       'nvim-tree/nvim-web-devicons',
     },
     config = function()
@@ -106,25 +91,21 @@ return packer.startup(function()
         },
       }
     end,
-  }
-
-  -- LSP
-  use('neovim/nvim-lspconfig')
-  use('jose-elias-alvarez/null-ls.nvim')
-  use('j-hui/fidget.nvim')
-  use {
+  },
+  'neovim/nvim-lspconfig',
+  'jose-elias-alvarez/null-ls.nvim',
+  'j-hui/fidget.nvim',
+  {
     'RRethy/vim-illuminate',
     config = function()
       require('illuminate').configure {
         filetypes_denylist = { 'NvimTree' },
       }
     end,
-  }
-
-  -- completion
-  use {
+  },
+  {
     'hrsh7th/nvim-cmp',
-    requires = {
+    dependencies = {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
@@ -133,13 +114,11 @@ return packer.startup(function()
       'saadparwaiz1/cmp_luasnip',
       'onsails/lspkind-nvim',
     },
-  }
-
-  -- syntax
-  use {
+  },
+  {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-    requires = {
+    build = ':TSUpdate',
+    dependencies = {
       'RRethy/nvim-treesitter-endwise',
       'nvim-treesitter/nvim-treesitter-textobjects',
       'romgrk/nvim-treesitter-context',
@@ -188,34 +167,26 @@ return packer.startup(function()
         },
       }
     end,
-  }
-  use { 'nvim-treesitter/playground', opt = true }
-
-  -- documentation
-  use('mracos/mermaid.vim')
-  use {
+  },
+  { 'nvim-treesitter/playground', lazy = true },
+  'mracos/mermaid.vim',
+  {
     'iamcco/markdown-preview.nvim',
     ft = 'markdown',
     run = 'cd app && yarn install',
-    setup = function()
+    init = function()
       vim.g.mkdp_theme = 'light'
     end,
-  }
-
-  -- testing
-  use('vim-test/vim-test')
-
-  -- git
-  use { 'tpope/vim-fugitive', requires = 'tpope/vim-rhubarb' }
-  use {
+  },
+  'vim-test/vim-test',
+  { 'tpope/vim-fugitive', requires = 'tpope/vim-rhubarb' },
+  {
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
     end,
-  }
-
-  -- misc
-  use {
+  },
+  {
     'echasnovski/mini.nvim',
     config = function()
       require('mini.comment').setup {
@@ -242,11 +213,9 @@ return packer.startup(function()
       require('mini.pairs').setup()
       require('mini.surround').setup()
     end,
-  }
-
-  -- theme
-  use('sainnhe/everforest')
-  use {
+  },
+  'sainnhe/everforest',
+  {
     'nvim-lualine/lualine.nvim',
     requires = {
       { 'kyazdani42/nvim-web-devicons', opt = true },
@@ -279,10 +248,5 @@ return packer.startup(function()
         },
       }
     end,
-  }
-
-  local ok, setup = pcall(require, 'local_plugins')
-  if ok then
-    setup(use)
-  end
-end)
+  },
+}
