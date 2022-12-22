@@ -2,6 +2,7 @@ return {
   'nvim-lua/plenary.nvim',
   'haya14busa/is.vim',
   'ggandor/leap.nvim',
+  'hrsh7th/cmp-nvim-lsp',
   { 'nvim-tree/nvim-web-devicons', lazy = true },
   {
     'nvim-tree/nvim-tree.lua',
@@ -33,7 +34,6 @@ return {
       }
     end,
   },
-  'hrsh7th/cmp-nvim-lsp',
   'mracos/mermaid.vim',
   {
     'iamcco/markdown-preview.nvim',
@@ -92,7 +92,12 @@ return {
         sections = {
           lualine_b = { { 'branch', icon = '' } },
           lualine_c = { { 'filename', file_status = true, path = 1 } },
-          lualine_x = {},
+          lualine_x = {
+            {
+              require('lazy').updates,
+              cond = require('lazy.status').has_updates,
+            },
+          },
           lualine_y = { 'filetype' },
         },
         tabline = {
