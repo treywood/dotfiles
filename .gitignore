@@ -4,6 +4,8 @@ nvim/lua/plugins/
 !nvim/lua/plugins/init.lua
 !nvim/lua/plugins/nvim-cmp.lua
 !nvim/lua/plugins/everforest.lua
+!nvim/lua/plugins/lsp.lua
+!nvim/lua/plugins/treesitter.lua
 nvim/plugin/
 
 kitty/*.session
