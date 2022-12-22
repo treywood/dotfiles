@@ -5,6 +5,7 @@ nvim/lua/config/plugins/
 !nvim/lua/config/plugins/lsp.lua
 !nvim/lua/config/plugins/treesitter.lua
 !nvim/lua/config/plugins/telescope.lua
+nvim/lua/config/lazy/config.lua
 nvim/plugin/
 
 kitty/*.session
