@@ -1,5 +1,4 @@
 return {
-  'wbthomason/packer.nvim',
   'nvim-lua/plenary.nvim',
   'haya14busa/is.vim',
   'ggandor/leap.nvim',
@@ -59,11 +58,9 @@ return {
       telescope.load_extension('live_grep_args')
     end
   },
+  { 'nvim-tree/nvim-web-devicons', lazy = true },
   {
     'nvim-tree/nvim-tree.lua',
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
     config = function()
       require('nvim-tree').setup {
         actions = {
@@ -92,29 +89,92 @@ return {
       }
     end,
   },
-  'neovim/nvim-lspconfig',
-  'jose-elias-alvarez/null-ls.nvim',
-  'j-hui/fidget.nvim',
+  'hrsh7th/cmp-nvim-lsp',
+  {
+    'neovim/nvim-lspconfig',
+    config = function ()
+      -- Use a loop to conveniently call 'setup' on multiple servers and
+      -- map buffer local keybindings when the language server attaches
+      local have_servers, servers = pcall(require, 'lsp_servers')
+      if have_servers then
+        local nvim_lsp = require('lspconfig')
+
+        -- Setup lspconfig.
+        local capabilities = require('cmp_nvim_lsp').default_capabilities()
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+        -- Use an on_attach function to only map the following keys
+        -- after the language server attaches to the current buffer
+        local on_attach = function(client, bufnr)
+          require('keymaps').setup_lsp(bufnr)
+          require('illuminate').on_attach(client)
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+        end
+
+        for _, lsp in ipairs(servers) do
+          local lsp_name = lsp
+          local config = {
+            on_attach = on_attach,
+            capabilities = capabilities,
+            flags = {
+              debounce_text_changes = 150,
+            },
+          }
+
+          if type(lsp) == 'table' then
+            lsp_name = table.remove(lsp, 1)
+            config = vim.tbl_deep_extend('force', config, lsp)
+          end
+
+          nvim_lsp[lsp_name].setup(config)
+        end
+      end
+    end
+  },
+  {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function ()
+      local have_sources, sources = pcall(require, 'null_ls_sources')
+      if have_sources then
+        require('null-ls').setup {
+          debug = true,
+          sources = sources,
+          on_attach = function(client, bufnr)
+            if client.server_capabilities.documentFormattingProvider then
+              vim.api.nvim_create_autocmd('BufWritePre', {
+                buffer = bufnr,
+                callback = function()
+                  vim.lsp.buf.format { async = false }
+                end,
+              })
+            end
+          end,
+        }
+      end
+    end
+  },
+  {
+    'j-hui/fidget.nvim',
+    config = function()
+      require('fidget').setup {
+        text = {
+          spinner = 'dots_snake',
+        },
+      }
+    end
+  },
   {
     'RRethy/vim-illuminate',
+    init = function()
+      vim.g.Illuminate_delay = 500
+    end,
     config = function()
       require('illuminate').configure {
         filetypes_denylist = { 'NvimTree' },
       }
     end,
-  },
-  {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-      'onsails/lspkind-nvim',
-    },
-  },
+  }, 
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -173,13 +233,13 @@ return {
   {
     'iamcco/markdown-preview.nvim',
     ft = 'markdown',
-    run = 'cd app && yarn install',
+    build = 'cd app && yarn install',
     init = function()
       vim.g.mkdp_theme = 'light'
     end,
   },
   'vim-test/vim-test',
-  { 'tpope/vim-fugitive', requires = 'tpope/vim-rhubarb' },
+  { 'tpope/vim-fugitive', dependencies = 'tpope/vim-rhubarb' },
   {
     'lewis6991/gitsigns.nvim',
     config = function()
@@ -214,12 +274,8 @@ return {
       require('mini.surround').setup()
     end,
   },
-  'sainnhe/everforest',
   {
     'nvim-lualine/lualine.nvim',
-    requires = {
-      { 'kyazdani42/nvim-web-devicons', opt = true },
-    },
     config = function()
       require('lualine').setup {
         options = {

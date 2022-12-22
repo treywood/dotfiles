@@ -13,13 +13,8 @@ vim.opt.runtimepath:prepend(lazypath)
 
 require("options")
 require("lazy").setup("plugins")
-require("theme")
 require("keymaps").setup()
-require("lsp")
 require("autocommands")
-
-vim.api.nvim_create_user_command("PC", "PackerCompile", {})
-vim.api.nvim_create_user_command("PS", "PackerSync", {})
 
 vim.api.nvim_create_user_command("Kochiku", function(opts)
 	local command = "!sq kochiku"
