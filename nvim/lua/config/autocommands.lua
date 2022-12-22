@@ -1,4 +1,4 @@
-local Kitty = require('kitty')
+local Kitty = require('util.kitty')
 
 vim.api.nvim_create_autocmd('User', {
   pattern = 'MiniStarterOpened',

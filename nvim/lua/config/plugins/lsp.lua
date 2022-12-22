@@ -28,7 +28,7 @@ function M.config()
       capabilities.textDocument.completion.completionItem.snippetSupport = true
 
       local on_attach = function(client, bufnr)
-        require('keymaps').setup_lsp(bufnr)
+        require('config.keymaps').setup_lsp(bufnr)
         require('illuminate').on_attach(client)
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
