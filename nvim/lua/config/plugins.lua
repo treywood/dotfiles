@@ -94,7 +94,7 @@ return {
           lualine_c = { { 'filename', file_status = true, path = 1 } },
           lualine_x = {
             {
-              require('lazy').updates,
+              require('lazy.status').updates,
               cond = require('lazy.status').has_updates,
             },
           },
