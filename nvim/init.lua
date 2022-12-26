@@ -30,5 +30,5 @@ end, {
   end,
 })
 vim.api.nvim_create_user_command('Migrate', function()
-  vim.cmd('!rails db:migrate && rails db:migrate RAILS_ENV=test')
+  vim.cmd('tabnew | call termopen("rails db:migrate && rails db:migrate rails_env=test") | startinsert')
 end, {})
