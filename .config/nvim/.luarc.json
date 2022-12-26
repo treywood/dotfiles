@@ -5,6 +5,8 @@
         "require",
         "pcall",
         "os",
-        "string"
+        "string",
+        "table",
+        "print"
     ]
 }
