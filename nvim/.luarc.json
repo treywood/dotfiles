@@ -4,6 +4,7 @@
         "vim",
         "require",
         "pcall",
-        "os"
+        "os",
+        "string"
     ]
 }
