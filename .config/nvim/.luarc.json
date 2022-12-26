@@ -3,6 +3,7 @@
     "Lua.diagnostics.globals": [
         "vim",
         "require",
-        "pcall"
+        "pcall",
+        "os"
     ]
 }
