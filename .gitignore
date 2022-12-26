@@ -3,6 +3,7 @@ nvim/lua/config/lazy/config.lua
 nvim/lua/config/lsp/
 !nvim/lua/config/lsp/init.lua
 !nvim/lua/config/lsp/util.lua
+!nvim/lua/config/lsp/lua.lua
 nvim/plugin/
 
 kitty/*.session

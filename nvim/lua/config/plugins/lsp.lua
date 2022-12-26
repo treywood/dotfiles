@@ -1,10 +1,9 @@
+local util = require('util')
+
 local M = {
-  'williamboman/mason.nvim',
+  'neovim/nvim-lspconfig',
   lazy = false,
   dependencies = {
-    'williamboman/mason-lspconfig.nvim',
-    'jayp0521/mason-null-ls.nvim',
-    'neovim/nvim-lspconfig',
     'jose-elias-alvarez/null-ls.nvim',
     'j-hui/fidget.nvim',
     'RRethy/vim-illuminate',
@@ -16,20 +15,24 @@ function M.init()
 end
 
 function M.config()
-  require('mason').setup {
-    ensure_installed = { 'sumneko_lua' },
-  }
-  require('mason-lspconfig').setup()
-
-  local util = require('util')
   util.lsmod('config.lsp', function(mod)
     pcall(require, mod)
   end)
 
-  require('mason-null-ls').setup {
-    ensure_installed = { 'stylua' },
-    automatic_setup = true,
+  require('null-ls').setup {
+    debug = true,
+    on_attach = function(client, bufnr)
+      if client.server_capabilities.documentFormattingProvider then
+        vim.api.nvim_create_autocmd('BufWritePre', {
+          buffer = bufnr,
+          callback = function()
+            vim.lsp.buf.format { async = false }
+          end,
+        })
+      end
+    end,
   }
+
   require('fidget').setup {
     text = {
       spinner = 'dots_snake',
