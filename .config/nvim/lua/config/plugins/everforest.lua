@@ -1,6 +1,6 @@
 return {
   'sainnhe/everforest',
-  config = function ()
+  config = function()
     vim.o.background = 'dark'
 
     vim.g.everforest_background = 'hard'
@@ -12,9 +12,10 @@ return {
     vim.api.nvim_set_hl(0, 'Gray', { fg = '#a7b0a4' })
     vim.api.nvim_set_hl(0, 'GreenBold', { fg = '#a7c080', bold = true })
 
-    vim.api.nvim_set_hl(0, 'TSParameter', { link = 'Gray' })
-    vim.api.nvim_set_hl(0, 'TSOperator', { link = 'Gray' })
-    vim.api.nvim_set_hl(0, 'TSField', { link = 'TSVariable' })
+    vim.api.nvim_set_hl(0, '@parameter', { link = 'Gray' })
+    vim.api.nvim_set_hl(0, '@operator', { link = 'Gray' })
+    vim.api.nvim_set_hl(0, '@field', { link = '@variable' })
+    vim.api.nvim_set_hl(0, '@property', { link = '@field' })
 
     vim.api.nvim_set_hl(0, '@symbol.ruby', { link = 'Orange' })
     vim.api.nvim_set_hl(0, '@label.ruby', { link = '@variable' })
@@ -25,9 +26,7 @@ return {
     vim.api.nvim_set_hl(0, 'yamlBlockCollectionItemStart', { link = 'Gray' })
 
     vim.api.nvim_set_hl(0, '@label.json', { link = 'Orange' })
-    vim.api.nvim_set_hl(0, '@string.json', { link = 'TSString' })
-
-    vim.api.nvim_set_hl(0, '@property.go', { link = 'TSField' })
+    vim.api.nvim_set_hl(0, '@string.json', { link = '@string' })
 
     vim.api.nvim_set_hl(0, 'GitSignsAdd', { link = 'GreenSign' })
     vim.api.nvim_set_hl(0, 'GitSignsChange', { link = 'OrangeSign' })
@@ -52,5 +51,5 @@ return {
       hi HintText gui=none |
       hi InfoText gui=none 
     ]])
-  end
+  end,
 }
