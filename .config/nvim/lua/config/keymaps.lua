@@ -14,6 +14,8 @@ function Keymaps.setup()
   vim.keymap.set('n', '-', ':NvimTreeToggle<CR>', opts)
   vim.keymap.set('n', '+', ':NvimTreeFindFileToggle<CR>', opts)
 
+  vim.keymap.set('n', '<esc>', '<cmd>nohl<CR><esc>')
+
   vim.keymap.set('', 'n', '<Plug>(is-n)zzzv', opts)
   vim.keymap.set('', 'N', '<Plug>(is-N)zzzv', opts)
   vim.keymap.set('', '*', '<Plug>(is-*)', opts)
