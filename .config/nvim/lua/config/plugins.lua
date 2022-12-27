@@ -28,7 +28,6 @@ return {
   },
   {
     'iamcco/markdown-preview.nvim',
-    dependencies = 'mracos/mermaid.vim',
     ft = 'markdown',
     build = 'cd app && yarn install',
     init = function()

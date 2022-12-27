@@ -6,7 +6,7 @@ local M = {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'romgrk/nvim-treesitter-context',
     'andymass/vim-matchup',
-    { 'nvim-treesitter/playground', lazy = true },
+    { 'nvim-treesitter/playground', cmd = 'TSHighlightCapturesUnderCursor' },
   },
 }
 
