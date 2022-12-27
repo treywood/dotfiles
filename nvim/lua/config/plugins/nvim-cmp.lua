@@ -11,14 +11,7 @@ local M = {
   },
 }
 
-function M.init ()
-  vim.diagnostic.config {
-    virtual_text = false,
-  }
-end
-
-function M.config ()
-  -- Setup nvim-cmp.
+function M.config()
   local cmp = require('cmp')
   local luasnip = require('luasnip')
   local lspkind = require('lspkind')
@@ -39,7 +32,7 @@ function M.config ()
       ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
       ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+      ['<C-y>'] = cmp.config.disable,
       ['<C-e>'] = cmp.mapping {
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
@@ -82,7 +75,6 @@ function M.config ()
     },
   }
 
-  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline('/', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
@@ -90,7 +82,6 @@ function M.config ()
     },
   })
 
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
