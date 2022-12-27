@@ -85,4 +85,8 @@ return {
       vim.g.mkdp_theme = 'light'
     end,
   },
+  {
+    'dstein64/vim-startuptime',
+    cmd = 'StartupTime',
+  },
 }
