@@ -2,7 +2,7 @@ local util = require('util')
 
 local M = {
   'neovim/nvim-lspconfig',
-  lazy = false,
+  event = 'VeryLazy',
   dependencies = {
     'jose-elias-alvarez/null-ls.nvim',
     'j-hui/fidget.nvim',
