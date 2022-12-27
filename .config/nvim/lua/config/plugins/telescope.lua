@@ -9,18 +9,8 @@ local M = {
     { '<C-e>', '<cmd>Telescope oldfiles cwd_only=true<cr>' },
     { '<C-p>', '<cmd>Telescope git_files<cr>' },
     { '<C-b>', '<cmd>Telescope buffers<cr>' },
-    {
-      '<C-f>',
-      function()
-        require('telescope').extensions.live_grep_args.live_grep_args()
-      end,
-    },
-    {
-      '<C-y>',
-      function()
-        require('pickers.diff_files')()
-      end,
-    },
+    { '<C-f>', "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>" },
+    { '<C-y>', "<cmd>lua require('pickers.diff_files')()<cr>" },
   },
 }
 

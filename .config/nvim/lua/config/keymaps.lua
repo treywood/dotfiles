@@ -2,50 +2,19 @@ Keymaps = {}
 
 function Keymaps.setup()
   local opts = { silent = true }
-  vim.keymap.set('n', '-', ':NvimTreeToggle<CR>', opts)
-  vim.keymap.set('n', '+', ':NvimTreeFindFileToggle<CR>', opts)
-
   vim.keymap.set('n', '<esc>', '<cmd>nohl<CR><esc>')
-
-  vim.keymap.set('', 'n', '<Plug>(is-n)zzzv', opts)
-  vim.keymap.set('', 'N', '<Plug>(is-N)zzzv', opts)
-  vim.keymap.set('', '*', '<Plug>(is-*)', opts)
-  vim.keymap.set('', '#', '<Plug>(is-#)', opts)
-
-  vim.keymap.set('n', '<leader>tn', ':TestNearest<CR>', opts)
-  vim.keymap.set('n', '<leader>tf', ':TestFile<CR>', opts)
-  vim.keymap.set('n', '<leader>tt', ':TestLast<CR>', opts)
 
   vim.keymap.set('n', '<leader>W', ':%bd!<CR>', opts)
   vim.keymap.set('n', '<leader>w', ':%bd!|e#|bd!#<CR>', opts)
 
-  vim.keymap.set('', '<leader>gy', ':GBrowse!<CR>', opts)
-
-  vim.keymap.set('n', ']c', '<cmd>Gitsigns next_hunk<CR>', opts)
-  vim.keymap.set('n', '[c', '<cmd>Gitsigns prev_hunk<CR>', opts)
-  vim.keymap.set('n', '<leader>hp', '<cmd>Gitsigns preview_hunk<CR>', opts)
-  vim.keymap.set('n', '<leader>hu', '<cmd>Gitsigns reset_hunk<CR>', opts)
-
   vim.keymap.set('n', '<leader>cn', ':cnext<CR>', opts)
   vim.keymap.set('n', '<leader>cN', ':cprevious<CR>', opts)
-
-  vim.keymap.set('n', '<leader>gy', ':GBrowse<CR>', opts)
-
-  vim.keymap.set('n', '<leader>s', '<Plug>(leap-forward-to)', opts)
-  vim.keymap.set('n', '<leader>S', '<Plug>(leap-backward-to)', opts)
 
   vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', opts)
 
   vim.keymap.set('i', '<C-j>', function()
     require('luasnip').change_choice(1)
   end, opts)
-
-  for _, m in pairs { 'i', 'v', 's' } do
-    vim.keymap.set(m, '<C-Space>i', '<Plug>(sq-connect-insert-id)', opts)
-    vim.keymap.set(m, '<C-Space>l', '<Plug>(sq-connect-insert-location-id)', opts)
-    vim.keymap.set(m, '<C-Space>m', '<Plug>(sq-connect-insert-merchant-id)', opts)
-    vim.keymap.set(m, '<C-Space>c', '<Plug>(sq-connect-insert-customer-id)', opts)
-  end
 end
 
 function Keymaps.setup_lsp(bufnr)
