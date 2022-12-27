@@ -4,6 +4,24 @@ local M = {
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     'nvim-telescope/telescope-live-grep-args.nvim',
   },
+  cmd = 'Telescope',
+  keys = {
+    { '<C-e>', '<cmd>Telescope oldfiles cwd_only=true<cr>' },
+    { '<C-p>', '<cmd>Telescope git_files<cr>' },
+    { '<C-b>', '<cmd>Telescope buffers<cr>' },
+    {
+      '<C-f>',
+      function()
+        require('telescope').extensions.live_grep_args.live_grep_args()
+      end,
+    },
+    {
+      '<C-y>',
+      function()
+        require('pickers.diff_files')()
+      end,
+    },
+  },
 }
 
 function M.config()
