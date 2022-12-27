@@ -6,33 +6,31 @@ return {
   { 'nvim-tree/nvim-web-devicons', lazy = true },
   {
     'nvim-tree/nvim-tree.lua',
-    config = function()
-      require('nvim-tree').setup {
-        actions = {
-          change_dir = {
-            enable = false,
+    config = {
+      actions = {
+        change_dir = {
+          enable = false,
+        },
+      },
+      filters = {
+        dotfiles = true,
+      },
+      renderer = {
+        icons = {
+          show = {
+            folder_arrow = false,
           },
         },
-        filters = {
-          dotfiles = true,
-        },
-        renderer = {
-          icons = {
-            show = {
-              folder_arrow = false,
-            },
+      },
+      view = {
+        adaptive_size = true,
+        mappings = {
+          list = {
+            { key = '-', action = 'close' },
           },
         },
-        view = {
-          adaptive_size = true,
-          mappings = {
-            list = {
-              { key = '-', action = 'close' },
-            },
-          },
-        },
-      }
-    end,
+      },
+    },
   },
   'mracos/mermaid.vim',
   {
@@ -45,12 +43,7 @@ return {
   },
   'vim-test/vim-test',
   { 'tpope/vim-fugitive', dependencies = 'tpope/vim-rhubarb' },
-  {
-    'lewis6991/gitsigns.nvim',
-    config = function()
-      require('gitsigns').setup()
-    end,
-  },
+  { 'lewis6991/gitsigns.nvim', config = true },
   {
     'echasnovski/mini.nvim',
     config = function()
@@ -81,38 +74,36 @@ return {
   },
   {
     'nvim-lualine/lualine.nvim',
-    config = function()
-      require('lualine').setup {
-        options = {
-          theme = 'everforest',
-          disabled_filetypes = {
-            statusline = { 'NvimTree' },
-          },
+    config = {
+      options = {
+        theme = 'everforest',
+        disabled_filetypes = {
+          statusline = { 'NvimTree' },
         },
-        sections = {
-          lualine_b = { { 'branch', icon = '' } },
-          lualine_c = { { 'filename', file_status = true, path = 1 } },
-          lualine_x = {
-            {
-              require('lazy.status').updates,
-              cond = require('lazy.status').has_updates,
-            },
-          },
-          lualine_y = { 'filetype' },
-        },
-        tabline = {
-          lualine_a = { { 'tabs', mode = 1 } },
-          lualine_z = {},
-        },
-        extensions = {
+      },
+      sections = {
+        lualine_b = { { 'branch', icon = '' } },
+        lualine_c = { { 'filename', file_status = true, path = 1 } },
+        lualine_x = {
           {
-            filetypes = { 'fugitive' },
-            sections = {
-              lualine_a = { { 'branch', icon = '' } },
-            },
+            require('lazy.status').updates,
+            cond = require('lazy.status').has_updates,
           },
         },
-      }
-    end,
+        lualine_y = { 'filetype' },
+      },
+      tabline = {
+        lualine_a = { { 'tabs', mode = 1 } },
+        lualine_z = {},
+      },
+      extensions = {
+        {
+          filetypes = { 'fugitive' },
+          sections = {
+            lualine_a = { { 'branch', icon = '' } },
+          },
+        },
+      },
+    },
   },
 }
