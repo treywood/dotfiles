@@ -29,7 +29,6 @@ local lazy_config = {
 local ok, local_config = pcall(require, 'config.lazy.config')
 if ok then
   lazy_config = vim.tbl_deep_extend('force', lazy_config, local_config)
-  print('complete lazy config', vim.inspect(lazy_config))
 end
 
 require('lazy').setup('config.plugins', lazy_config)
