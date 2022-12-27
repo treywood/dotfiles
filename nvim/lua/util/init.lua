@@ -24,4 +24,8 @@ function M.lsmod(modpath, fn)
   end)
 end
 
+function M.devpath(path)
+  return os.getenv('SQUARE_HOME') .. '/' .. path
+end
+
 return M
