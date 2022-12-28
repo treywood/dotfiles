@@ -1,5 +1,6 @@
 return {
   'nvim-tree/nvim-tree.lua',
+  cmd = { 'NvimTreeToggle', 'NvimTreeFindFileToggle' },
   keys = {
     { '-', '<cmd>NvimTreeToggle<cr>' },
     { '+', '<cmd>NvimTreeFindFileToggle<cr>' },
