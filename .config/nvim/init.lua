@@ -13,7 +13,7 @@ vim.opt.runtimepath:prepend(lazypath)
 
 require('config.options')
 require('config.lazy')
-require('config.keymaps').setup()
+require('config.keymaps')
 require('config.autocommands')
 
 vim.api.nvim_create_user_command('Kochiku', function(opts)
