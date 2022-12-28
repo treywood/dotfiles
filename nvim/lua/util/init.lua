@@ -25,7 +25,8 @@ function M.lsmod(modpath, fn)
 end
 
 function M.devpath(path)
-  return os.getenv('SQUARE_HOME') .. '/' .. path
+  path = path and ('/' .. path) or ''
+  return os.getenv('SQUARE_HOME') .. path
 end
 
 return M

@@ -13,11 +13,10 @@ local lazy_config = {
     icons = {
       cmd = '⌘',
       config = '',
-      event = '',
+      event = '',
       ft = '',
       init = '⚙',
       keys = '',
-      -- plugin = '',
       runtime = '',
       source = '',
       start = '',
@@ -37,7 +36,7 @@ local lazy_config = {
   },
 }
 
-local ok, local_config = pcall(require, 'config.lazy.config')
+local ok, local_config = pcall(require, 'config.lazy.local')
 if ok then
   lazy_config = vim.tbl_deep_extend('force', lazy_config, local_config)
 end
