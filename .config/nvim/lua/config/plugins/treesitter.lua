@@ -11,7 +11,7 @@ local TreeSitter = {
 
 function TreeSitter.config()
   require('nvim-treesitter.configs').setup {
-    ensure_installed = { 'http', 'json' },
+    ensure_installed = { 'lua', 'http', 'json' },
     highlight = { enable = true },
     endwise = { enable = true },
     matchup = { enable = true },
