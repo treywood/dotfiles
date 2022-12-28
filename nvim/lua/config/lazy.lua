@@ -24,6 +24,17 @@ local lazy_config = {
       task = '',
     },
   },
+  rtp = {
+    disabled_plugins = {
+      'gzip',
+      'netrwPlugin',
+      'matchit',
+      'matchparen',
+      'tarPlugin',
+      'tohtml',
+      'zipPlugin',
+    },
+  },
 }
 
 local ok, local_config = pcall(require, 'config.lazy.config')
