@@ -1,11 +1,11 @@
 return {
+  'tpope/vim-fugitive',
   {
-    'tpope/vim-fugitive',
-    dependencies = 'tpope/vim-rhubarb',
-    config = function()
-      vim.keymap.set('n', '<leader>gy', '<cmd>GBrowse<cr>')
-      vim.keymap.set('', '<leader>gy', '<cmd>GBrowse!<cr>')
-    end,
+    'tpope/vim-rhubarb',
+    keys = {
+      { '<leader>gy', '<cmd>GBrowse<cr>', mode = 'n' },
+      { '<leader>gy', '<cmd>GBrowse!<cr>', mode = 'v' },
+    },
   },
   {
     'lewis6991/gitsigns.nvim',

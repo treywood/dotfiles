@@ -12,9 +12,7 @@ function Keymaps.setup()
 
   vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', opts)
 
-  vim.keymap.set('i', '<C-j>', function()
-    require('luasnip').change_choice(1)
-  end, opts)
+  vim.keymap.set('i', '<C-j>', "<cmd>lua require('luasnip').change_choice(1)", opts)
 end
 
 function Keymaps.setup_lsp(bufnr)

@@ -1,4 +1,4 @@
-local M = {
+local TreeSitter = {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   dependencies = {
@@ -6,11 +6,10 @@ local M = {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'romgrk/nvim-treesitter-context',
     'andymass/vim-matchup',
-    { 'nvim-treesitter/playground', cmd = 'TSHighlightCapturesUnderCursor' },
   },
 }
 
-function M.config()
+function TreeSitter.config()
   require('nvim-treesitter.configs').setup {
     ensure_installed = { 'http', 'json' },
     highlight = { enable = true },
@@ -54,4 +53,7 @@ function M.config()
   }
 end
 
-return M
+return {
+  TreeSitter,
+  { 'nvim-treesitter/playground', cmd = 'TSHighlightCapturesUnderCursor' },
+}
