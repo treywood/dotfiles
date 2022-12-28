@@ -1,5 +1,6 @@
 local TreeSitter = {
   'nvim-treesitter/nvim-treesitter',
+  event = 'VeryLazy',
   build = ':TSUpdate',
   dependencies = {
     'RRethy/nvim-treesitter-endwise',
