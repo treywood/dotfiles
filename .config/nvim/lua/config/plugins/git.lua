@@ -3,8 +3,8 @@ return {
   {
     'tpope/vim-rhubarb',
     keys = {
-      { '<leader>gy', '<cmd>GBrowse<cr>', mode = 'n' },
-      { '<leader>gy', '<cmd>GBrowse!<cr>', mode = 'v' },
+      { '<leader>gy', '<cmd>GBrowse<cr>', mode = 'n', silent = true },
+      { '<leader>gy', ":'<,'>GBrowse!<cr>", mode = 'v', silent = true },
     },
   },
   {
