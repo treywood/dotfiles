@@ -5,7 +5,6 @@ local kitty_listen_on = os.getenv('KITTY_LISTEN_ON')
 local kitty_pid = os.getenv('KITTY_PID')
 
 function Kitty.run(args, opts)
-  print(string.format('kitty %s', table.concat(args, ' ')))
   local default_opts = {
     cwd = vim.fn.getcwd(),
     command = 'kitty',
