@@ -16,19 +16,4 @@ require('config.lazy')
 require('config.keymaps')
 require('config.autocommands')
 
-vim.api.nvim_create_user_command('Kochiku', function(opts)
-  local command = '!sq kochiku'
-  if #opts.fargs > 0 then
-    command = string.format('%s %s', command, table.concat(opts.fargs, ' '))
-  end
-  vim.cmd(command)
-end, {
-  nargs = '?',
-  force = true,
-  complete = function()
-    return { '--canary' }
-  end,
-})
-vim.api.nvim_create_user_command('Migrate', function()
-  vim.cmd('tabnew | call termopen("rails db:migrate && rails db:migrate rails_env=test") | startinsert')
-end, {})
+pcall(require, 'config.local')
