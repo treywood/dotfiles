@@ -48,6 +48,13 @@ return {
         },
         view = 'popup',
       },
+      {
+        filter = {
+          event = 'msg_show',
+          find = 'COMMIT_EDITMSG',
+        },
+        opts = { skip = true },
+      },
     },
     commands = {
       rubocop = {
