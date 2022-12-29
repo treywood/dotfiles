@@ -1,3 +1,4 @@
+-- comment
 return {
   'folke/noice.nvim',
   dependencies = {
