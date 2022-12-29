@@ -6,21 +6,13 @@ return {
   config = {
     cmdline = {
       format = {
-        cmdline = { icon = ':' },
+        cmdline = { icon = '' },
         help = { icon = '?' },
-        search_down = { icon = '' },
-        search_up = { icon = '' },
+        search_down = { icon = '  ↘' },
+        search_up = { icon = '  ↖' },
       },
     },
     lsp = {
-      progress = {
-        enabled = true,
-        view = 'mini',
-      },
-      message = {
-        enabled = true,
-        view = 'virtualtext',
-      },
       override = {
         ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
         ['vim.lsp.util.stylize_markdown'] = true,
@@ -28,11 +20,12 @@ return {
       },
     },
     messages = {
-      enabled = false,
+      view = 'mini',
+      view_error = 'mini',
+      view_warn = 'mini',
+      view_search = 'virtualtext',
     },
     presets = {
-      bottom_search = true,
-      command_palette = false,
       long_message_to_split = true,
       inc_rename = true,
       lsp_doc_border = true,
@@ -40,7 +33,7 @@ return {
     views = {
       mini = {
         timeout = 1000,
-        position = { row = -2 },
+        position = { row = -2, col = -2 },
         win_options = { winblend = 100 },
       },
     },
