@@ -37,7 +37,7 @@ return {
     config = function()
       require('lsp-status').config {
         current_function = false,
-        status_symbol = '',
+        status_symbol = '',
       }
       require('lsp-status').register_progress()
     end,
