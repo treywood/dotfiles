@@ -1,6 +1,5 @@
 return {
   'echasnovski/mini.nvim',
-  branch = 'starter-ensure-normal',
   config = function()
     require('mini.comment').setup {
       mappings = {
