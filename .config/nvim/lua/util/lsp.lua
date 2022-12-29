@@ -8,6 +8,8 @@ end
 
 function M.on_attach(client, bufnr)
   require('illuminate').on_attach(client)
+  require('lsp-status').on_attach(client)
+
   client.server_capabilities.documentFormattingProvider = false
   client.server_capabilities.documentRangeFormattingProvider = false
 
@@ -19,7 +21,9 @@ function M.on_attach(client, bufnr)
   vim.keymap.set('n', 'gr', ':Telescope lsp_references<CR>', opts)
   vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+  vim.keymap.set('n', '<leader>rn', function()
+    return ':IncRename ' .. vim.fn.expand('<cword>')
+  end, { expr = true, buffer = bufnr })
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
   vim.keymap.set('n', '<C-j>', ':Telescope lsp_document_symbols<CR>', opts)
