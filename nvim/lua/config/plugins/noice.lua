@@ -1,11 +1,3 @@
-local function cmd_filter(cmd_pattern, view)
-  view = view or 'messages'
-  return {
-    filter = { event = 'msg_show', cmdline = cmd_pattern },
-    view = view,
-  }
-end
-
 return {
   'folke/noice.nvim',
   dependencies = {
@@ -40,14 +32,30 @@ return {
     },
     views = {
       mini = {
-        timeout = 2000,
+        timeout = 3000,
         position = { row = -2, col = -2 },
         win_options = { winblend = 100 },
       },
     },
     routes = {
-      cmd_filter('Inspect'),
-      cmd_filter('Git'),
+      {
+        filter = {
+          event = 'msg_show',
+          any = {
+            { cmdline = 'Inspect' },
+            { cmdline = 'Git' },
+          },
+        },
+        view = 'messages',
+      },
+    },
+    commands = {
+      rubocop = {
+        view = 'popup',
+        opts = { enter = true, format = 'details' },
+        filter = { find = 'rubocop' },
+        filter_opts = { count = 1 },
+      },
     },
   },
 }
