@@ -8,7 +8,6 @@ end
 
 function M.on_attach(client, bufnr)
   require('illuminate').on_attach(client)
-  require('lsp-status').on_attach(client)
 
   client.server_capabilities.documentFormattingProvider = false
   client.server_capabilities.documentRangeFormattingProvider = false
