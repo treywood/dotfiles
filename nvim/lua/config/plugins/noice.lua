@@ -1,3 +1,11 @@
+local function cmd_filter(cmd_pattern, view)
+  view = view or 'messages'
+  return {
+    filter = { event = 'msg_show', cmdline = cmd_pattern },
+    view = view,
+  }
+end
+
 return {
   'folke/noice.nvim',
   dependencies = {
@@ -32,10 +40,14 @@ return {
     },
     views = {
       mini = {
-        timeout = 1000,
+        timeout = 2000,
         position = { row = -2, col = -2 },
         win_options = { winblend = 100 },
       },
+    },
+    routes = {
+      cmd_filter('Inspect'),
+      cmd_filter('Git'),
     },
   },
 }
