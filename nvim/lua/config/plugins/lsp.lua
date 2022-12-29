@@ -33,13 +33,19 @@ return {
     },
   },
   {
-    'j-hui/fidget.nvim',
+    'nvim-lua/lsp-status.nvim',
+    config = function()
+      require('lsp-status').config {
+        current_function = false,
+        status_symbol = '',
+      }
+      require('lsp-status').register_progress()
+    end,
+  },
+  {
+    'smjonas/inc-rename.nvim',
     event = 'VeryLazy',
-    config = {
-      text = {
-        spinner = 'dots_snake',
-      },
-    },
+    config = true,
   },
   {
     'RRethy/vim-illuminate',
