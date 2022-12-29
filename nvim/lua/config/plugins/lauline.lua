@@ -11,10 +11,12 @@ return {
       lualine_b = { { 'branch', icon = '' } },
       lualine_c = { { 'filename', file_status = true, path = 1 } },
       lualine_x = {
-        { "require('lsp-status').status()" },
         { require('lazy.status').updates, cond = require('lazy.status').has_updates },
       },
-      lualine_y = { 'filetype' },
+      lualine_y = {
+        'filetype',
+        "require('lsp-status').status()",
+      },
     },
     tabline = {
       lualine_a = { { 'tabs', mode = 1 } },
