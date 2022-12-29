@@ -46,7 +46,7 @@ return {
             { cmdline = 'Git' },
           },
         },
-        view = 'messages',
+        view = 'popup',
       },
     },
     commands = {
