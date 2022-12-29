@@ -43,7 +43,7 @@ return {
           event = 'msg_show',
           any = {
             { cmdline = 'Inspect' },
-            -- { cmdline = 'Git' },
+            { cmdline = 'Git' },
           },
         },
         view = 'messages',
