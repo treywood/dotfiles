@@ -14,10 +14,10 @@ return {
   config = {
     cmdline = {
       format = {
-        cmdline = { icon = '' },
-        help = { icon = '?' },
-        search_down = { icon = '  ↘' },
-        search_up = { icon = '  ↖' },
+        cmdline = { icon = '', title = '' },
+        help = { icon = '?', title = '' },
+        search_down = { icon = ' ↘', title = '' },
+        search_up = { icon = ' ↖', title = '' },
       },
     },
     lsp = {
