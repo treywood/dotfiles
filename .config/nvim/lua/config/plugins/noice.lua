@@ -3,15 +3,6 @@ return {
   event = 'VeryLazy',
   dependencies = {
     'MunifTanjim/nui.nvim',
-    {
-      'rcarriga/nvim-notify',
-      config = {
-        render = 'minimal',
-        stages = 'static',
-        timeout = 2000,
-        top_down = false,
-      },
-    },
   },
   config = {
     cmdline = {
@@ -32,15 +23,13 @@ return {
         ['cmp.entry.get_documentation'] = true,
       },
     },
+    messages = {
+      enabled = false,
+    },
     presets = {
       long_message_to_split = true,
       inc_rename = true,
       lsp_doc_border = true,
-    },
-    views = {
-      mini = {
-        align = 'message-left',
-      },
     },
   },
 }
