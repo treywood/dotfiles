@@ -28,14 +28,18 @@ function M.on_attach(client, bufnr)
   vim.keymap.set('n', '<C-j>', ':Telescope lsp_document_symbols<CR>', opts)
 end
 
-function M.setup(server_name)
-  require('lspconfig')[server_name].setup {
+function M.setup(server_name, extra_config)
+  extra_config = extra_config or {}
+  local default_config = {
     on_attach = M.on_attach,
     capabilities = M.get_capabilities(),
     flags = {
       debounce_text_changes = 150,
     },
   }
+
+  local config = vim.tbl_deep_extend('force', default_config, extra_config)
+  require('lspconfig')[server_name].setup(config)
 end
 
 function M.configure(server_name, config)
