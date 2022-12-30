@@ -1,15 +1,5 @@
 return {
-  -- 'tpope/vim-fugitive',
-  -- {
-  --   'tpope/vim-rhubarb',
-  --   keys = {
-  --     { '<leader>gy', '<cmd>GBrowse<cr>', mode = 'n', silent = true },
-  --     { '<leader>gy', ":'<,'>GBrowse!<cr>", mode = 'v', silent = true },
-  --   },
-  -- },
-  {
-    'kdheepak/lazygit.nvim',
-  },
+  'tpope/vim-fugitive',
   {
     'lewis6991/gitsigns.nvim',
     config = function()
