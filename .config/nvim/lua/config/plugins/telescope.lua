@@ -16,6 +16,8 @@ return {
     local telescope = require('telescope')
     local actions = require('telescope.actions')
     local lga_actions = require('telescope-live-grep-args.actions')
+    -- this is a comment
+    -- this is another
 
     telescope.setup {
       defaults = {
