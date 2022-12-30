@@ -1,11 +1,14 @@
 return {
-  'tpope/vim-fugitive',
+  -- 'tpope/vim-fugitive',
+  -- {
+  --   'tpope/vim-rhubarb',
+  --   keys = {
+  --     { '<leader>gy', '<cmd>GBrowse<cr>', mode = 'n', silent = true },
+  --     { '<leader>gy', ":'<,'>GBrowse!<cr>", mode = 'v', silent = true },
+  --   },
+  -- },
   {
-    'tpope/vim-rhubarb',
-    keys = {
-      { '<leader>gy', '<cmd>GBrowse<cr>', mode = 'n', silent = true },
-      { '<leader>gy', ":'<,'>GBrowse!<cr>", mode = 'v', silent = true },
-    },
+    'kdheepak/lazygit.nvim',
   },
   {
     'lewis6991/gitsigns.nvim',
