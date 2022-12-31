@@ -1512,9 +1512,9 @@
   }
 
   function prompt_lazy_updates() {
-    output="$(nvim --headless -c "lua require('lazy.manage.checker').start()" -c "lua= require('lazy.status').updates()" -c 'q' 2>&1)"
-    if [[ -n "$output" && "$output" != "false" ]]; then
-      p10k segment -f 10 -t "$(echo $output | sed 's/"//g')"
+    output="$(nvim --headless -c "lua require('lazy.manage.checker').start()" -c "lua= #require('lazy.manage.checker').updated" -c 'q' 2>&1)"
+    if [[ -n "$output" && "$output" != "0" ]]; then
+      p10k segment -f 10 -i '' -t "$(echo $output)"
     fi
   }
 
