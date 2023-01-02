@@ -26,7 +26,7 @@ end
 
 function M.devpath(path)
   path = path and ('/' .. path) or ''
-  return os.getenv('SQUARE_HOME') .. path
+  return os.getenv('DEV_HOME') .. path
 end
 
 return M
