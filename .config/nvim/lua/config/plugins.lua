@@ -1,6 +1,6 @@
 return {
-  'nvim-lua/plenary.nvim',
-  'hrsh7th/cmp-nvim-lsp',
+  { 'nvim-lua/plenary.nvim', lazy = true },
+  { 'hrsh7th/cmp-nvim-lsp', lazy = true },
   { 'nvim-tree/nvim-web-devicons', lazy = true },
   {
     'haya14busa/is.vim',
