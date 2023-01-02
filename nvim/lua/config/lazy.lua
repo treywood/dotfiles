@@ -9,6 +9,9 @@ local lazy_config = {
   install = {
     colorscheme = { 'everforest', 'habamax' },
   },
+  dev = {
+    path = os.getenv('DEV_HOME'),
+  },
   ui = {
     icons = {
       cmd = '⌘',
