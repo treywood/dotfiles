@@ -3,7 +3,7 @@ local util = require('util')
 return {
   {
     'neovim/nvim-lspconfig',
-    event = 'VeryLazy',
+    event = { 'BufNewFile', 'BufReadPre' },
     init = function()
       vim.diagnostic.config {
         virtual_text = false,
