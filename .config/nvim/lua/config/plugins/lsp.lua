@@ -17,7 +17,7 @@ return {
   },
   {
     'jose-elias-alvarez/null-ls.nvim',
-    event = 'VeryLazy',
+    lazy = true,
     config = {
       debug = true,
       on_attach = function(client, bufnr)
@@ -34,12 +34,12 @@ return {
   },
   {
     'smjonas/inc-rename.nvim',
-    event = 'VeryLazy',
+    cmd = 'IncRename',
     config = true,
   },
   {
     'RRethy/vim-illuminate',
-    event = 'VeryLazy',
+    lazy = true,
     init = function()
       vim.g.Illuminate_delay = 500
     end,
