@@ -26,15 +26,18 @@ local lazy_config = {
       task = '',
     },
   },
-  rtp = {
-    disabled_plugins = {
-      'gzip',
-      'netrwPlugin',
-      'matchit',
-      'matchparen',
-      'tarPlugin',
-      'tohtml',
-      'zipPlugin',
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        'gzip',
+        'netrwPlugin',
+        'matchit',
+        'matchparen',
+        'tarPlugin',
+        'tohtml',
+        'zipPlugin',
+        'tutor',
+      },
     },
   },
 }
