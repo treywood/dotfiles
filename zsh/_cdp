@@ -1,0 +1,5 @@
+#compdef cdp
+
+autoload +X -Uz cdp
+
+_files -/ -W $DEV_HOME
