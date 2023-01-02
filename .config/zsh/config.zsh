@@ -48,3 +48,10 @@ export EDITOR="nvim"
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:$HOME/.ghcup/bin"
+
+FPATH="$HOME/.completions:$FPATH"
+
+export DEV_HOME="$HOME/workspace/"
+function cdp() {
+  cd "$DEV_HOME/$1"
+}
