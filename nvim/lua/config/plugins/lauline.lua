@@ -13,10 +13,7 @@ return {
       lualine_x = {
         { require('lazy.status').updates, cond = require('lazy.status').has_updates },
       },
-      lualine_y = {
-        'filetype',
-        "require('lsp-status').status()",
-      },
+      lualine_y = { 'filetype' },
     },
     tabline = {
       lualine_a = { { 'tabs', mode = 1 } },
