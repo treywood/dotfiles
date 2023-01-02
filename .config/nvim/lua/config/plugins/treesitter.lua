@@ -1,7 +1,7 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    event = 'VeryLazy',
+    event = { 'BufNewFile', 'BufReadPre' },
     build = ':TSUpdate',
     dependencies = {
       'RRethy/nvim-treesitter-endwise',
