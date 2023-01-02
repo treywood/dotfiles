@@ -3,7 +3,7 @@ return {
     'tpope/vim-rhubarb',
     dependencies = {
       'tpope/vim-fugitive',
-      cmd = { 'G', 'Git' },
+      cmd = { 'G', 'Git', 'Gvdiffsplit' },
     },
     keys = {
       { '<leader>gy', ':GBrowse<cr>' },
