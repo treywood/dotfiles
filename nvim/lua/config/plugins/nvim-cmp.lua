@@ -7,7 +7,7 @@ return {
     'hrsh7th/cmp-cmdline',
     'saadparwaiz1/cmp_luasnip',
     'onsails/lspkind-nvim',
-    'L3MON4D3/LuaSnip',
+    { 'L3MON4D3/LuaSnip', build = 'make install_jsregexp' },
   },
   config = function()
     local cmp = require('cmp')
