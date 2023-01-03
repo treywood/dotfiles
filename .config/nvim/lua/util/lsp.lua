@@ -47,4 +47,11 @@ function M.configure(server_name, config)
   M.setup(server_name)
 end
 
+M.null_ls = {}
+
+function M.null_ls.formatter(name)
+  local null_ls = require('null-ls')
+  null_ls.register(null_ls.builtins.formatting[name])
+end
+
 return M
