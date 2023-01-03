@@ -1,3 +1,5 @@
+local util = require('util')
+
 local lazy_config = {
   checker = {
     enabled = true,
@@ -10,7 +12,7 @@ local lazy_config = {
     colorscheme = { 'everforest', 'habamax' },
   },
   dev = {
-    path = os.getenv('DEV_HOME'),
+    path = util.devpath(),
   },
   ui = {
     icons = {
