@@ -17,9 +17,12 @@ return {
     vim.api.nvim_set_hl(0, '@operator', { link = 'Gray' })
     vim.api.nvim_set_hl(0, '@field', { link = '@variable' })
     vim.api.nvim_set_hl(0, '@property', { link = '@field' })
+    vim.api.nvim_set_hl(0, '@enumMember', { link = '@field' })
 
     vim.api.nvim_set_hl(0, '@symbol.ruby', { link = 'Orange' })
     vim.api.nvim_set_hl(0, '@label.ruby', { link = '@variable' })
+
+    vim.api.nvim_set_hl(0, '@macro', { link = '@function' })
 
     vim.api.nvim_set_hl(0, '@field.yaml', { link = 'Orange' })
     vim.api.nvim_set_hl(0, 'yamlBlockMappingKey', { link = 'Orange' })
