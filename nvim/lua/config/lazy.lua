@@ -4,6 +4,7 @@ local lazy_config = {
   checker = {
     enabled = true,
     notify = false,
+    frequency = 3600 * 4, -- every 4 hours
   },
   change_detection = {
     notify = false,
