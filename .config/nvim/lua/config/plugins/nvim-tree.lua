@@ -5,7 +5,7 @@ return {
     { '-', '<cmd>NvimTreeToggle<cr>' },
     { '+', '<cmd>NvimTreeFindFileToggle<cr>' },
   },
-  config = {
+  opts = {
     actions = {
       change_dir = {
         enable = false,

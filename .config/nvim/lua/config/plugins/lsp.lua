@@ -7,7 +7,7 @@ return {
     dependencies = {
       {
         'jose-elias-alvarez/null-ls.nvim',
-        config = {
+        opts = {
           debug = true,
           on_attach = function(client, bufnr)
             if client.server_capabilities.documentFormattingProvider then

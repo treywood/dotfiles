@@ -5,7 +5,7 @@ return {
   dependencies = {
     'MunifTanjim/nui.nvim',
   },
-  config = {
+  opts = {
     cmdline = {
       format = {
         cmdline = { icon = '', title = '' },
