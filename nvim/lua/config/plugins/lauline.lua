@@ -1,7 +1,7 @@
 return {
   'nvim-lualine/lualine.nvim',
   event = 'VeryLazy',
-  config = {
+  opts = {
     options = {
       theme = 'everforest',
       disabled_filetypes = {

@@ -9,7 +9,7 @@ return {
       'romgrk/nvim-treesitter-context',
       'andymass/vim-matchup',
     },
-    config = function()
+    opts = function()
       require('nvim-treesitter.configs').setup {
         ensure_installed = { 'lua', 'http', 'json' },
         highlight = { enable = true },
