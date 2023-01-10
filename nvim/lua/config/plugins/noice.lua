@@ -62,7 +62,7 @@ return {
       rubocop = {
         view = 'popup',
         opts = { enter = true, format = 'details' },
-        filter = { find = 'rubocop' },
+        filter = { find = 'Rubocop' },
         filter_opts = { count = 1 },
       },
     },
