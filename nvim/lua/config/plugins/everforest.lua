@@ -27,6 +27,8 @@ return {
     vim.api.nvim_set_hl(0, '@field.yaml', { link = 'Orange' })
     vim.api.nvim_set_hl(0, 'yamlBlockMappingKey', { link = 'Orange' })
     vim.api.nvim_set_hl(0, 'yamlPlainScalar', { link = 'String' })
+    vim.api.nvim_set_hl(0, 'yamlFlowString', { link = 'String' })
+    vim.api.nvim_set_hl(0, 'yamlFlowStringDelimiter', { link = 'String' })
     vim.api.nvim_set_hl(0, 'yamlBlockCollectionItemStart', { link = 'Gray' })
 
     vim.api.nvim_set_hl(0, '@label.json', { link = 'Orange' })
