@@ -1,9 +1,8 @@
-local util = require('util')
-
 return {
   {
     'neovim/nvim-lspconfig',
     event = { 'BufNewFile', 'BufReadPre' },
+    import = 'config.lsp',
     dependencies = {
       {
         'jose-elias-alvarez/null-ls.nvim',
@@ -35,11 +34,6 @@ return {
       vim.diagnostic.config {
         virtual_text = false,
       }
-    end,
-    config = function()
-      util.lsmod('config.lsp', function(mod)
-        pcall(require, mod)
-      end)
     end,
   },
   {
