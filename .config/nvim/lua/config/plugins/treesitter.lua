@@ -46,7 +46,7 @@ return {
       }
       require('treesitter-context').setup {
         patterns = {
-          ['ruby.rspec'] = {
+          ruby = {
             'do_block',
           },
         },
