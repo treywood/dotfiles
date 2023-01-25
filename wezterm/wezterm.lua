@@ -10,7 +10,7 @@ return {
     freetype_render_target = 'HorizontalLcd',
   },
   font_size = 14.0,
-  line_height = 1.2,
+  line_height = 1.1,
 
   colors = {
     foreground = '#d3c6aa',
