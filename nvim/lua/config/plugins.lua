@@ -1,7 +1,6 @@
 return {
   { import = 'config.plugins.hidden' },
   { 'nvim-lua/plenary.nvim', lazy = true },
-  { 'hrsh7th/cmp-nvim-lsp', lazy = true },
   { 'nvim-tree/nvim-web-devicons', lazy = true },
   {
     'haya14busa/is.vim',
