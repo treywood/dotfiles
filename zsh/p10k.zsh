@@ -98,7 +98,6 @@
     timewarrior             # timewarrior tracking status (https://timewarrior.net/)
     taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
     # time                  # current time
-    lazy_updates            # Lazy.nvim updates
     ski_context             # SKI context
     # =========================[ Line #2 ]=========================
     newline
@@ -1510,14 +1509,7 @@
       p10k segment -f 13 -i '⎈' -t "$(sq ski context current)"
     fi
   }
-
-  function prompt_lazy_updates() {
-    output="$(nvim --headless -c "lua require('lazy.manage.checker').start()" -c "lua= #require('lazy.manage.checker').updated" -c 'q' 2>&1)"
-    if [[ -n "$output" && "$output" != "0" ]]; then
-      p10k segment -f 10 -i '' -t "$(echo $output)"
-    fi
-  }
-
+ 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
   # is to generate the prompt segment for display in instant prompt. See
   # https://github.com/romkatv/powerlevel10k/blob/master/README.md#instant-prompt.
@@ -1539,10 +1531,6 @@
 
   instant_prompt_ski_context() {
     prompt_ski_context
-  }
-
-  instant_prompt_lazy_updates() {
-    prompt_lazy_updates
   }
 
   # User-defined prompt segments can be customized the same way as built-in segments.
