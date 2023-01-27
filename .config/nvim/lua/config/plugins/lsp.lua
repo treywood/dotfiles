@@ -4,6 +4,7 @@ return {
     event = { 'BufNewFile', 'BufReadPre' },
     import = 'config.lsp',
     dependencies = {
+      { 'hrsh7th/cmp-nvim-lsp', lazy = true },
       {
         'jose-elias-alvarez/null-ls.nvim',
         opts = {
