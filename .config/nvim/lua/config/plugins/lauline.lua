@@ -4,9 +4,6 @@ return {
   opts = {
     options = {
       theme = 'everforest',
-      disabled_filetypes = {
-        statusline = { 'NvimTree' },
-      },
     },
     sections = {
       lualine_b = { { 'branch', icon = '' } },

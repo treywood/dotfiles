@@ -20,14 +20,6 @@ return {
           end,
         },
       },
-      {
-        'RRethy/vim-illuminate',
-        config = function()
-          require('illuminate').configure {
-            filetypes_denylist = { 'NvimTree' },
-          }
-        end,
-      },
     },
     init = function()
       vim.g.Illuminate_delay = 500
@@ -36,6 +28,7 @@ return {
       }
     end,
   },
+  { 'RRethy/vim-illuminate', lazy = true },
   {
     'smjonas/inc-rename.nvim',
     cmd = 'IncRename',
