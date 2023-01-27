@@ -48,9 +48,6 @@ return {
 
     vim.api.nvim_set_hl(0, 'DevIconRb', { link = 'Red' })
 
-    vim.api.nvim_set_hl(0, 'NvimTreeGitDirty', { link = 'Orange' })
-    vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { link = 'Yellow' })
-
     vim.cmd([[
       hi ErrorText gui=none |
       hi WarningText gui=none |
