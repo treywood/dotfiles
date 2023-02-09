@@ -24,6 +24,9 @@ return {
 
     vim.api.nvim_set_hl(0, '@macro', { link = '@function' })
 
+    vim.api.nvim_set_hl(0, 'goTSProperty', { link = '@field' })
+    vim.api.nvim_set_hl(0, 'goTSConstBuiltin', { link = '@constant.builtin' })
+
     vim.api.nvim_set_hl(0, '@field.yaml', { link = 'Orange' })
     vim.api.nvim_set_hl(0, 'yamlBlockMappingKey', { link = 'Orange' })
     vim.api.nvim_set_hl(0, 'yamlPlainScalar', { link = 'String' })
