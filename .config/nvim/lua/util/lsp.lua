@@ -1,12 +1,12 @@
 local M = {}
 
-function M.get_capabilities()
+local function get_capabilities()
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
   return capabilities
 end
 
-function M.on_attach(client, bufnr)
+local function on_attach(client, bufnr)
   require('illuminate').on_attach(client)
 
   client.server_capabilities.documentFormattingProvider = false
@@ -28,11 +28,13 @@ function M.on_attach(client, bufnr)
   vim.keymap.set('n', '<C-j>', ':Telescope lsp_document_symbols<CR>', opts)
 end
 
-function M.setup(server_name, extra_config)
+M.language_server = {}
+
+function M.language_server.setup(server_name, extra_config)
   extra_config = extra_config or {}
   local default_config = {
-    on_attach = M.on_attach,
-    capabilities = M.get_capabilities(),
+    on_attach = on_attach,
+    capabilities = get_capabilities(),
     flags = {
       debounce_text_changes = 150,
     },
@@ -42,7 +44,7 @@ function M.setup(server_name, extra_config)
   require('lspconfig')[server_name].setup(config)
 end
 
-function M.configure(server_name, config)
+function M.language_server.configure(server_name, config)
   require('lspconfig.configs')[server_name] = config
   M.setup(server_name)
 end
