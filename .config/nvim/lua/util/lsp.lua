@@ -46,7 +46,7 @@ end
 
 function M.language_server.configure(server_name, config)
   require('lspconfig.configs')[server_name] = config
-  M.setup(server_name)
+  M.language_server.setup(server_name)
 end
 
 M.null_ls = {}
