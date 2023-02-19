@@ -34,4 +34,11 @@ return {
       vim.g.mkdp_theme = 'light'
     end,
   },
+  {
+    'm4xshen/smartcolumn.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    opts = {
+      disabled_filetypes = { 'help', 'text', 'markdown', 'lazy', 'starter' },
+    },
+  },
 }
