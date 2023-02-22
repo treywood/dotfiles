@@ -48,6 +48,7 @@ return {
         'lazy',
         'starter',
         'gitcommit',
+        'fugitive',
       },
     },
   },
