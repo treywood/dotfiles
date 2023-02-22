@@ -3,8 +3,6 @@ local opts = { silent = true }
 vim.keymap.set('n', '<esc>', '<cmd>nohl<CR><esc>')
 vim.keymap.set('n', '<leader>W', ':%bd!<CR>', opts)
 vim.keymap.set('n', '<leader>w', ':%bd!|e#|bd!#<CR>', opts)
-vim.keymap.set('n', '<leader>cn', ':cnext<CR>', opts)
-vim.keymap.set('n', '<leader>cN', ':cprevious<CR>', opts)
 
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', opts)
 
