@@ -38,9 +38,7 @@ return {
     'm4xshen/smartcolumn.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {
-      custom_colorcolumn = {
-        ruby = 120,
-      },
+      colorcolumn = 120,
       disabled_filetypes = {
         'fugitive',
         'gitcommit',
