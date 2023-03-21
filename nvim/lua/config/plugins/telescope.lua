@@ -6,11 +6,11 @@ return {
   },
   cmd = 'Telescope',
   keys = {
-    { '<C-e>', '<cmd>Telescope oldfiles cwd_only=true<cr>' },
-    { '<C-p>', '<cmd>Telescope git_files<cr>' },
-    { '<C-b>', '<cmd>Telescope buffers<cr>' },
-    { '<C-y>', '<cmd>Telescope git_status<cr>' },
-    { '<C-f>', '<cmd>Telescope live_grep_args<cr>' },
+    { '<C-e>', '<cmd>Telescope oldfiles cwd_only=true<cr>', silent = true },
+    { '<C-p>', '<cmd>Telescope git_files<cr>', silent = true },
+    { '<C-b>', '<cmd>Telescope buffers<cr>', silent = true },
+    { '<C-y>', '<cmd>Telescope git_status<cr>', silent = true },
+    { '<C-f>', '<cmd>Telescope live_grep_args<cr>', silent = true },
   },
   config = function()
     local telescope = require('telescope')
