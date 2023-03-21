@@ -6,8 +6,8 @@ return {
       cmd = { 'G', 'Git', 'Gvdiffsplit' },
     },
     keys = {
-      { '<leader>gy', ':GBrowse<cr>' },
-      { '<leader>gy', ':GBrowse!<cr>', mode = 'v' },
+      { '<leader>gy', ':GBrowse<cr>', silent = true },
+      { '<leader>gy', ':GBrowse!<cr>', mode = 'v', silent = true },
     },
   },
   {

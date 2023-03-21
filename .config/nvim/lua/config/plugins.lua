@@ -5,25 +5,25 @@ return {
   {
     'haya14busa/is.vim',
     keys = {
-      { 'n', '<Plug>(is-n)zzzv' },
-      { 'N', '<Plug>(is-N)zzzv' },
-      { '*', '<Plug>(is-*)' },
-      { '#', '<Plug>(is-#)' },
+      { 'n', '<Plug>(is-n)zzzv', silent = true },
+      { 'N', '<Plug>(is-N)zzzv', silent = true },
+      { '*', '<Plug>(is-*)', silent = true },
+      { '#', '<Plug>(is-#)', silent = true },
     },
   },
   {
     'ggandor/leap.nvim',
     keys = {
-      { '<leader>s', '<Plug>(leap-forward-to)' },
-      { '<leader>S', '<Plug>(leap-backward-to)' },
+      { '<leader>s', '<Plug>(leap-forward-to)', silent = true },
+      { '<leader>S', '<Plug>(leap-backward-to)', silent = true },
     },
   },
   {
     'vim-test/vim-test',
     keys = {
-      { '<leader>tn', '<cmd>TestNearest<cr>' },
-      { '<leader>tf', '<cmd>TestFile<cr>' },
-      { '<leader>tt', '<cmd>TestLast<cr>' },
+      { '<leader>tn', '<cmd>TestNearest<cr>', silent = true },
+      { '<leader>tf', '<cmd>TestFile<cr>', silent = true },
+      { '<leader>tt', '<cmd>TestLast<cr>', silent = true },
     },
   },
   {
