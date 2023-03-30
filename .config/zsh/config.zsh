@@ -15,7 +15,7 @@ export ZSH_TAB_TITLE_ADDITIONAL_TERMS='kitty'
 antigen bundle trystan2k/zsh-tab-title
 
 antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zdharma-continuum/fast-syntax-highlighting
 
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='underline'
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=red,underline'
