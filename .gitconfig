@@ -109,3 +109,5 @@
 [user]
 	email = treyw@squareup.com
 	name = Trey Wood
+[index]
+	skipHash = false
