@@ -12,7 +12,7 @@ return {
     },
     opts = function()
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'lua', 'http', 'json' },
+        ensure_installed = { 'vim', 'lua', 'http', 'json' },
         highlight = { enable = true },
         endwise = { enable = true },
         matchup = { enable = true },
