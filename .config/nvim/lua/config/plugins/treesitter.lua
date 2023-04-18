@@ -32,12 +32,14 @@ return {
             set_jumps = true,
             goto_next_start = {
               [']f'] = '@function.outer',
+              [']r'] = '@request',
             },
             goto_next_end = {
               [']F'] = '@function.outer',
             },
             goto_previous_start = {
               ['[f'] = '@function.outer',
+              ['[r'] = '@request',
             },
             goto_previous_end = {
               ['[F'] = '@function.outer',
