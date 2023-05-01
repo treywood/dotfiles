@@ -15,5 +15,6 @@ require('config.options')
 require('config.lazy')
 require('config.keymaps')
 require('config.autocommands')
+require('config.lsp')
 
 pcall(require, 'config.local')
