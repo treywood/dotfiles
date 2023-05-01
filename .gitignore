@@ -1,10 +1,9 @@
 nvim/lua/config/plugins/hidden/
 nvim/lua/config/lazy/local.lua
 nvim/lua/config/local.lua
-nvim/lua/config/lsp/
+nvim/lua/config/lsp/*
 !nvim/lua/config/lsp/init.lua
 !nvim/lua/config/lsp/util.lua
-!nvim/lua/config/lsp/lua.lua
 nvim/plugin/
 
 kitty/*.session

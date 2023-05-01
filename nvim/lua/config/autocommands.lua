@@ -1,5 +1,38 @@
+local util = require('util')
 local Kitty = require('util.kitty')
 
+-- language servers
+vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
+  once = true,
+  callback = function()
+    local handle = vim.loop.fs_scandir(vim.fn.stdpath('config') .. '/lua/config/lsp')
+    while handle do
+      local name, type = vim.loop.fs_scandir_next(handle)
+
+      if not name then
+        break
+      end
+
+      if type == 'file' then
+        local mod = 'config.lsp.' .. name:gsub('.lua', '')
+        local ok, configs = pcall(require, mod)
+
+        if ok then
+          if not util.is_list(configs) then
+            configs = { configs }
+          end
+          for _, config in pairs(configs) do
+            require('util.lsp').setup(config)
+          end
+        else
+          print('failed loading lsp config: ' .. mod)
+        end
+      end
+    end
+  end,
+})
+
+-- other
 vim.api.nvim_create_autocmd('User', {
   pattern = 'MiniStarterOpened',
   callback = function(args)
