@@ -1,4 +1,4 @@
-local M = {}
+local util = require('util')
 
 local function get_capabilities()
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -31,7 +31,7 @@ end
 
 local lsp_group = vim.api.nvim_create_augroup('language_servers', {})
 
-function M.setup(config)
+local function setup(config)
   local default_config = {
     on_attach = on_attach,
     capabilities = get_capabilities(),
@@ -54,4 +54,32 @@ function M.setup(config)
   })
 end
 
-return M
+vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
+  once = true,
+  callback = function()
+    local handle = vim.loop.fs_scandir(vim.fn.stdpath('config') .. '/lua/config/lsp')
+    while handle do
+      local name, type = vim.loop.fs_scandir_next(handle)
+
+      if not name then
+        break
+      end
+
+      if type == 'file' then
+        local mod = 'config.lsp.' .. name:gsub('.lua', '')
+        local ok, configs = pcall(require, mod)
+
+        if ok then
+          if not util.is_list(configs) then
+            configs = { configs }
+          end
+          for _, config in pairs(configs) do
+            setup(config)
+          end
+        else
+          print('failed loading lsp config: ' .. mod)
+        end
+      end
+    end
+  end,
+})
