@@ -3,7 +3,8 @@ local M = {}
 local function get_capabilities()
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
-  return capabilities
+
+  return vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), capabilities)
 end
 
 local function on_attach(client, bufnr)
@@ -28,10 +29,9 @@ local function on_attach(client, bufnr)
   vim.keymap.set('n', '<C-j>', ':Telescope lsp_document_symbols<CR>', opts)
 end
 
-M.language_server = {}
+local lsp_group = vim.api.nvim_create_augroup('language_servers', {})
 
-function M.language_server.setup(server_name, extra_config)
-  extra_config = extra_config or {}
+function M.setup(config)
   local default_config = {
     on_attach = on_attach,
     capabilities = get_capabilities(),
@@ -40,20 +40,18 @@ function M.language_server.setup(server_name, extra_config)
     },
   }
 
-  local config = vim.tbl_deep_extend('force', default_config, extra_config)
-  require('lspconfig')[server_name].setup(config)
-end
-
-function M.language_server.configure(server_name, config)
-  require('lspconfig.configs')[server_name] = config
-  M.language_server.setup(server_name)
-end
-
-M.null_ls = {}
-
-function M.null_ls.formatter(name)
-  local null_ls = require('null-ls')
-  null_ls.register(null_ls.builtins.formatting[name])
+  config = vim.tbl_deep_extend('force', default_config, config)
+  vim.api.nvim_create_autocmd('FileType', {
+    group = lsp_group,
+    pattern = config.filetypes,
+    callback = function()
+      if config.formatter then
+        local null_ls = require('null-ls')
+        null_ls.register(null_ls.builtins.formatting[config.formatter])
+      end
+      vim.lsp.start(config)
+    end,
+  })
 end
 
 return M
