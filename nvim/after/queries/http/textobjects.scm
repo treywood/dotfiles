@@ -1,3 +1,3 @@
 ; extends
 
-(request method: (method) @request)
+(request) @request

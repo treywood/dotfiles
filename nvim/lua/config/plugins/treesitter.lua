@@ -1,6 +1,7 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    commit = 'eedc5198a1b4bb1b08ae6d4f64f3d76e376957aa',
     event = { 'BufNewFile', 'BufReadPre' },
     cmd = { 'TSUpdate', 'TSInstall' },
     build = ':TSUpdate',
@@ -12,7 +13,7 @@ return {
     },
     opts = function()
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'vim', 'lua', 'http', 'json' },
+        ensure_installed = { 'vim', 'lua', 'query', 'http', 'json' },
         highlight = { enable = true },
         endwise = { enable = true },
         matchup = { enable = true },
