@@ -1,7 +1,7 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    commit = 'eedc5198a1b4bb1b08ae6d4f64f3d76e376957aa',
+    -- commit = 'eedc5198a1b4bb1b08ae6d4f64f3d76e376957aa',
     event = { 'BufNewFile', 'BufReadPre' },
     cmd = { 'TSUpdate', 'TSInstall' },
     build = ':TSUpdate',
