@@ -48,8 +48,21 @@ local function setup(config)
     callback = function()
       if config.formatter then
         local null_ls = require('null-ls')
-        null_ls.register(null_ls.builtins.formatting[config.formatter])
+        local formatter_config
+
+        if type(config.formatter) == 'string' then
+          formatter_config = null_ls.builtins.formatting[config.formatter]
+        else
+          formatter_config = {
+            method = null_ls.methods.FORMATTING,
+            filetypes = config.filetypes,
+            generator = config.formatter,
+          }
+        end
+
+        null_ls.register(formatter_config)
       end
+
       vim.lsp.start(config)
     end,
   })
