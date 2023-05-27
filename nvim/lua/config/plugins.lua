@@ -12,13 +12,6 @@ return {
     },
   },
   {
-    'ggandor/leap.nvim',
-    keys = {
-      { '<leader>s', '<Plug>(leap-forward-to)', silent = true },
-      { '<leader>S', '<Plug>(leap-backward-to)', silent = true },
-    },
-  },
-  {
     'vim-test/vim-test',
     keys = {
       { '<leader>tn', '<cmd>TestNearest<cr>', silent = true },
@@ -33,21 +26,5 @@ return {
     init = function()
       vim.g.mkdp_theme = 'light'
     end,
-  },
-  {
-    'm4xshen/smartcolumn.nvim',
-    event = { 'BufReadPre', 'BufNewFile' },
-    opts = {
-      colorcolumn = 120,
-      disabled_filetypes = {
-        'fugitive',
-        'gitcommit',
-        'help',
-        'lazy',
-        'markdown',
-        'starter',
-        'text',
-      },
-    },
   },
 }
