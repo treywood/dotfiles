@@ -16,7 +16,7 @@ local function on_attach(client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-  vim.keymap.set('n', 'gd', ':Telescope lsp_definitions<CR>', opts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
   vim.keymap.set('n', 'gi', ':Telescope lsp_implementations<CR>', opts)
   vim.keymap.set('n', 'gr', ':Telescope lsp_references<CR>', opts)
   vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, opts)
