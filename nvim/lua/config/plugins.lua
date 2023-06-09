@@ -11,12 +11,52 @@ return {
       { '#', '<Plug>(is-#)', silent = true },
     },
   },
+  -- {
+  --   'vim-test/vim-test',
+  --   keys = {
+  --     { '<leader>tn', '<cmd>TestNearest<cr>', silent = true },
+  --     { '<leader>tf', '<cmd>TestFile<cr>', silent = true },
+  --     { '<leader>tt', '<cmd>TestLast<cr>', silent = true },
+  --   },
+  -- },
   {
-    'vim-test/vim-test',
+    'nvim-neotest/neotest',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'olimorris/neotest-rspec',
+      'mfussenegger/nvim-dap',
+      'antoinemadec/FixCursorHold.nvim',
+    },
+    config = function()
+      require('neotest').setup {
+        adapters = {
+          require('neotest-rspec'),
+        },
+      }
+    end,
     keys = {
-      { '<leader>tn', '<cmd>TestNearest<cr>', silent = true },
-      { '<leader>tf', '<cmd>TestFile<cr>', silent = true },
-      { '<leader>tt', '<cmd>TestLast<cr>', silent = true },
+      {
+        '<leader>tn',
+        function()
+          require('neotest').run.run { strategy = 'dap' }
+        end,
+        silent = true,
+      },
+      {
+        '<leader>tf',
+        function()
+          require('neotest').run.run { vim.fn.expand('%'), strategy = 'dap' }
+        end,
+        silent = true,
+      },
+      {
+        '<leader>tt',
+        function()
+          require('neotest').run.run_last { strategy = 'dap' }
+        end,
+        silent = true,
+      },
     },
   },
   {
