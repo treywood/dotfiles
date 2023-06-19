@@ -1,3 +1,5 @@
+.DS_Store
+
 nvim/lua/config/plugins/hidden/
 nvim/lua/config/lazy/local.lua
 nvim/lua/config/local.lua
