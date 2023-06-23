@@ -20,33 +20,34 @@ return {
     vim.api.nvim_set_hl(0, 'GreenBold', { fg = '#a7c080', bold = true })
 
     hl_links {
-      ['@parameter'] = 'Gray',
-      ['@operator'] = 'Gray',
-      ['@field'] = '@variable',
-      ['@property'] = '@field',
-      ['@lsp.type.property'] = '@property',
+      ['@conditional.ternary'] = 'Gray',
       ['@enumMember'] = '@field',
-      ['@macro'] = '@function',
+      ['@field'] = '@variable',
+      ['@identifier'] = 'Fg',
       ['@lsp.type.namespace'] = '@type',
+      ['@lsp.type.property'] = '@property',
       ['@lsp.type.parameter'] = '@identifier',
       ['@lsp.typemod.parameter.declaration'] = '@parameter',
-      ['@identifier'] = 'Fg',
+      ['@macro'] = '@function',
+      ['@operator'] = 'Gray',
+      ['@parameter'] = 'Gray',
+      ['@property'] = '@field',
 
       -- ruby
-      ['@symbol.ruby'] = 'Orange',
       ['@label.ruby'] = '@variable',
+      ['@symbol.ruby'] = 'Orange',
 
       -- go
-      goTSProperty = '@field',
       goTSConstBuiltin = '@constant.builtin',
+      goTSProperty = '@field',
 
       -- yaml
       ['@field.yaml'] = 'Orange',
+      yamlBlockCollectionItemStart = 'Gray',
       yamlBlockMappingKey = 'Orange',
-      yamlPlainScalar = 'String',
       yamlFlowString = 'String',
       yamlFlowStringDelimiter = 'String',
-      yamlBlockCollectionItemStart = 'Gray',
+      yamlPlainScalar = 'String',
 
       -- json
       ['@label.json'] = 'Orange',
