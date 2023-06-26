@@ -32,6 +32,7 @@ return {
       ['@operator'] = 'Gray',
       ['@parameter'] = 'Gray',
       ['@property'] = '@field',
+      ['@type.qualifier'] = '@keyword',
 
       -- ruby
       ['@label.ruby'] = '@variable',
@@ -52,6 +53,10 @@ return {
       -- json
       ['@label.json'] = 'Orange',
       ['@string.json'] = '@string',
+
+      -- java
+      ['@attribute.java'] = 'Orange',
+      ['@keyword.operator'] = '@keyword',
 
       GitSignsAdd = 'GreenSign',
       GitSignsChange = 'OrangeSign',
