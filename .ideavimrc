@@ -1,0 +1,6 @@
+let mapleader=","
+
+""" mappings
+map <leader>tn <Action>(DebugClass)
+map <leader>tt <Action>(Rerun)
+map <C-e> <Action>(RecentFiles)
