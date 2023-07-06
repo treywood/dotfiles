@@ -18,6 +18,11 @@ return {
       { '<leader>tf', '<cmd>TestFile<cr>', silent = true },
       { '<leader>tt', '<cmd>TestLast<cr>', silent = true },
     },
+    init = function()
+      vim.cmd([[
+        let test#custom_runners = {'java':['Bazeltest']}
+      ]])
+    end,
   },
   {
     'iamcco/markdown-preview.nvim',
