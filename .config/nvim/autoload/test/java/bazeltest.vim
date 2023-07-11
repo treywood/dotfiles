@@ -18,7 +18,7 @@ function! test#java#bazeltest#build_position(type, position) abort
     let l:classname = substitute(l:module_info[1], '/', '.', 'g')
     let l:name = s:nearest_test(a:position, l:classname)
     if !empty(l:name)
-      return ['--test_filter="' . l:name . '"', l:modulename]
+      return ['--test_filter="' . l:name . '"', l:modulename, '--verbose_failures']
     else
       return [l:modulename]
     endif
