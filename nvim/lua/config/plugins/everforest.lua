@@ -56,7 +56,8 @@ return {
 
       -- java
       ['@attribute.java'] = 'Orange',
-      ['@keyword.operator'] = '@keyword',
+      ['@keyword.operator.java'] = '@keyword',
+      ['@constant.java'] = 'Red',
 
       GitSignsAdd = 'GreenSign',
       GitSignsChange = 'OrangeSign',

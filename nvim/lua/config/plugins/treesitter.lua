@@ -17,6 +17,7 @@ return {
         highlight = { enable = true },
         endwise = { enable = true },
         matchup = { enable = true },
+        indent = { enable = false },
         textobjects = {
           select = {
             enable = true,
