@@ -7,6 +7,33 @@ local function get_capabilities()
   return vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), capabilities)
 end
 
+local function create_format_autocmd(bufnr, config)
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    buffer = bufnr,
+    callback = function()
+      local cmd_str = 'silent %!' .. config.format.cmd
+
+      if config.format.args then
+        for _, arg in ipairs(config.format.args) do
+          if arg == '$FILENAME' then
+            arg = vim.fn.expand('%')
+          end
+          cmd_str = cmd_str .. ' ' .. arg
+        end
+      end
+
+      local saved_view = vim.fn.winsaveview()
+      vim.cmd(cmd_str)
+      if vim.v.shell_error ~= 0 then
+        local error_str = vim.fn.join(vim.fn.getline(1, '$'), '\n')
+        print('format error: ' .. error_str)
+        vim.cmd('silent undo')
+      end
+      vim.fn.winrestview(saved_view)
+    end,
+  })
+end
+
 local function on_attach(client, bufnr)
   require('illuminate').on_attach(client)
 
@@ -45,24 +72,10 @@ local function setup(config)
   vim.api.nvim_create_autocmd('FileType', {
     group = lsp_group,
     pattern = config.filetypes,
-    callback = function()
-      if config.formatter then
-        local null_ls = require('null-ls')
-        local formatter_config
-
-        if type(config.formatter) == 'string' then
-          formatter_config = null_ls.builtins.formatting[config.formatter]
-        else
-          formatter_config = {
-            method = null_ls.methods.FORMATTING,
-            filetypes = config.filetypes,
-            generator = config.formatter,
-          }
-        end
-
-        null_ls.register(formatter_config)
+    callback = function(args)
+      if config.format then
+        create_format_autocmd(args.buf, config)
       end
-
       vim.lsp.start(config)
     end,
   })

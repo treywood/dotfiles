@@ -18,7 +18,9 @@ function! test#java#bazeltest#build_position(type, position) abort
     let l:classname = substitute(l:module_info[1], '/', '.', 'g')
     let l:name = s:nearest_test(a:position, l:classname)
     if !empty(l:name)
-      return ['--test_filter="' . l:name . '"', l:modulename, '--verbose_failures']
+      let l:classpath = system('bazel aquery --output=jsonproto --include_aspects --allow_analysis_failures ''mnemonic(Javac, kind(java_test, ' . l:modulename . ') union kind(java_library, ' . l:modulename . ') union kind(java_binary, ' . l:modulename . '))'' | jq ''.actions | map(select(.arguments | contains(["--classpath"]))) | map(.arguments | .[index("--classpath")+1:index("--reduce_classpath_mode")]) | flatten | unique | join(":")''')
+      " return ['--test_filter="' . l:name . '"', l:modulename, '--verbose_failures']
+      return ['-launch', l:classname, '-classpath', l:classpath]
     else
       return [l:modulename]
     endif
@@ -55,7 +57,7 @@ function! s:nearest_test(position, classname) abort
 endfunction
 
 function! test#java#bazeltest#executable()
-  return 'bazel test'
+  return 'jdb'
 endfunction
 
 function! test#java#bazeltest#build_args(args, color) abort

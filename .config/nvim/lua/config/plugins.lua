@@ -32,4 +32,19 @@ return {
       vim.g.mkdp_theme = 'light'
     end,
   },
+  {
+    'RRethy/vim-illuminate',
+    lazy = true,
+    init = function()
+      vim.g.Illuminate_delay = 500
+      vim.diagnostic.config {
+        virtual_text = false,
+      }
+    end,
+  },
+  {
+    'smjonas/inc-rename.nvim',
+    cmd = 'IncRename',
+    config = true,
+  },
 }
