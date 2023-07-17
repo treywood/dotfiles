@@ -1,8 +1,9 @@
+local lsp = require('util.lsp')
+local format = require('util.format')
 local util = require('util')
 
-return {
+lsp.setup {
   name = 'lua-language-server',
-  filetypes = { 'lua' },
   cmd = { 'lua-language-server' },
   root_dir = util.root_pattern { 'stylua.toml' },
   settings = {
@@ -12,8 +13,9 @@ return {
       },
     },
   },
-  format = {
-    cmd = 'stylua',
-    args = { '--search-parent-directories', '--stdin-filepath', '$FILENAME', '-' },
-  },
+}
+
+format.setup {
+  cmd = 'stylua',
+  args = { '--search-parent-directories', '--stdin-filepath', '$FILENAME', '-' },
 }
