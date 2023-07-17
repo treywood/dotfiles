@@ -1,2 +1,1 @@
-setlocal tabstop=4
-setlocal shiftwidth=4
+source <sfile>:h/haskell.lua
