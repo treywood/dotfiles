@@ -1,7 +1,8 @@
+local util = require('util')
+
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    -- commit = 'eedc5198a1b4bb1b08ae6d4f64f3d76e376957aa',
     event = { 'BufNewFile', 'BufReadPre' },
     cmd = { 'TSUpdate', 'TSInstall' },
     build = ':TSUpdate',
@@ -11,7 +12,7 @@ return {
       'romgrk/nvim-treesitter-context',
       'andymass/vim-matchup',
     },
-    opts = function()
+    config = function()
       require('nvim-treesitter.configs').setup {
         ensure_installed = { 'vim', 'lua', 'query', 'python', 'bash', 'http', 'json' },
         highlight = { enable = true },
@@ -56,6 +57,11 @@ return {
           },
         },
       }
+
+      local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
+      parser_config.proto.install_info.url = 'https://github.com/treywood/tree-sitter-proto'
+      parser_config.proto.install_info.revision = '6ccc5c54bbd7a89504af8e23d30dd2e1da027f70'
+      -- parser_config.proto.install_info.url = util.devpath('tree-sitter-proto')
     end,
   },
 }
