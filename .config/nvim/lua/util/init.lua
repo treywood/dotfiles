@@ -7,7 +7,7 @@ end
 
 function M.root_pattern(files)
   table.insert(files, '.git')
-  return vim.fs.dirname(vim.fs.find(files, { upward = true, path = vim.fn.expand('%:h') })[1])
+  return vim.fs.dirname(vim.fs.find(files, { upward = true, path = vim.fn.expand('%:p:h') })[1])
 end
 
 function M.is_list(t)
