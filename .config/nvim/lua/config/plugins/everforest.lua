@@ -59,6 +59,9 @@ return {
       ['@keyword.operator.java'] = '@keyword',
       ['@constant.java'] = 'Red',
 
+      -- rust
+      ['@lsp.type.operator.rust'] = '@punctuation.delimiter.rust',
+
       GitSignsAdd = 'GreenSign',
       GitSignsChange = 'OrangeSign',
       GitSignsDelete = 'RedSign',
