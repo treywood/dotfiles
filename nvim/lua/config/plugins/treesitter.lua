@@ -60,7 +60,7 @@ return {
 
       local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
       parser_config.proto.install_info.url = 'https://github.com/treywood/tree-sitter-proto'
-      parser_config.proto.install_info.revision = '6ccc5c54bbd7a89504af8e23d30dd2e1da027f70'
+      parser_config.proto.install_info.revision = '8297c1c3f6810caa5288049546d109a6df685d65'
       -- parser_config.proto.install_info.url = util.devpath('tree-sitter-proto')
     end,
   },
