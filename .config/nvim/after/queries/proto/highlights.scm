@@ -3,6 +3,7 @@
 [
  "extend"
  "extensions"
+ "required"
 ] @keyword
 
-(extend (full_ident (identifier) @type))
+(extend (full_ident (identifier) @type .))
