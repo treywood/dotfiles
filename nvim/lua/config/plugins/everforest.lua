@@ -53,6 +53,8 @@ return {
       -- json
       ['@label.json'] = 'Orange',
       ['@string.json'] = '@string',
+      jsonKeyword = 'Orange',
+      jsonString = '@string',
 
       -- java
       ['@attribute.java'] = 'Orange',
