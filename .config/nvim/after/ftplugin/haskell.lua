@@ -12,6 +12,6 @@ lsp.setup {
 }
 
 format.setup {
-  cmd = 'fourmolu',
-  args = { '--stdin-input-file', '$FILENAME', '--quiet' },
+  name = 'fourmolu',
+  cmd = { 'fourmolu', '--stdin-input-file', '$FILENAME', '--quiet' },
 }

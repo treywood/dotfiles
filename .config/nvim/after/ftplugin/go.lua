@@ -9,5 +9,6 @@ lsp.setup {
 }
 
 format.setup {
-  cmd = 'gofmt',
+  name = 'gofmt',
+  cmd = { 'gofmt' },
 }
