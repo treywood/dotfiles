@@ -9,5 +9,6 @@ lsp.setup {
 }
 
 format.setup {
-  cmd = 'rustfmt',
+  name = 'rustfmt',
+  cmd = { 'rustfmt' },
 }

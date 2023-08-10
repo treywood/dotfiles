@@ -16,6 +16,6 @@ lsp.setup {
 }
 
 format.setup {
-  cmd = 'stylua',
-  args = { '--search-parent-directories', '--stdin-filepath', '$FILENAME', '-' },
+  name = 'stylua',
+  cmd = { 'stylua', '--search-parent-directories', '--stdin-filepath', '$FILENAME', '-' },
 }
