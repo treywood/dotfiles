@@ -37,6 +37,7 @@ return {
       -- ruby
       ['@label.ruby'] = '@variable',
       ['@symbol.ruby'] = 'Orange',
+      ['@constant.ruby'] = '@type',
 
       -- go
       goTSConstBuiltin = '@constant.builtin',
