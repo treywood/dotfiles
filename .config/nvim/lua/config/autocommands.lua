@@ -29,14 +29,8 @@ if Kitty.is_kitty() then
     local async = require('plenary.async')
     vim.api.nvim_create_autocmd('VimEnter', {
       callback = async.void(function()
-        local tab_name
-        local repo_name = vim.fn.system([[git remote get-url --all origin | sed -E 's/.+\/(.+)\.git$/\1/']])
-        if vim.v.shell_error ~= nil then
-          local dir_name = string.gsub(vim.fn.getcwd(), '.+/', '')
-          tab_name = string.format('nvim (%s)', dir_name)
-        elseif repo_name ~= nil then
-          tab_name = string.format('nvim (%s)', repo_name:gsub('%s*$', ''))
-        end
+        local dir_name = string.gsub(vim.fn.getcwd(), '.+/', '')
+        local tab_name = string.format('nvim (%s)', dir_name)
         set_tab_title(tab_name)
       end),
     })
