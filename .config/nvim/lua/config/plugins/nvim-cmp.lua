@@ -6,6 +6,7 @@ return {
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
     'hrsh7th/cmp-nvim-lsp',
+    'zbirenbaum/copilot-cmp',
     'saadparwaiz1/cmp_luasnip',
     'onsails/lspkind-nvim',
     { 'L3MON4D3/LuaSnip', build = 'make install_jsregexp' },
@@ -14,6 +15,7 @@ return {
     local cmp = require('cmp')
     local luasnip = require('luasnip')
     local lspkind = require('lspkind')
+    require('copilot_cmp').setup()
 
     local has_words_before = function()
       ---@diagnostic disable-next-line: deprecated
@@ -62,6 +64,8 @@ return {
         ['<CR>'] = cmp.mapping.confirm { select = false },
       },
       sources = cmp.config.sources({
+        { name = 'copilot' },
+      }, {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
       }, {
