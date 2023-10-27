@@ -6,4 +6,4 @@ vim.keymap.set('n', '<leader>w', ':%bd!|e#|bd!#<CR>', opts)
 
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', opts)
 
-vim.keymap.set('i', '<C-j>', "<cmd>lua require('luasnip').change_choice(1)<cr>", opts)
+vim.keymap.set('i', '<C-n>', "<cmd>lua require('luasnip').change_choice(1)<cr>", opts)
