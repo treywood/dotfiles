@@ -31,7 +31,7 @@ function zvm_after_init() {
   bindkey '^P' history-substring-search-up
   bindkey '^J' history-substring-search-down
   bindkey '^N' history-substring-search-down
-  bindkey '^@' autosuggest-accept
+  bindkey '^L' autosuggest-accept
 }
 antigen bundle jeffreytse/zsh-vi-mode
 
