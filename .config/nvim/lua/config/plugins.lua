@@ -47,4 +47,13 @@ return {
     cmd = 'IncRename',
     config = true,
   },
+  {
+    'j-hui/fidget.nvim',
+    event = 'LspAttach',
+    opts = {
+      text = {
+        spinner = 'dots_snake',
+      },
+    },
+  },
 }
