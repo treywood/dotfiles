@@ -51,8 +51,10 @@ return {
     'j-hui/fidget.nvim',
     event = 'LspAttach',
     opts = {
-      text = {
-        spinner = 'dots_snake',
+      progress = {
+        display = {
+          progress_icon = { pattern = 'dots_snake', period = 1 },
+        },
       },
     },
   },
