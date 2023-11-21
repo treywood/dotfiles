@@ -45,6 +45,7 @@ source ~/.config/zsh/p10k.zsh
 export GPG_TTY=$(tty)
 export EDITOR="nvim"
 
+export PATH="/usr/local/sbin:$PATH"
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:$HOME/.ghcup/bin"
