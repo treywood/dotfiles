@@ -50,12 +50,44 @@ return {
   {
     'j-hui/fidget.nvim',
     event = 'LspAttach',
-    opts = {
-      progress = {
-        display = {
-          progress_icon = { pattern = 'dots_snake', period = 1 },
+    opts = function()
+      local state = {}
+      local function debounce(key, wait)
+        local timer = vim.loop.new_timer()
+        timer:start(wait, 0, function()
+          timer:stop()
+          timer:close()
+          state[key] = nil
+        end)
+
+        local existing_timer = state[key]
+        state[key] = timer
+
+        if existing_timer then
+          existing_timer:stop()
+          existing_timer:close()
+          return false
+        end
+
+        return true
+      end
+
+      return {
+        progress = {
+          display = {
+            done_ttl = 1,
+            progress_icon = { pattern = 'dots_snake', period = 1 },
+            progress_ttl = 5,
+            format_message = function(msg)
+              local default_fn = require('fidget.progress.display').default_format_message
+              local key = msg.lsp_id .. '+' .. (msg.title or '') .. '+' .. (msg.message or '')
+              if debounce(key, 1000) then
+                return default_fn(msg)
+              end
+            end,
+          },
         },
-      },
-    },
+      }
+    end,
   },
 }
