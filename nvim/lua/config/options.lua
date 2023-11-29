@@ -21,7 +21,6 @@ vim.o.termguicolors = true
 vim.o.updatetime = 100
 vim.o.cursorline = false
 vim.o.splitright = true
-vim.o.cmdheight = 0
 
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
