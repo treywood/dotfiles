@@ -16,7 +16,11 @@ local function on_attach(client, bufnr)
   client.server_capabilities.documentRangeFormattingProvider = false
 
   local opts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+  vim.keymap.set('n', 'K', function()
+    if not util.open() then
+      vim.lsp.buf.hover()
+    end
+  end, opts)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
   vim.keymap.set('n', 'gd', ':Telescope lsp_definitions<CR>', opts)
   vim.keymap.set('n', 'gi', ':Telescope lsp_implementations<CR>', opts)

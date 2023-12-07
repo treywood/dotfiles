@@ -80,7 +80,7 @@ return {
             progress_ttl = 5,
             format_message = function(msg)
               local default_fn = require('fidget.progress.display').default_format_message
-              local key = msg.lsp_id .. '+' .. (msg.title or '') .. '+' .. (msg.message or '')
+              local key = msg.token .. '+' .. (msg.title or '') .. '+' .. (msg.message or '')
               if debounce(key, 1000) then
                 return default_fn(msg)
               end

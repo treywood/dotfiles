@@ -22,4 +22,13 @@ function M.is_list(t)
   return true
 end
 
+function M.open()
+  word = vim.fn.expand('<cWORD>')
+  if word:match('^https?://') then
+    vim.fn.system('open ' .. word)
+    return true
+  end
+  return false
+end
+
 return M
