@@ -5,7 +5,7 @@ local format = require('util.format')
 lsp.setup {
   name = 'gopls',
   cmd = { 'gopls' },
-  root_dir = util.devpath('go/src/up'),
+  root_dir = util.devpath('go/src/square/up'),
 }
 
 format.setup {
