@@ -23,9 +23,9 @@ function M.is_list(t)
 end
 
 function M.open()
-  word = vim.fn.expand('<cWORD>')
+  local word = vim.fn.expand('<cWORD>')
   if word:match('^https?://') then
-    vim.fn.system('open ' .. word)
+    vim.fn.system("open '" .. word .. "'")
     return true
   end
   return false
