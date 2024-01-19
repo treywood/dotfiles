@@ -2,6 +2,7 @@ return {
   { import = 'config.plugins.hidden' },
   { 'nvim-lua/plenary.nvim', lazy = true },
   { 'nvim-tree/nvim-web-devicons', lazy = true },
+  { 'MarcWeber/vim-addon-local-vimrc' },
   {
     'haya14busa/is.vim',
     keys = {

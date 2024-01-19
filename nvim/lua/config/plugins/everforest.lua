@@ -37,6 +37,7 @@ return {
       -- ruby
       ['@label.ruby'] = '@variable',
       ['@symbol.ruby'] = 'Orange',
+      ['@string.special.symbol.ruby'] = 'Orange',
       ['@constant.ruby'] = '@type',
 
       -- go
