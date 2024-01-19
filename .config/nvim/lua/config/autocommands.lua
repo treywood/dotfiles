@@ -18,16 +18,6 @@ vim.api.nvim_create_autocmd('User', {
   end,
 })
 
-vim.api.nvim_create_autocmd('BufRead', {
-  pattern = '*.template',
-  callback = function()
-    local type = vim.fn.expand('%:t:r:e')
-    if type ~= '' then
-      vim.cmd('set filetype=liquid.' .. type)
-    end
-  end,
-})
-
 if Kitty.is_kitty() then
   local kitty_window_id = os.getenv('KITTY_WINDOW_ID')
 
