@@ -33,6 +33,7 @@ return {
       ['@parameter'] = 'Gray',
       ['@property'] = '@field',
       ['@type.qualifier'] = '@keyword',
+      ['@variable.member'] = '@variable',
 
       -- ruby
       ['@label.ruby'] = '@variable',
