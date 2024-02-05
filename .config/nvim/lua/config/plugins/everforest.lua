@@ -47,6 +47,8 @@ return {
 
       -- yaml
       ['@field.yaml'] = 'Orange',
+      ['@property.yaml'] = 'Orange',
+      ['@string.yaml'] = '@string',
       yamlBlockCollectionItemStart = 'Gray',
       yamlBlockMappingKey = 'Orange',
       yamlFlowString = 'String',
