@@ -31,6 +31,7 @@ return {
       ['@macro'] = '@function',
       ['@operator'] = 'Gray',
       ['@parameter'] = 'Gray',
+      ['@variable.parameter'] = '@parameter',
       ['@property'] = '@field',
       ['@type.qualifier'] = '@keyword',
       ['@variable.member'] = '@variable',
