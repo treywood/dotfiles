@@ -21,6 +21,7 @@ return {
 
     hl_links {
       ['@conditional.ternary'] = 'Gray',
+      ['@constant'] = '@type',
       ['@enumMember'] = '@field',
       ['@field'] = '@variable',
       ['@identifier'] = 'Fg',
@@ -32,7 +33,7 @@ return {
       ['@operator'] = 'Gray',
       ['@parameter'] = 'Gray',
       ['@variable.parameter'] = '@parameter',
-      ['@property'] = '@field',
+      ['@property'] = 'Gray',
       ['@type.qualifier'] = '@keyword',
       ['@variable.member'] = '@variable',
 
@@ -40,7 +41,6 @@ return {
       ['@label.ruby'] = '@variable',
       ['@symbol.ruby'] = 'Orange',
       ['@string.special.symbol.ruby'] = 'Orange',
-      ['@constant.ruby'] = '@type',
 
       -- go
       goTSConstBuiltin = '@constant.builtin',
@@ -69,6 +69,9 @@ return {
 
       -- rust
       ['@lsp.type.operator.rust'] = '@punctuation.delimiter.rust',
+
+      -- protobuf
+      ['@constant.proto'] = '@field',
 
       GitSignsAdd = 'GreenSign',
       GitSignsChange = 'OrangeSign',
