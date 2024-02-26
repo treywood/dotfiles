@@ -1,19 +1,20 @@
-local brew_prefix = vim.fn.system('brew --prefix'):gsub('%s+', '')
-
 return {
-  'zbirenbaum/copilot.lua',
+  'github/copilot.vim',
   cmd = 'Copilot',
   event = 'InsertEnter',
-  config = {
-    copilot_node_command = brew_prefix .. '/bin/node',
-    suggestion = {
-      auto_trigger = true,
-      keymap = {
-        accept = '<C-Space>',
-        next = '<C-k>',
-        prev = '<C-j>',
-      },
-    },
-    panel = { enabled = false },
-  },
+  init = function()
+    vim.cmd([[
+      let g:copilot_node_command = trim(system('brew --prefix')) . '/bin/node'
+
+      imap <C-Space> <Plug>(copilot-accept-line)
+      imap <C-Enter> <Plug>(copilot-suggest)
+      imap <C-j> <Plug>(copilot-next)
+      imap <C-k> <Plug>(copilot-previous)
+
+      augroup copilot
+        autocmd!
+        autocmd TextChangedI * :call copilot#Suggest()
+      augroup END
+    ]])
+  end,
 }
