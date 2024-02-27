@@ -14,7 +14,8 @@ return {
 
       augroup copilot
         autocmd!
-        autocmd TextChangedI * :call copilot#Suggest()
+        autocmd BufEnter * if &buftype ==# 'prompt' | call copilot#Disable() | endif
+        autocmd TextChangedI * call copilot#Suggest()
       augroup END
     ]])
   end,
