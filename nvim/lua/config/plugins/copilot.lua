@@ -11,6 +11,7 @@ return {
       imap <C-Enter> <Plug>(copilot-suggest)
       imap <C-j> <Plug>(copilot-next)
       imap <C-k> <Plug>(copilot-previous)
+      imap <C-l> <Plug>(copilot-accept-word)
 
       augroup copilot
         autocmd!
