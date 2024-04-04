@@ -58,6 +58,7 @@ return {
 
       -- json
       ['@label.json'] = 'Orange',
+      ['@property.json'] = 'Orange',
       ['@string.json'] = '@string',
       jsonKeyword = 'Orange',
       jsonString = '@string',
