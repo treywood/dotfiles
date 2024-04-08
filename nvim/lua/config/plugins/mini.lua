@@ -23,6 +23,7 @@ return {
       mappings = {
         comment = 'm',
         comment_line = 'mm',
+        comment_visual = 'm',
         textobject = 'm',
       },
     },
