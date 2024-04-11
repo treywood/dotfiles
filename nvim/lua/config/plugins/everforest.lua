@@ -74,6 +74,13 @@ return {
       -- protobuf
       ['@constant.proto'] = '@field',
 
+      -- http
+      ['@url.http'] = 'Blue',
+      ['@string.special.url.http'] = '@url.http',
+      ['@module.http'] = '@url.http',
+      ['@header.name.http'] = 'Gray',
+      ['@header.value.http'] = 'Fg',
+
       GitSignsAdd = 'GreenSign',
       GitSignsChange = 'OrangeSign',
       GitSignsDelete = 'RedSign',
