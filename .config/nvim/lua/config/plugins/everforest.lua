@@ -25,6 +25,7 @@ return {
       ['@enumMember'] = '@field',
       ['@field'] = '@variable',
       ['@identifier'] = 'Fg',
+      ['@lsp.type.enumMember'] = '@variable.member',
       ['@lsp.type.namespace'] = '@type',
       ['@lsp.type.property'] = '@property',
       ['@lsp.type.parameter'] = '@identifier',
