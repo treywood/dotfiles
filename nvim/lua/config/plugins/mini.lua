@@ -17,21 +17,6 @@ return {
     end,
   },
   {
-    'echasnovski/mini.comment',
-    event = { 'BufNewFile', 'BufReadPre' },
-    opts = {
-      mappings = {
-        comment = 'm',
-        comment_line = 'mm',
-        comment_visual = 'm',
-        textobject = 'm',
-      },
-    },
-    config = function(_, opts)
-      require('mini.comment').setup(opts)
-    end,
-  },
-  {
     'echasnovski/mini.bracketed',
     event = { 'BufNewFile', 'BufReadPre' },
     opts = {
