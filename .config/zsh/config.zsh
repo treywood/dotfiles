@@ -12,7 +12,7 @@ antigen bundle command-not-found
 
 export ZSH_TAB_TITLE_DEFAULT_DISABLE_PREFIX=true
 export ZSH_TAB_TITLE_ADDITIONAL_TERMS='kitty'
-antigen bundle trystan2k/zsh-tab-title
+antigen bundle trystan2k/zsh-tab-title@main
 
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zdharma-continuum/fast-syntax-highlighting
