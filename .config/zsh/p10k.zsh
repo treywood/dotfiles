@@ -1042,7 +1042,7 @@
   # Don't show ruby- at the front.
   typeset -g POWERLEVEL9K_RVM_SHOW_PREFIX=false
   # Custom icon.
-  # typeset -g POWERLEVEL9K_RVM_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_RVM_VISUAL_IDENTIFIER_EXPANSION=''
 
   ###########[ fvm: flutter version management (https://github.com/leoafarias/fvm) ]############
   # Fvm color.
