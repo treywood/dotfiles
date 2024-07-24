@@ -27,6 +27,3 @@ vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.o.foldlevelstart = 99
 
 vim.g.mapleader = ','
-
-vim.o.spell = true
-vim.o.spelloptions = 'camel,noplainbuffer'
