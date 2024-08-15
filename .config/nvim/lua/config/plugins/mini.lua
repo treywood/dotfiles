@@ -40,16 +40,4 @@ return {
       require('mini.surround').setup()
     end,
   },
-  {
-    'echasnovski/mini.files',
-    cmd = { 'Files' },
-    init = function()
-      vim.api.nvim_create_user_command('Files', function()
-        require('mini.files').open()
-      end, {})
-    end,
-    config = function()
-      require('mini.files').setup()
-    end,
-  },
 }
