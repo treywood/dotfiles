@@ -23,6 +23,10 @@ end
 function M.setup(config)
   local cmd_str = get_cmd_string(config)
 
+  if config.test and not config.test() then
+    return
+  end
+
   vim.api.nvim_create_autocmd('BufWritePre', {
     buffer = vim.fn.bufnr('%'),
     group = format_group,
