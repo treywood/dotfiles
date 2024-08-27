@@ -27,3 +27,9 @@ vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.o.foldlevelstart = 99
 
 vim.g.mapleader = ','
+
+vim.filetype.add {
+  extension = {
+    ['http'] = 'http',
+  },
+}
