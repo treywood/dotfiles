@@ -25,7 +25,7 @@ end
 function M.open()
   local word = vim.fn.expand('<cWORD>')
   if word:match('^https?://') then
-    vim.fn.system("open '" .. word .. "'")
+    vim.system { 'open', word }
     return true
   end
   return false
