@@ -4,7 +4,7 @@ return {
     config = function()
       local starter = require('mini.starter')
       starter.setup {
-        header = vim.fn.system('fortune'),
+        header = vim.system({ 'fortune' }, { text = true }):wait().stdout,
         items = {
           starter.sections.recent_files(10, true),
         },

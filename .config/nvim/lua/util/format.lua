@@ -2,43 +2,46 @@ local M = {}
 
 local format_group = vim.api.nvim_create_augroup('formatters', {})
 
-local function get_cmd_string(config)
-  local cmd_str = 'silent %!'
-
-  for i, arg in ipairs(config.cmd) do
-    if i == 1 then
-      cmd_str = cmd_str .. arg
-    elseif arg == '$FILENAME' then
-      arg = vim.fn.expand('%')
-    end
-
-    if i > 1 then
-      cmd_str = cmd_str .. ' ' .. arg
+local function replace_cmd_params(cmd)
+  local new_cmd = {}
+  for _, part in ipairs(cmd) do
+    if part == '$FILENAME' then
+      table.insert(new_cmd, vim.fn.expand('%'))
+    else
+      table.insert(new_cmd, part)
     end
   end
-
-  return cmd_str
+  return new_cmd
 end
 
 function M.setup(config)
-  local cmd_str = get_cmd_string(config)
-
-  if config.test and not config.test() then
-    return
-  end
-
   vim.api.nvim_create_autocmd('BufWritePre', {
     buffer = vim.fn.bufnr('%'),
     group = format_group,
     callback = function()
-      local saved_view = vim.fn.winsaveview()
-      vim.cmd(cmd_str)
-      if vim.v.shell_error ~= 0 then
-        local error_str = vim.fn.join(vim.fn.getline(1, '$'), '\n')
-        print('format error: ' .. error_str)
-        vim.cmd('silent undo')
+      if config.test and not config.test() then
+        return
       end
-      vim.fn.winrestview(saved_view)
+
+      local obj = vim
+        .system(replace_cmd_params(config.cmd), {
+          stdin = vim.api.nvim_buf_get_lines(0, 0, -1, false),
+          text = true,
+        })
+        :wait()
+
+      if obj.code ~= 0 then
+        print('format error: ' .. obj.stderr)
+      else
+        local saved_view = vim.fn.winsaveview()
+        vim.b.formatoutput = obj.stdout
+        vim.cmd([[
+            silent :%delete _
+            call setline(1, split(b:formatoutput, '\n'))
+          ]])
+        vim.b.formatoutput = nil
+        vim.fn.winrestview(saved_view)
+      end
     end,
   })
 end
