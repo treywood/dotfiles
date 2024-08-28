@@ -7,6 +7,7 @@ fi
 
 source "$(brew --prefix)/share/antigen/antigen.zsh"
 
+export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 antigen bundle git
 antigen bundle command-not-found
 
