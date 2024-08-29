@@ -6,3 +6,5 @@ nvim/lua/config/local.lua
 nvim/plugin/
 
 kitty/*.session
+
+zsh/*.zwc
