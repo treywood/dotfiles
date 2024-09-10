@@ -32,7 +32,7 @@
   "vim-addon-local-vimrc": { "branch": "master", "commit": "5430ada07e199aba932f9eab68399e624512596f" },
   "vim-fugitive": { "branch": "master", "commit": "1d18c696c4284e9ce9467a5c04d3adf8af43f994" },
   "vim-illuminate": { "branch": "master", "commit": "5eeb7951fc630682c322e88a9bbdae5c224ff0aa" },
-  "vim-matchup": { "branch": "master", "commit": "1535a769d5dca851fe7d41b0be95f7c7203a4bef" },
+  "vim-matchup": { "branch": "master", "commit": "f89858a5ab87feb752c860d396022ae7b13070c2" },
   "vim-rhubarb": { "branch": "master", "commit": "ee69335de176d9325267b0fd2597a22901d927b1" },
   "vim-test": { "branch": "master", "commit": "2c9cef3f7605fc1b272b23765c5872607c1b6183" }
 }
