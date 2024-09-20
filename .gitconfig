@@ -111,9 +111,5 @@
 [gpg]
 	program = gpg
 
-[user]
-	email = edwinjwood3rd@gmail.com
-	name = Trey Wood
-
 [index]
 	skipHash = false
