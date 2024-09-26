@@ -94,6 +94,9 @@ return {
   {
     'treywood/kulala.nvim',
     dev = true,
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
     opts = {
       scratchpad_default_contents = {
         '### @name first',
