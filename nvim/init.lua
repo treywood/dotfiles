@@ -21,4 +21,6 @@ require('config.lsp')
 
 pcall(require, 'config.local')
 
-vim.api.nvim_create_user_command('Kulala', require('kulala').scratchpad, {})
+vim.api.nvim_create_user_command('Kulala', function()
+  require('kulala').scratchpad()
+end, {})
