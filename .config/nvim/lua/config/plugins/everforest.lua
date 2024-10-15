@@ -82,6 +82,11 @@ return {
       ['@header.name.http'] = 'Gray',
       ['@header.value.http'] = 'Fg',
 
+      -- tsx
+      ['@tag.attribute.tsx'] = '@parameter',
+      ['@tag.delimiter.tsx'] = '@punctuation.delimiter',
+      ['@tag.tsx'] = 'Green',
+
       GitSignsAdd = 'GreenSign',
       GitSignsChange = 'OrangeSign',
       GitSignsDelete = 'RedSign',
