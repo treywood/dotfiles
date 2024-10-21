@@ -91,24 +91,4 @@ return {
       }
     end,
   },
-  {
-    'treywood/kulala.nvim',
-    dev = true,
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-    },
-    opts = {
-      scratchpad_default_contents = {
-        '### @name first',
-        'GET https://httpbingo.org/get?foo=bar',
-        '',
-        '### @name second',
-        'POST https://httpbingo.org/post',
-        'Content-Type: application/json',
-        '',
-        '{"name":"Trey"}',
-      },
-      treesitter = true,
-    },
-  },
 }
