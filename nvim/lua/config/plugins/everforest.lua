@@ -67,7 +67,6 @@ return {
       -- java
       ['@attribute.java'] = 'Orange',
       ['@keyword.operator.java'] = '@keyword',
-      ['@constant.java'] = 'Red',
 
       -- rust
       ['@lsp.type.operator.rust'] = '@punctuation.delimiter.rust',
