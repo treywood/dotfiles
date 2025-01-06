@@ -106,8 +106,8 @@
 	diffFilter = delta --color-only
 
 [commit]
-
 	gpgsign = false
+
 [gpg]
 	program = gpg
 
