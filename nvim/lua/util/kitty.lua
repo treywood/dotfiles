@@ -9,8 +9,10 @@ function Kitty.run(args, opts)
     cwd = vim.fn.getcwd(),
     command = 'kitty',
     args = args,
-    on_stderr = function(_, err)
-      print(string.format('kitty error: %s', err))
+    on_exit = function(j, return_val)
+      if return_val ~= 0 then
+        print(string.format('kitty error: %s; cmd: kitty %s', j:stderr_result(), table.concat(args, ' ')))
+      end
     end,
   }
   opts = vim.tbl_deep_extend('keep', default_opts, opts or {})
@@ -34,8 +36,10 @@ function Kitty.reload_config()
     cwd = vim.fn.getcwd(),
     command = 'kill',
     args = { '-s', 'SIGUSR1', kitty_pid },
-    on_stderr = function(_, err)
-      print(string.format('error reloading kitty config: %s', err))
+    on_exit = function(j, return_val)
+      if return_val ~= 0 then
+        print(string.format('error reloading kitty config: %s', j:stderr_result()))
+      end
     end,
   }):start()
 end
