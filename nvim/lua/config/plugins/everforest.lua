@@ -21,6 +21,7 @@ return {
 
     hl_links {
       ['@conditional.ternary'] = 'Gray',
+      ['@keyword.conditional.ternary'] = 'Gray',
       ['@constant'] = '@type',
       ['@enumMember'] = '@field',
       ['@field'] = '@variable',
