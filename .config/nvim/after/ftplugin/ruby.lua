@@ -5,4 +5,9 @@ lsp.setup {
   name = 'ruby-lsp',
   cmd = { 'ruby-lsp' },
   root_dir = util.root_pattern { 'Gemfile' },
+  init_options = {
+    enabledFeatures = {
+      semanticHighlighting = false,
+    },
+  },
 }
