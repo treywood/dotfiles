@@ -1,6 +1,151 @@
-let mapleader=","
+" .ideavimrc - IdeaVim configuration
+" Emulating Neovim setup
 
-""" mappings
-map <leader>tn <Action>(DebugClass)
+" Set leader key to comma (,) as in Neovim
+let mapleader = ","
+
+" Basic settings
+set number
+set incsearch
+set hlsearch
+set showcmd
+set ignorecase
+set smartcase
+set scrolloff=0
+set showmode
+set history=1000
+
+" Tabs and indentation
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smartindent
+
+" Enable vim-surround plugin emulation
+set surround
+
+" Custom surround mappings (like mini.surround in Neovim)
+" sa - surround add, sd - surround delete, sr - surround replace
+" Map sa to ys (yank surround) in visual mode
+vmap sa <Plug>VSurround
+" Map sd to ds (delete surround) in normal mode
+nmap sd <Plug>DSurround
+" Map sr to cs (change surround) in normal mode
+nmap sr <Plug>CSurround
+
+" Enable commentary plugin emulation 
+set commentary
+
+" Enable multiple-cursors
+set multiple-cursors
+
+" Enable easymotion
+set easymotion
+
+" Enable NERDTree emulation
+set NERDTree
+
+" Enable which-key
+set which-key
+set notimeout
+
+" Enable IdeaVim-EasyMotion
+set ideajoin
+set ideamarks
+
+" Key mappings from Neovim
+" Clear search highlighting with Esc
+nnoremap <esc> :nohl<CR><esc>
+
+" Close all buffers
+nnoremap <leader>W :q<CR>
+
+" Close all buffers but current
+map <leader>w <Action>(CloseAllEditorsButActive)
+
+" Terminal escape
+tnoremap <Esc> <C-\><C-n>
+
+" Comment mappings
+nmap mm gcc
+vmap m gc
+nmap m gc
+
+" IDE specific mappings
+map K <Action>(QuickJavaDoc)
+map gd <Action>(GotoDeclaration)
+map gi <Action>(GotoImplementation)
+map gr <Action>(FindUsages)
+map <leader>rn <Action>(RenameElement)
+map <leader>f <Action>(ReformatCode)
+map <leader>a <Action>(ShowIntentionActions)
+map <leader>e <Action>(ShowErrorDescription)
+map <C-j> <Action>(FileStructurePopup)
+map <C-p> <Action>(GotoFile)
+
+" File navigation
+map <leader>ff <Action>(GotoFile)
+map <leader>fg <Action>(FindInPath)
+map <leader>fb <Action>(RecentFiles)
+map <leader>fs <Action>(FileStructurePopup)
+
+" Window navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Split windows
+map <leader>v <Action>(SplitVertically)
+map <leader>s <Action>(SplitHorizontally)
+
+" Code actions
+map <leader>ca <Action>(ShowIntentionActions)
+map <leader>cr <Action>(RenameElement)
+map <leader>cf <Action>(ReformatCode)
+map <leader>ci <Action>(OptimizeImports)
+
+" Debugging
+map <leader>db <Action>(ToggleLineBreakpoint)
+map <leader>dr <Action>(Debug)
+map <leader>dn <Action>(StepOver)
+map <leader>di <Action>(StepInto)
+map <leader>do <Action>(StepOut)
+map <leader>dc <Action>(Resume)
+
+" Run
+map <leader>rr <Action>(Run)
+map <leader>rc <Action>(RunClass)
+map <leader>rt <Action>(RunTests)
+
+" Git integration
+map <leader>gb <Action>(Annotate)
+map <leader>gh <Action>(Vcs.ShowTabbedFileHistory)
+map <leader>gd <Action>(Compare.LastVersion)
+map <leader>gr <Action>(Vcs.RollbackChangedLines)
+
+" Git hunk navigation (like [c and ]c in Neovim)
+map [c <Action>(VcsShowPrevChangeMarker)
+map ]c <Action>(VcsShowNextChangeMarker)
+
+" Diagnostic navigation (like [d and ]d in Neovim)
+map [d <Action>(GotoPreviousError)
+map ]d <Action>(GotoNextError)
+
+" Git hunk actions
+map <leader>hu <Action>(Vcs.RollbackChangedLines)
+map <leader>hs <Action>(Vcs.ShowDiffChangedLines)
+map <leader>hp <Action>(VcsShowCurrentChangeMarker)
+
+" Test runner mappings
 map <leader>tt <Action>(Rerun)
-map <C-e> <Action>(RecentFiles)
+map <leader>tf <Action>(RunClass)
+map <leader>tn <Action>(RunTargetedTest)
+
+" IdeaVim specific
+set ideajoin
+set idearefactormode=keep
+set functiontextobj
+
+" Custom H and L behavior to truly go to top and bottom of visible window
+map H <Action>(EditorScrollToTop)
+map L <Action>(EditorScrollToBottom)
