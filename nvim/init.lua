@@ -24,3 +24,9 @@ pcall(require, 'config.local')
 vim.api.nvim_create_user_command('Kulala', function()
   require('kulala').scratchpad()
 end, {})
+
+vim.filetype.add {
+  extension = {
+    mermaid = 'mmd',
+  },
+}

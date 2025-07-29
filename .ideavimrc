@@ -82,6 +82,8 @@ map <leader>a <Action>(ShowIntentionActions)
 map <leader>e <Action>(ShowErrorDescription)
 map <C-j> <Action>(FileStructurePopup)
 map <C-p> <Action>(GotoFile)
+map <C-f> <Action>(FindInPath) 
+map <C-e> <Action>(RecentFiles)
 
 " File navigation
 map <leader>ff <Action>(GotoFile)
@@ -139,7 +141,7 @@ map <leader>hp <Action>(VcsShowCurrentChangeMarker)
 " Test runner mappings
 map <leader>tt <Action>(Rerun)
 map <leader>tf <Action>(RunClass)
-map <leader>tn <Action>(RunTargetedTest)
+map <leader>tn <Action>(Run)
 
 " IdeaVim specific
 set ideajoin
@@ -147,5 +149,7 @@ set idearefactormode=keep
 set functiontextobj
 
 " Custom H and L behavior to truly go to top and bottom of visible window
-map H <Action>(EditorScrollToTop)
-map L <Action>(EditorScrollToBottom)
+" Using native Vim commands to ensure cursor movement
+nnoremap H H0
+nnoremap L L$
+
