@@ -7,6 +7,6 @@ lsp.setup {
     util.devpath('kotlin-lsp/kotlin-lsp.sh'),
     '--stdio',
   },
-  root_dir = util.root_pattern { 'BUILD' },
+  root_dir = util.root_pattern { 'BUILD', 'gradle.properties' },
   single_file_support = true,
 }
