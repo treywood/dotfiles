@@ -8,7 +8,7 @@ vim.bo.shiftwidth = 4
 lsp.setup {
   name = 'hls',
   cmd = { 'haskell-language-server-wrapper', '--lsp' },
-  root_dir = util.root_pattern { '*.cabal' },
+  root_markers = { { '*.cabal' }, '.git' },
 }
 
 format.setup {

@@ -5,7 +5,7 @@ local format = require('util.format')
 lsp.setup {
   name = 'rust_analyzer',
   cmd = { 'rust-analyzer' },
-  root_dir = util.root_pattern { 'Cargo.toml' },
+  root_markers = { { 'Cargo.toml' }, '.git' },
 }
 
 format.setup {

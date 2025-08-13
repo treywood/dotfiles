@@ -5,7 +5,7 @@ local util = require('util')
 lsp.setup {
   name = 'lua-language-server',
   cmd = { 'lua-language-server' },
-  root_dir = util.root_pattern { 'stylua.toml' },
+  root_markers = { { 'stylua.toml' }, '.git' },
   settings = {
     Lua = {
       diagnostics = {
