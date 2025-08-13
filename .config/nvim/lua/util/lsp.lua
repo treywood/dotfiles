@@ -39,7 +39,7 @@ function M.setup(config)
   local default_config = {
     on_attach = on_attach,
     capabilities = get_capabilities(),
-    root_dir = util.root_pattern { '.git' },
+    root_markers = { '.git' },
     flags = {
       debounce_text_changes = 150,
     },

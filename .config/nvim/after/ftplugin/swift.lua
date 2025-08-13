@@ -4,7 +4,7 @@ local util = require('util')
 lsp.setup {
   name = 'sourcekit',
   cmd = { 'sourcekit-lsp' },
-  root_dir = util.root_pattern { '*.xcodeproj', '*.xcworkspace' },
+  root_markers = { { '*.xcodeproj', '*.xcworkspace' }, '.git' },
   capabilities = {
     workspace = {
       didChangeWatchedFiles = {

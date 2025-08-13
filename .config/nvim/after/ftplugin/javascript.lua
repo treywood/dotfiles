@@ -4,6 +4,6 @@ local lsp = require('util.lsp')
 lsp.setup {
   name = 'tsserver',
   cmd = { 'typescript-language-server', '--stdio' },
-  root_dir = util.root_pattern { 'package.json' },
+  root_markers = { { 'package.json' }, '.git' },
   init_options = { hostInfo = 'neovim' },
 }
