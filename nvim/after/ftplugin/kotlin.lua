@@ -4,6 +4,6 @@ local util = require('util')
 lsp.setup {
   name = 'kotlin-lsp',
   cmd = { 'kotlin-lsp', '--stdio' },
-  root_dir = util.root_pattern { 'BUILD', 'build.gradle.kts' },
+  root_dir = util.root_pattern { 'BUILD', 'build.gradle.kts', 'build.gradle' },
   single_file_support = true,
 }
