@@ -1,4 +1,3 @@
-local util = require('util')
 local lsp = require('util.lsp')
 
 lsp.setup {

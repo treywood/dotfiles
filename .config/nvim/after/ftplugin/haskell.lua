@@ -1,6 +1,5 @@
 local lsp = require('util.lsp')
 local format = require('util.format')
-local util = require('util')
 
 vim.bo.tabstop = 4
 vim.bo.shiftwidth = 4

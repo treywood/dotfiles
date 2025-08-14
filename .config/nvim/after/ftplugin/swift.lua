@@ -1,5 +1,4 @@
 local lsp = require('util.lsp')
-local util = require('util')
 
 lsp.setup {
   name = 'sourcekit',
