@@ -1,6 +1,5 @@
 local lsp = require('util.lsp')
 local format = require('util.format')
-local util = require('util')
 
 lsp.setup {
   name = 'lua-language-server',

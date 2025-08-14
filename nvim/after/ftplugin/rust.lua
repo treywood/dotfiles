@@ -1,4 +1,3 @@
-local util = require('util')
 local lsp = require('util.lsp')
 local format = require('util.format')
 
