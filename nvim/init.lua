@@ -27,6 +27,8 @@ end, {})
 
 vim.filetype.add {
   extension = {
-    mermaid = 'mmd',
+    mmd = 'mermaid',
+    sq = 'sql',
+    sqm = 'sql',
   },
 }
