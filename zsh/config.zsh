@@ -34,6 +34,30 @@ function zvm_after_init() {
   bindkey '^J' history-substring-search-down
   bindkey '^N' history-substring-search-down
   bindkey '^@' autosuggest-accept
+
+  # Load fzf keybindings after zsh-vi-mode
+  source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+
+  # Custom fzf history search that uses current buffer as initial query
+  fzf-history-widget-with-query() {
+    local selected
+    setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+    selected=( $(fc -rl 1 | awk '{ cmd=$0; sub(/^[ \t]*[0-9]+\**[ \t]+/, "", cmd); if (!seen[cmd]++) print $0 }' |
+      FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} ${FZF_DEFAULT_OPTS-} -n2..,.. --scheme=history --bind=ctrl-r:toggle-sort,ctrl-z:ignore ${FZF_CTRL_R_OPTS-} --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
+    local ret=$?
+    if [ -n "$selected" ]; then
+      num=$selected[1]
+      if [ -n "$num" ]; then
+        zle vi-fetch-history -n $num
+      fi
+    fi
+    zle reset-prompt
+    return $ret
+  }
+  zle -N fzf-history-widget-with-query
+
+  # Bind Alt-R to fzf history search with current buffer as query
+  bindkey '^[r' fzf-history-widget-with-query
 }
 antigen bundle jeffreytse/zsh-vi-mode
 
@@ -43,6 +67,23 @@ antigen apply
 
 POWERLEVEL9k_DISABLE_CONFIGURATION_WIZARD=true
 source ~/.config/zsh/p10k.zsh
+
+# fzf shell integration
+# Note: key-bindings.zsh is loaded in zvm_after_init() to avoid conflicts with zsh-vi-mode
+source "$(brew --prefix)/opt/fzf/shell/completion.zsh"
+
+# fzf configuration
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --info=inline"
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}' --preview-window=right:60%"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:wrap"
+export FZF_ALT_C_OPTS="--preview 'ls -la {}' --preview-window=right:60%"
+
+# Use fd if available for faster file/directory searching
+if command -v fd &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+fi
 
 export GPG_TTY=$(tty)
 export EDITOR="nvim"
@@ -58,5 +99,10 @@ FPATH="$HOME/.completions:$FPATH"
 
 export DEV_HOME="$HOME/workspace/"
 function cdp() {
-  cd "$DEV_HOME/$1"
+  if [ -z "$1" ]; then
+    local dir=$(find "$DEV_HOME" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | fzf --preview 'ls -la {}' --preview-window=right:60%)
+    [ -n "$dir" ] && cd "$dir"
+  else
+    cd "$DEV_HOME/$1"
+  fi
 }
