@@ -29,6 +29,10 @@ export ZVM_VI_SURROUND_BINDKEY='s-prefix'
 export ZVM_VI_HIGHLIGHT_BACKGROUND='#503946'
 export ZVM_VI_HIGHLIGHT_FOREGROUND='#d3c6aa'
 export ZVM_READKEY_ENGINE=$ZVM_READKEY_ENGINE_ZLE
+
+# Load clipboard history widget before zsh-vi-mode
+source ~/.config/zsh/clipboard-history.zsh
+
 function zvm_after_init() {
   bindkey '^K' history-substring-search-up
   bindkey '^P' history-substring-search-up
@@ -38,6 +42,9 @@ function zvm_after_init() {
 
   # Load fzf keybindings after zsh-vi-mode
   source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+
+  # Bind Ctrl-Y to clipboard search
+  bindkey '^Y' fzf-clipboard-widget
 }
 antigen bundle jeffreytse/zsh-vi-mode
 

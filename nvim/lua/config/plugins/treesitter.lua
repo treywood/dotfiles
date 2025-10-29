@@ -53,6 +53,9 @@ return {
           },
         },
       }
+
+      -- Language aliases for treesitter
+      vim.treesitter.language.register('proto', 'protobuf')
     end,
   },
 }
