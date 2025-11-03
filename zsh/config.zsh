@@ -87,7 +87,7 @@ FPATH="$HOME/.completions:$FPATH"
 export DEV_HOME="$HOME/workspace/"
 function cdp() {
   if [ -z "$1" ]; then
-    local dir=$(find "$DEV_HOME" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | fzf --preview 'ls -la {}' --preview-window=right:60%)
+    local dir=$(find "$DEV_HOME" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sed "s|$HOME|~|" | fzf --preview 'ls -la $(echo {} | sed "s|^~|'"$HOME"'|")' --preview-window=right:60% | sed "s|^~|$HOME|")
     [ -n "$dir" ] && cd "$dir"
   else
     cd "$DEV_HOME/$1"

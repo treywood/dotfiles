@@ -113,3 +113,6 @@
 
 [index]
 	skipHash = false
+[user]
+	name = Trey Wood
+	email = treyw@squareup.com
