@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Read(//Users/treyw/**)"
+      "Read(//Users/treyw/**)",
+      "Bash(mkdir -p /Users/treyw/Development/dotfiles/ghostty)",
+      "Bash(cp /Users/treyw/.config/ghostty/config /Users/treyw/Development/dotfiles/ghostty/config)",
+      "Bash(rm /Users/treyw/.config/ghostty/config)",
+      "Bash(ln -s /Users/treyw/Development/dotfiles/ghostty/config /Users/treyw/.config/ghostty/config)"
     ],
     "deny": [],
     "ask": []

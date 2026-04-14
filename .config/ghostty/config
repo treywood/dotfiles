@@ -1,0 +1,59 @@
+# Font
+font-family = "Fira Code Retina"
+# font-family = "FiraCode Nerd Font Ret"
+font-family-bold "Fira Code Bold"
+font-size = 14
+font-feature = +zero
+font-feature = +ss03
+font-feature = +ss09
+font-feature = +cv14
+font-feature = +cv16
+font-thicken = true
+
+# Codepoint mappings
+font-codepoint-map = U+276F,U+276E,U+21E3,U+21E1=FiraCode Nerd Font Ret
+
+adjust-cell-height = 2
+# adjust-cell-width = 1
+
+# Cursor
+cursor-color = #d3c6aa
+cursor-style = block
+cursor-style-blink = false
+
+# Colors
+background = #2b3339
+foreground = #d3c6aa
+
+# Red
+palette = 1=#e67e80
+palette = 9=#e67e80
+
+# Green
+palette = 2=#a7c080
+palette = 10=#a7c080
+
+# Yellow
+palette = 3=#dbbc7f
+palette = 11=#dbbc7f
+
+# Blue
+palette = 4=#7fbbb3
+palette = 12=#7fbbb3
+
+# Magenta
+palette = 5=#d699b6
+palette = 13=#d699b6
+
+# Cyan
+palette = 6=#7fbbb3
+palette = 14=#7fbbb3
+
+# White
+palette = 7=#d3c6aa
+palette = 15=#d3c6aa
+
+# Window
+window-padding-x = 5
+window-padding-y = 0
+macos-titlebar-style = native
