@@ -1,51 +1,75 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
+    lazy = false,
     build = ':TSUpdate',
     dependencies = {
-      'RRethy/nvim-treesitter-endwise',
-      'nvim-treesitter/nvim-treesitter-textobjects',
+      { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'main' },
       'romgrk/nvim-treesitter-context',
       'andymass/vim-matchup',
     },
     config = function()
-      require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'vim', 'lua', 'query', 'python', 'bash', 'http', 'json' },
-        highlight = { enable = true },
-        endwise = { enable = true },
-        matchup = { enable = true },
-        indent = { enable = false },
-        textobjects = {
-          select = {
-            enable = true,
-            lookahead = true,
-            keymaps = {
-              ['af'] = '@function.outer',
-              ['if'] = '@function.inner',
-              ['ak'] = '@block.outer',
-              ['ik'] = '@block.inner',
-            },
-          },
-          move = {
-            enable = true,
-            set_jumps = true,
-            goto_next_start = {
-              [']f'] = '@function.outer',
-              [']r'] = '@request',
-            },
-            goto_next_end = {
-              [']F'] = '@function.outer',
-            },
-            goto_previous_start = {
-              ['[f'] = '@function.outer',
-              ['[r'] = '@request',
-            },
-            goto_previous_end = {
-              ['[F'] = '@function.outer',
-            },
-          },
+      local parsers = { 'vim', 'lua', 'query', 'python', 'bash', 'http', 'json', 'markdown', 'markdown_inline' }
+
+      -- Language aliases for treesitter
+      vim.treesitter.language.register('proto', 'protobuf')
+
+      local treesitter = require('nvim-treesitter')
+      treesitter.setup()
+      treesitter.install(parsers)
+
+      local group = vim.api.nvim_create_augroup('config_treesitter', { clear = true })
+      vim.api.nvim_create_autocmd('FileType', {
+        group = group,
+        callback = function(args)
+          pcall(vim.treesitter.start, args.buf)
+        end,
+      })
+
+      require('nvim-treesitter-textobjects').setup {
+        select = {
+          lookahead = true,
+        },
+        move = {
+          set_jumps = true,
         },
       }
+
+      local select = require('nvim-treesitter-textobjects.select')
+      vim.keymap.set({ 'x', 'o' }, 'af', function()
+        select.select_textobject('@function.outer', 'textobjects')
+      end)
+      vim.keymap.set({ 'x', 'o' }, 'if', function()
+        select.select_textobject('@function.inner', 'textobjects')
+      end)
+      vim.keymap.set({ 'x', 'o' }, 'ak', function()
+        select.select_textobject('@block.outer', 'textobjects')
+      end)
+      vim.keymap.set({ 'x', 'o' }, 'ik', function()
+        select.select_textobject('@block.inner', 'textobjects')
+      end)
+
+      local move = require('nvim-treesitter-textobjects.move')
+      vim.keymap.set({ 'n', 'x', 'o' }, ']f', function()
+        move.goto_next_start('@function.outer', 'textobjects')
+      end)
+      vim.keymap.set({ 'n', 'x', 'o' }, ']r', function()
+        move.goto_next_start('@request', 'textobjects')
+      end)
+      vim.keymap.set({ 'n', 'x', 'o' }, ']F', function()
+        move.goto_next_end('@function.outer', 'textobjects')
+      end)
+      vim.keymap.set({ 'n', 'x', 'o' }, '[f', function()
+        move.goto_previous_start('@function.outer', 'textobjects')
+      end)
+      vim.keymap.set({ 'n', 'x', 'o' }, '[r', function()
+        move.goto_previous_start('@request', 'textobjects')
+      end)
+      vim.keymap.set({ 'n', 'x', 'o' }, '[F', function()
+        move.goto_previous_end('@function.outer', 'textobjects')
+      end)
+
       require('treesitter-context').setup {
         patterns = {
           ruby = {
@@ -53,9 +77,6 @@ return {
           },
         },
       }
-
-      -- Language aliases for treesitter
-      vim.treesitter.language.register('proto', 'protobuf')
     end,
   },
 }

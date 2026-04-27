@@ -23,7 +23,7 @@ vim.o.cursorline = false
 vim.o.splitright = true
 
 vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.o.foldlevelstart = 99
 
 vim.g.mapleader = ','
