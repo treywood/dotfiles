@@ -2,33 +2,105 @@
 input=$(cat)
 
 cwd=$(echo "$input" | jq -r '.cwd // .workspace.current_dir // ""')
-model=$(echo "$input" | jq -r '.model.display_name // ""')
-used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
-vim_mode=$(echo "$input" | jq -r '.vim.mode // empty')
 
-# Shorten cwd: replace $HOME with ~
-home="$HOME"
-short_cwd=" ${cwd/#$home/~}"
+RESET='\033[0m'
+CYAN='\033[36m'
+GREEN='\033[32m'
+YELLOW='\033[33m'
+RED='\033[31m'
+GREY='\033[90m'
 
-# Git branch (skip optional locks to avoid stalling)
+# Root cwd in nearest git ancestor when in a repo; otherwise home-relative.
+git_root=$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null)
+if [ -n "$git_root" ]; then
+  repo_name="${git_root##*/}"
+  rel="${cwd#$git_root}"
+  short_cwd="${repo_name}${rel}"
+else
+  short_cwd="${cwd/#$HOME/~}"
+fi
+
+# Git status (porcelain v2 — single call gives branch, upstream, ahead/behind, file states)
 git_info=""
-if git -C "$cwd" rev-parse --git-dir > /dev/null 2>&1; then
-  branch=$(git -C "$cwd" -c core.fsmonitor=false symbolic-ref --short HEAD 2>/dev/null || git -C "$cwd" -c core.fsmonitor=false rev-parse --short HEAD 2>/dev/null)
+if [ -n "$git_root" ]; then
+  status=$(GIT_OPTIONAL_LOCKS=0 git -C "$cwd" -c core.fsmonitor=false \
+    status --porcelain=v2 --branch --ignore-submodules=all 2>/dev/null)
+
+  branch=""
+  upstream=""
+  ahead=0
+  behind=0
+  staged=0
+  unstaged=0
+  untracked=0
+  conflicted=0
+
+  while IFS= read -r line; do
+    case "$line" in
+      "# branch.head "*)
+        branch="${line#\# branch.head }"
+        ;;
+      "# branch.upstream "*)
+        upstream="${line#\# branch.upstream }"
+        ;;
+      "# branch.ab "*)
+        ab="${line#\# branch.ab }"
+        a="${ab%% *}"
+        b="${ab##* }"
+        ahead="${a#+}"
+        behind="${b#-}"
+        ;;
+      "1 "*|"2 "*)
+        rest="${line#? }"
+        xy="${rest%% *}"
+        x="${xy%?}"
+        y="${xy#?}"
+        [ "$x" != "." ] && staged=$((staged+1))
+        [ "$y" != "." ] && unstaged=$((unstaged+1))
+        ;;
+      "u "*)
+        conflicted=$((conflicted+1))
+        ;;
+      "? "*)
+        untracked=$((untracked+1))
+        ;;
+    esac
+  done <<EOF
+$status
+EOF
+
+  # Detached HEAD or unborn branch — show short SHA, no branch icon.
+  branch_icon=" "
+  if [ -z "$branch" ] || [ "$branch" = "(detached)" ]; then
+    sha=$(git -C "$cwd" -c core.fsmonitor=false rev-parse --short HEAD 2>/dev/null)
+    [ -n "$sha" ] && branch="@${sha}"
+    branch_icon=""
+  fi
+
+  stashes=$(git -C "$cwd" -c core.fsmonitor=false rev-list --walk-reflogs --count refs/stash 2>/dev/null)
+  [ -z "$stashes" ] && stashes=0
+
   if [ -n "$branch" ]; then
-    dirty=$(git -C "$cwd" -c core.fsmonitor=false status --porcelain 2>/dev/null | head -1)
-    if [ -n "$dirty" ]; then
-      git_info=" ( $branch *)"
-    else
-      git_info=" ( $branch)"
+    parts="${GREEN}${branch_icon}${branch}${RESET}"
+
+    # Show upstream only if its short name differs from local branch
+    if [ -n "$upstream" ]; then
+      short_up="${upstream#*/}"
+      if [ "$short_up" != "$branch" ]; then
+        parts="${parts}${GREY}:${GREEN}${upstream}${RESET}"
+      fi
     fi
+
+    [ "$behind" -gt 0 ] && parts="${parts} ${GREEN}⇣${behind}${RESET}"
+    [ "$ahead" -gt 0 ]  && parts="${parts} ${GREEN}⇡${ahead}${RESET}"
+    [ "$stashes" -gt 0 ]    && parts="${parts} ${GREEN}*${stashes}${RESET}"
+    [ "$conflicted" -gt 0 ] && parts="${parts} ${RED}~${conflicted}${RESET}"
+    [ "$staged" -gt 0 ]     && parts="${parts} ${YELLOW}+${staged}${RESET}"
+    [ "$unstaged" -gt 0 ]   && parts="${parts} ${YELLOW}!${unstaged}${RESET}"
+    [ "$untracked" -gt 0 ]  && parts="${parts} ${GREEN}?${untracked}${RESET}"
+
+    git_info=" ${parts}"
   fi
 fi
 
-# Context usage
-ctx_info=""
-if [ -n "$used_pct" ]; then
-  ctx_int=$(printf "%.0f" "$used_pct")
-  ctx_info=" ctx:${ctx_int}%"
-fi
-
-printf "%s%s\n%s%s" "$short_cwd" "$git_info" "$model" "$ctx_info"
+printf '%b\n' "${CYAN}${short_cwd}${RESET}${git_info}"
