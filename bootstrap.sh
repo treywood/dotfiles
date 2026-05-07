@@ -292,6 +292,10 @@ create_symlink "$DOTFILES_DIR/bat" "$HOME/.config/bat" "Bat config"
 create_symlink "$DOTFILES_DIR/.ideavimrc" "$HOME/.ideavimrc" "IdeaVim config"
 create_symlink "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig" "Git config"
 
+# Symlink Claude Code config
+create_symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json" "Claude Code settings"
+create_symlink "$DOTFILES_DIR/claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh" "Claude Code statusline script"
+
 # Check if zsh config is sourced in .zshrc
 echo
 info "Checking .zshrc configuration..."
