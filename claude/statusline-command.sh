@@ -10,18 +10,13 @@ YELLOW='\033[33m'
 RED='\033[31m'
 GREY='\033[90m'
 
-# Root cwd in nearest git ancestor when in a repo; otherwise home-relative.
-git_root=$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null)
-if [ -n "$git_root" ]; then
-  repo_name="${git_root##*/}"
-  rel="${cwd#$git_root}"
-  short_cwd="${repo_name}${rel}"
-else
-  short_cwd="${cwd/#$HOME/~}"
-fi
+short_cwd="${cwd/#$DEV_HOME}"
+short_cwd="${short_cwd/#$HOME/~}"
+short_cwd="${short_cwd#/}"
 
 # Git status (porcelain v2 — single call gives branch, upstream, ahead/behind, file states)
 git_info=""
+git_root=$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null)
 if [ -n "$git_root" ]; then
   status=$(GIT_OPTIONAL_LOCKS=0 git -C "$cwd" -c core.fsmonitor=false \
     status --porcelain=v2 --branch --ignore-submodules=all 2>/dev/null)
