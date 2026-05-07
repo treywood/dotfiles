@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod +x /Users/treyw/Development/dotfiles/claude/statusline-command.sh)",
+      "Bash(/Users/treyw/Development/dotfiles/claude/statusline-command.sh)",
+      "Bash(git *)"
+    ]
+  }
+}
