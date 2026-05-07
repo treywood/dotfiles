@@ -87,3 +87,5 @@ function cdp() {
     cd "$DEV_HOME/$1"
   fi
 }
+
+export CLAUDE_CODE_NO_FLICKER=1
