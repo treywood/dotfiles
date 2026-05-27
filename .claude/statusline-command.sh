@@ -86,8 +86,9 @@ EOF
       fi
     fi
 
-    [ "$behind" -gt 0 ] && parts="${parts} ${GREEN}⇣${behind}${RESET}"
-    [ "$ahead" -gt 0 ]  && parts="${parts} ${GREEN}⇡${ahead}${RESET}"
+    parts="${parts} "
+    [ "$behind" -gt 0 ] && parts="${parts}${GREEN}⇣${behind}${RESET}"
+    [ "$ahead" -gt 0 ]  && parts="${parts}${GREEN}⇡${ahead}${RESET}"
     [ "$stashes" -gt 0 ]    && parts="${parts} ${GREEN}*${stashes}${RESET}"
     [ "$conflicted" -gt 0 ] && parts="${parts} ${RED}~${conflicted}${RESET}"
     [ "$staged" -gt 0 ]     && parts="${parts} ${YELLOW}+${staged}${RESET}"
