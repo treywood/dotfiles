@@ -1,28 +1,26 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-source "$(brew --prefix)/share/antigen/antigen.zsh"
-
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 
-antigen bundle git
-antigen bundle command-not-found
+# Plugins are vendored as git submodules under zsh/plugins/.
+# ${0:A:h} = the directory of this sourced file.
+ZSH_PLUGINS="${0:A:h}/plugins"
 
+# zsh-tab-title
 export ZSH_TAB_TITLE_DEFAULT_DISABLE_PREFIX=true
 export ZSH_TAB_TITLE_ADDITIONAL_TERMS='kitty'
-antigen bundle trystan2k/zsh-tab-title@main
+source "$ZSH_PLUGINS/zsh-tab-title/zsh-tab-title.plugin.zsh"
 
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zdharma-continuum/fast-syntax-highlighting
+# zsh-autosuggestions
+source "$ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
+# fast-syntax-highlighting (must be sourced before history-substring-search)
+source "$ZSH_PLUGINS/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+
+# zsh-history-substring-search (must be sourced after syntax highlighting)
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='underline'
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=red,underline'
-antigen bundle zsh-users/zsh-history-substring-search
+source "$ZSH_PLUGINS/zsh-history-substring-search/zsh-history-substring-search.zsh"
 
+# zsh-vi-mode (load last; it wraps other plugins' widgets via its after-init hook)
 export ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 export ZVM_VI_SURROUND_BINDKEY='s-prefix'
 export ZVM_VI_HIGHLIGHT_BACKGROUND='#503946'
@@ -39,14 +37,19 @@ function zvm_after_init() {
   # Load fzf keybindings after zsh-vi-mode
   source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 }
-antigen bundle jeffreytse/zsh-vi-mode
+source "$ZSH_PLUGINS/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
 
-antigen theme romkatv/powerlevel10k
+eval "$(starship init zsh)"
 
-antigen apply
-
-POWERLEVEL9k_DISABLE_CONFIGURATION_WIZARD=true
-source ~/.config/zsh/p10k.zsh
+# Make Ctrl-L (and cmd+k via cmux/ghostty) redraw the FULL multi-line prompt.
+# Default zsh clear-screen widget only redisplays the current edit line, which
+# for starship's two-line prompt means you'd only see `❯` after a clear.
+function _clear-screen-full-redraw() {
+    print -n '\e[H\e[2J\e[3J'
+    zle reset-prompt
+    zle -R
+}
+zle -N clear-screen _clear-screen-full-redraw
 
 # fzf shell integration
 # Note: key-bindings.zsh is loaded in zvm_after_init() to avoid conflicts with zsh-vi-mode
@@ -67,6 +70,10 @@ fi
 
 export GPG_TTY=$(tty)
 export EDITOR="nvim"
+
+# Prevent prompt-side git calls (starship) from blocking on locks held by
+# concurrent git operations in huge repos like android-register.
+export GIT_OPTIONAL_LOCKS=0
 
 export JQ_COLORS="0;35:0;35:0;35:0;39:0;32:0;39:0;39"
 export JQ_PAGER="jqp"

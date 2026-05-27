@@ -12,6 +12,9 @@ font-thicken = true
 
 # Codepoint mappings
 font-codepoint-map = U+276F,U+276E,U+21E3,U+21E1=FiraCode Nerd Font Ret
+# Nerd Font icon ranges (powerline, devicons, font-awesome, material design, etc.)
+font-codepoint-map = U+E000-U+F8FF=FiraCode Nerd Font
+font-codepoint-map = U+F0000-U+FFFFD=FiraCode Nerd Font
 
 adjust-cell-height = 2
 # adjust-cell-width = 1
@@ -57,3 +60,9 @@ palette = 15=#d3c6aa
 window-padding-x = 5
 window-padding-y = 0
 macos-titlebar-style = native
+
+# Keybinds
+# Send Ctrl-L on cmd+k so the shell's clear-screen widget runs and redraws the
+# full multi-line prompt (default cmd+k only clears visually without notifying
+# the shell, leaving only the last prompt line visible).
+keybind = cmd+k=text:\x0c

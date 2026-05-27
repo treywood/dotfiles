@@ -1,0 +1,126 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """${custom.cwd}\
+$git_branch$git_status\
+$line_break\
+$character"""
+
+right_format = """$cmd_duration$jobs$status"""
+
+add_newline = false
+command_timeout = 5000
+
+palette = "everforest"
+
+[palettes.everforest]
+bg        = "#2b3339"
+fg        = "#d3c6aa"
+red       = "#e67e80"
+green     = "#a7c080"
+yellow    = "#dbbc7f"
+blue      = "#7fbbb3"
+magenta   = "#d699b6"
+cyan      = "#83c092"
+gray      = "#859289"
+
+[fill]
+symbol = " "
+
+[directory]
+# Replaced by [custom.cwd] so worktree-collection roots (android-register/master)
+# can be shown above the worktree root.
+disabled = true
+
+[custom.cwd]
+description = "Path anchored at the worktree-collection root (parent of .git/.bare)"
+when = "true"
+shell = ["zsh", "--no-rcs", "--no-globalrcs"]
+command = '''
+gd=$(git rev-parse --git-common-dir 2>/dev/null)
+if [[ -z "$gd" ]]; then
+    print -rn -- "${PWD/#$HOME/~}"
+else
+    [[ "$gd" != /* ]] && gd="$PWD/$gd"
+    collection=${gd:a:h}
+    if [[ "$PWD" == "$collection" ]]; then
+        print -rn -- "${collection:t}"
+    else
+        print -rn -- "${collection:t}${PWD#$collection}"
+    fi
+fi
+'''
+format = "[$output]($style) "
+style = "blue bold"
+
+[git_branch]
+symbol = " "
+style = "green"
+format = "[on ](gray)[$symbol$branch]($style)"
+
+[git_status]
+format = '( [$ahead_behind](green))( [$stashed](green))( [$conflicted](red))( [$staged](yellow))( [$modified](yellow))( [$untracked](green))'
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇣${behind_count}⇡${ahead_count}"
+stashed = "*${count}"
+conflicted = "~${count}"
+staged = "+${count}"
+modified = "!${count}"
+untracked = "?${count}"
+up_to_date = ""
+deleted = ""
+renamed = ""
+typechanged = ""
+
+[character]
+success_symbol = "[❯](green bold)"
+error_symbol   = "[❯](red bold)"
+vimcmd_symbol  = "[❮](yellow bold)"
+
+[cmd_duration]
+min_time = 2_000
+style = "yellow"
+format = "[ $duration]($style) "
+
+[jobs]
+symbol = "✦ "
+style = "magenta"
+number_threshold = 1
+format = "[$symbol$number]($style) "
+
+[status]
+disabled = false
+style = "red bold"
+symbol = "✖ "
+format = "[$symbol$status]($style)"
+
+[python]
+symbol = "󰌠 "
+style = "yellow"
+format = '[$symbol($virtualenv )]($style)'
+detect_extensions = []
+detect_files = []
+detect_folders = []
+
+[kubernetes]
+disabled = false
+symbol = "⎈ "
+style = "blue"
+format = '[$symbol$context( \($namespace\))]($style) '
+detect_files = ["k8s", "kustomization.yaml", "Chart.yaml"]
+
+[terraform]
+symbol = "💠 "
+style = "magenta"
+format = "[$symbol$workspace]($style) "
+
+[aws]
+symbol = "󰸏 "
+style = "yellow"
+format = '[$symbol($profile )(\($region\) )]($style)'
+
+[gcloud]
+symbol = "☁️ "
+style = "blue"
+format = '[$symbol$account(@$domain)(\($project\))]($style) '
+disabled = false

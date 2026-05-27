@@ -94,6 +94,7 @@
 	pager = delta
 	editor = nvim
 	fsmonitor = true
+	untrackedCache = true
 
 [delta]
 	plus-style = syntax "#012800"

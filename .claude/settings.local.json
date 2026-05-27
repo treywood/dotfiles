@@ -3,7 +3,34 @@
     "allow": [
       "Bash(chmod +x /Users/treyw/Development/dotfiles/claude/statusline-command.sh)",
       "Bash(/Users/treyw/Development/dotfiles/claude/statusline-command.sh)",
-      "Bash(git *)"
+      "Bash(git *)",
+      "Read(//Users/treyw/.config/**)",
+      "Bash(starship --version)",
+      "Bash(ln -s /Users/treyw/Development/dotfiles/starship.toml ~/.config/starship.toml)",
+      "Bash(zsh -i -c 'echo OK; exit')",
+      "Bash(fc-list)",
+      "Bash(fc-query -f \"%{family} | %{postscriptname} | %{style}\\\\n\" /Users/treyw/Library/Fonts/FiraCodeNerdFont-Retina.ttf)",
+      "Bash(awk '/\\\\[git_branch\\\\]/,/^\\\\[/' /Users/treyw/Development/dotfiles/starship.toml)",
+      "Bash(python3 -c \"import sys; line = sys.stdin.read\\(\\); import re; m = re.search\\(r'\\\\\"\\(.*?\\)\\\\\"', line\\); s = m.group\\(1\\) if m else ''; print\\(repr\\(s\\)\\); [print\\(f'  {c!r} = U+{ord\\(c\\):04X}'\\) for c in s]\")",
+      "Bash(python3 *)",
+      "Bash(starship explain *)",
+      "Bash(starship config *)",
+      "Bash(timeout 5 starship prompt)",
+      "Bash(echo \"---exit $?---\")",
+      "Bash(cmux --version)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:cmux.io)",
+      "WebFetch(domain:github.com)",
+      "Bash(zsh -i -c 'echo \"chpwd_functions: $chpwd_functions\"; echo \"precmd_functions: $precmd_functions\"')",
+      "Bash(zsh -i -c 'declare -f change_hermit_env')",
+      "Bash(starship init *)",
+      "WebFetch(domain:cmux.com)",
+      "Bash(timeout 5 starship prompt --terminal-width=200)",
+      "Bash(timeout 5 starship prompt --right --terminal-width=200)",
+      "Bash(awk 'NR>=55 && NR<=58' /Users/treyw/Development/dotfiles/starship.toml)",
+      "Bash(xxd)",
+      "Bash(timeout 5 starship prompt --terminal-width=120)",
+      "Bash(zsh -i -c 'echo OK; echo \"loaded widgets check:\"; bindkey | grep -E \"history-substring-search-up|autosuggest-accept\" | head -4; echo \"vi-mode active: $ZVM_VERSION\"; echo \"autosuggestions: ${ZSH_AUTOSUGGEST_USE_ASYNC:-\\(default\\)}\"; echo \"starship loaded: $STARSHIP_SHELL\"')"
     ]
   }
 }
