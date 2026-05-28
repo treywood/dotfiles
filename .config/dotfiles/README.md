@@ -14,7 +14,7 @@ cd ~/Development/dotfiles
 
 The bootstrap script will:
 - Install Homebrew (if not already installed)
-- Install essential tools: Neovim, Kitty, bat, fzf, fd, ripgrep, starship
+- Install essential tools: Neovim, bat, fzf, fd, ripgrep, starship
 - Install Fira Code font (regular and Nerd Font variant)
 - Set up fzf shell integration
 - Initialize vendored zsh plugin submodules under `zsh/plugins/`
@@ -27,7 +27,6 @@ The bootstrap script will:
 
 ### Configuration Directories (symlinked to `~/.config/`)
 - **nvim/** - Neovim configuration with Lua (lazy.nvim)
-- **kitty/** - Kitty terminal emulator settings
 - **ghostty/** - Ghostty terminal emulator settings
 - **zsh/** - Zsh shell configuration and vendored plugins
 - **bat/** - Bat (cat alternative) configuration and themes
@@ -56,9 +55,6 @@ The bootstrap script automatically installs:
 - **fd** - Fast find alternative
 - **ripgrep** - Fast grep alternative
 - **starship** - Cross-shell prompt (configured via `starship.toml`)
-
-### Via Official Installers
-- **Kitty** - GPU-based terminal emulator (installed to `~/.local/kitty.app`)
 
 ### Fonts (via Homebrew Casks)
 - **Fira Code** - Monospaced font with programming ligatures
@@ -118,7 +114,7 @@ include the date and time of the backup.
 To restore a backup:
 ```bash
 # Remove symlinks
-rm ~/.config/nvim ~/.config/kitty ~/.config/ghostty # etc...
+rm ~/.config/nvim ~/.config/ghostty # etc...
 
 # Restore from backup
 cp -r ~/.dotfiles-backup-TIMESTAMP/* ~/
@@ -130,7 +126,6 @@ cp -r ~/.dotfiles-backup-TIMESTAMP/* ~/
 dotfiles/
 ├── bootstrap.sh         # Setup script for new machines
 ├── nvim/                # Neovim configuration
-├── kitty/               # Kitty terminal config
 ├── ghostty/             # Ghostty terminal config
 ├── zsh/                 # Zsh configuration
 │   ├── config.zsh       # Main zsh config file
