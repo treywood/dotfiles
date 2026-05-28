@@ -9,6 +9,4 @@ vim.keymap.set('n', 'mm', 'gcc', { remap = true, silent = true })
 
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', opts)
 
-vim.keymap.set('i', '<C-n>', "<cmd>lua require('luasnip').change_choice(1)<cr>", opts)
-
 vim.keymap.set({ 'v', 'n' }, 'm', 'gc', { remap = true, silent = true })
