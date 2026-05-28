@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+#
+# macOS system defaults. Run on a fresh machine (or whenever you want):
+#
+#     ./macos-defaults
+#
+# Most settings need a logout or relaunch of the affected app to fully apply.
+# Affected apps are killed at the end of the script.
+#
+# Each block is grouped by domain. Comment out anything you don't want.
+# To discover what a setting did before you changed it:
+#     defaults read <domain> <key>
+# To explore every domain:
+#     defaults domains | tr ',' '\n'
+
+set -euo pipefail
+
+# Ask for admin password upfront and keep alive until script finishes.
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+###############################################################################
+# Keyboard / input
+###############################################################################
+
+# Fast key repeat (lower = faster). Apple's UI minimum is 2; 1 is faster still.
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+
+# Disable press-and-hold for keys in favor of key repeat (needed for vim motion).
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+# Disable smart quotes/dashes/autocorrect — they corrupt code in random text fields.
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
+###############################################################################
+# Finder
+###############################################################################
+
+# Show all filename extensions.
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Show hidden files (cmd-shift-. also toggles).
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Show path bar and status bar.
+defaults write com.apple.finder ShowPathbar -bool true
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Search the current folder by default instead of "This Mac".
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Avoid creating .DS_Store on network/USB volumes.
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+###############################################################################
+# Dock
+###############################################################################
+
+# Auto-hide dock, minimal hide delay.
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock autohide-time-modifier -float 0.15
+
+# Don't show recent apps section.
+defaults write com.apple.dock show-recents -bool false
+
+###############################################################################
+# Screenshots
+###############################################################################
+
+# Save screenshots to ~/Screenshots instead of ~/Desktop.
+mkdir -p "$HOME/Screenshots"
+defaults write com.apple.screencapture location -string "$HOME/Screenshots"
+
+# Save as PNG (alternatives: jpg, pdf, tiff).
+defaults write com.apple.screencapture type -string "png"
+
+# Disable the floating thumbnail after capture.
+defaults write com.apple.screencapture show-thumbnail -bool false
+
+###############################################################################
+# Misc
+###############################################################################
+
+# Expand save/print dialogs by default.
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+
+# Disable the "Are you sure you want to open this application?" dialog.
+defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+###############################################################################
+# Relaunch affected apps
+###############################################################################
+
+for app in Finder Dock SystemUIServer; do
+    killall "$app" 2>/dev/null || true
+done
+
+echo
+echo "Done. A few settings only take effect after logout."

@@ -8,3 +8,6 @@ nvim/plugin/
 kitty/*.session
 
 zsh/*.zwc
+
+# Claude Code per-machine permission grants — never share across machines
+**/settings.local.json

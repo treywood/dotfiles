@@ -1,15 +1,20 @@
 ## Quick Start
 
+```bash
+./bootstrap.sh       # install + symlink everything
+./macos-defaults     # opt-in: set sensible macOS system defaults
+```
+
 The bootstrap script will:
 - Install Homebrew (if not already installed)
-- Install essential tools: Neovim, bat, fzf, fd, ripgrep, starship
-- Install Fira Code font (regular and Nerd Font variant)
+- `brew bundle install` everything in [`Brewfile`](Brewfile) (CLI tools, ghostty, Monaspace fonts)
 - Set up fzf shell integration
 - Initialize vendored zsh plugin submodules under `zsh/plugins/`
 - Prompt for and create your development directory (default: `~/workspace/`)
 - Create `~/.local/bin` and `~/.completions` directories
 - Create symlinks for all configuration directories and files
 - Backup any existing configurations to `~/.dotfiles-backup-TIMESTAMP`
+- Append a managed block to `~/.zshrc` that sources `zsh/config.zsh`
 
 ## What's Included
 
@@ -33,21 +38,23 @@ The bootstrap script will:
 
 ## What Gets Installed
 
-The bootstrap script automatically installs:
+Everything in [`Brewfile`](Brewfile). Edit that file to add or remove packages —
+`./bootstrap.sh` will pick up the changes on re-run, and `brew bundle dump
+--file=Brewfile --force` lets you snapshot the current state.
 
-### Via Homebrew
-- **Neovim** - Modern Vim-based text editor
-- **bat** - Cat clone with syntax highlighting
-- **fzf** - Fuzzy finder for command line
-- **fd** - Fast find alternative
-- **ripgrep** - Fast grep alternative
-- **starship** - Cross-shell prompt (configured via `starship.toml`)
-- **git-delta** - Syntax-highlighting pager for git diffs (referenced by `.gitconfig`)
-- **jq** / **jqp** - JSON processor and TUI playground (referenced by `zsh/config.zsh`)
+To remove things you've taken out of the Brewfile:
 
-### Fonts (via Homebrew Casks)
-- **Fira Code** - Monospaced font with programming ligatures
-- **Fira Code Nerd Font** - Fira Code with extra glyphs for powerline/icons
+```bash
+brew bundle cleanup --file=Brewfile        # dry run
+brew bundle cleanup --file=Brewfile --force # actually uninstall
+```
+
+## macOS Defaults
+
+`./macos-defaults` applies a curated set of `defaults write` commands —
+keyboard repeat speed, Finder visibility tweaks, screenshot location, etc.
+It's not run by `bootstrap.sh`; open it, comment out anything you don't want,
+then run it. Most settings only take full effect after logout.
 
 ## Zsh Plugins
 
@@ -102,17 +109,17 @@ creating symlinks. Backups are stored in `~/.dotfiles-backup-TIMESTAMP/`,
 mirroring the original paths under `$HOME` (e.g. `~/.config/nvim` is backed
 up to `~/.dotfiles-backup-TIMESTAMP/.config/nvim`).
 
-To restore a backup:
-```bash
-# Remove the dotfiles symlinks first — otherwise cp follows them.
-rm -f ~/.gitconfig \
-      ~/.config/nvim ~/.config/ghostty ~/.config/zsh \
-      ~/.config/bat ~/.config/starship.toml \
-      ~/.claude/settings.json ~/.claude/statusline-command.sh
+Use `./restore` to undo the bootstrap symlinks and (optionally) put the
+backup back:
 
-# Copy the backup tree back into $HOME (the /. copies contents, not the dir).
-cp -a ~/.dotfiles-backup-TIMESTAMP/. ~/
+```bash
+./restore                              # just remove the dotfiles symlinks
+./restore ~/.dotfiles-backup-20260101  # also copy the backup tree back into $HOME
 ```
+
+`./restore` leaves Brew packages and zsh plugin submodules alone — uninstall
+those with `brew bundle cleanup --file=Brewfile --force` if you want a fully
+clean machine.
 
 ## Managing Neovim Plugins
 
@@ -124,13 +131,24 @@ Two helper scripts at the repo root manage them:
 
 Both print follow-up steps for wiring the plugin into `nvim/lua/config/plugins.lua`.
 
+## Pre-Commit Hook
+
+`bootstrap.sh` installs `hooks/pre-commit` as a symlink under `.git/hooks/`.
+It runs `shellcheck` on any staged shell scripts (detected by extension or
+shebang) and blocks the commit on findings. Edit `hooks/pre-commit` to change
+behavior — changes take effect immediately since it's symlinked.
+
 ## Structure
 
 ```
 dotfiles/
 ├── bootstrap.sh         # Setup script for new machines
+├── restore              # Undo bootstrap symlinks (optionally restore a backup)
+├── macos-defaults       # Opt-in `defaults write` settings for macOS
 ├── add-plugin           # Add a vendored nvim plugin (git submodule)
 ├── remove-plugin        # Remove a vendored nvim plugin
+├── Brewfile             # Packages/casks installed by `brew bundle`
+├── hooks/               # Git hooks symlinked into .git/hooks by bootstrap
 ├── nvim/                # Neovim configuration
 ├── ghostty/             # Ghostty terminal config
 ├── zsh/                 # Zsh configuration

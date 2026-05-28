@@ -54,7 +54,3 @@ macos-titlebar-style = native
 
 # Send ctrl-L on cmd+k
 keybind = cmd+k=text:\x0c
-
-quick-terminal-position = top
-quick-terminal-animation-duration = 0.1
-keybind = global:cmd+backslash=toggle_quick_terminal

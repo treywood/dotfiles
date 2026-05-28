@@ -84,12 +84,10 @@ fi
 export GPG_TTY=$(tty)
 export EDITOR="nvim"
 
-# Prevent prompt-side git calls (starship) from blocking on locks held by
-# concurrent git operations in huge repos like android-register.
+# Prevent prompt-side git calls (starship) from blocking on locks
 export GIT_OPTIONAL_LOCKS=0
 
 export JQ_COLORS="0;35:0;35:0;35:0;39:0;32:0;39:0;39"
-export JQ_PAGER="jqp"
 
 export PATH="/usr/local/sbin:$PATH"
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
