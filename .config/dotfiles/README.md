@@ -33,7 +33,6 @@ The bootstrap script will:
 - **starship.toml** - Cross-shell prompt configuration
 
 ### Dotfiles (symlinked to `~/`)
-- **.ideavimrc** - IntelliJ IdeaVim plugin configuration
 - **.gitconfig** - Git configuration and aliases
 
 ### Claude Code (symlinked to `~/.claude/`)
@@ -41,7 +40,6 @@ The bootstrap script will:
 - **claude/statusline-command.sh** - Custom statusline script
 
 ### Other Files
-- **Everforest-Hard-Dark.icls** - IntelliJ color scheme
 - **.luarc.json** - Lua language server configuration
 
 ## What Gets Installed
@@ -134,7 +132,6 @@ dotfiles/
 ├── bat/                 # Bat configuration
 ├── claude/              # Claude Code settings + statusline
 ├── starship.toml        # Starship prompt config
-├── .ideavimrc           # IdeaVim config
 └── .gitconfig           # Git configuration
 ```
 
