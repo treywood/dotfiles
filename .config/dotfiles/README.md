@@ -1,16 +1,4 @@
-# Dotfiles
-
-Personal configuration files for macOS development environment.
-
 ## Quick Start
-
-To bootstrap a new machine with these dotfiles:
-
-```bash
-git clone --recurse-submodules https://github.com/yourusername/dotfiles.git ~/Development/dotfiles
-cd ~/Development/dotfiles
-./bootstrap.sh
-```
 
 The bootstrap script will:
 - Install Homebrew (if not already installed)
