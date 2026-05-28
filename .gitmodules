@@ -76,3 +76,6 @@
 [submodule "nvim/pack/vendor/start/vim-test"]
 	path = nvim/pack/vendor/start/vim-test
 	url = git@github.com:vim-test/vim-test.git
+[submodule "zsh/plugins/fzf-tab"]
+	path = zsh/plugins/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab.git

@@ -12,6 +12,10 @@ export ZSH_TAB_TITLE_DEFAULT_DISABLE_PREFIX=true
 export ZSH_TAB_TITLE_ADDITIONAL_TERMS='kitty'
 source "$ZSH_PLUGINS/zsh-tab-title/zsh-tab-title.plugin.zsh"
 
+# fzf-tab (must load after compinit, before plugins that wrap widgets)
+autoload -Uz compinit && compinit
+source "$ZSH_PLUGINS/fzf-tab/fzf-tab.plugin.zsh"
+
 # zsh-autosuggestions
 source "$ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
@@ -101,3 +105,4 @@ function cdp() {
 }
 
 export CLAUDE_CODE_NO_FLICKER=1
+export MANPAGER="nvim +Man!"

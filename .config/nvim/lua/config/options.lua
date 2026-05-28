@@ -21,6 +21,7 @@ vim.o.termguicolors = true
 vim.o.updatetime = 100
 vim.o.cursorline = false
 vim.o.splitright = true
+vim.o.winborder = 'rounded'
 
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
