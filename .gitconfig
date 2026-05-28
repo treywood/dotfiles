@@ -1,7 +1,33 @@
+[user]
+	name = Trey Wood
+	email = treyw@squareup.com
+
+[core]
+	pager = delta
+	editor = nvim
+	fsmonitor = true
+	untrackedCache = true
+
 [push]
-	config = default
 	default = simple
-  autosetupremote = true
+	autosetupremote = true
+
+[pull]
+	rebase = true
+
+[branch]
+	autosetupmerge = true
+
+[merge]
+	summary = true
+	conflictstyle = zdiff3
+
+[rebase]
+	autosquash = true
+	autostash = true
+
+[rerere]
+	enabled = 1
 
 [diff]
 	renames = true
@@ -10,101 +36,14 @@
 [status]
 	showUntrackedFiles = normal
 
-[branch]
-	autosetupmerge = true
-
-[merge]
-	summary = true
-	conflictstyle = diff3
-
-[rebase]
-	autosquash = true
-	autostash = true
+[log]
+	mailmap = true
 
 [color]
 	diff = auto
 	status = auto
 	branch = auto
 	interactive = auto
-
-[alias]
-	c = commit -m
-	a = add
-	di = diff
-	dic = diff --cached
-	pl = pull
-	ps = push
-	plre = pull --rebase
-	s = status
-	st = status
-	out = log origin..HEAD
-	ci = commit
-	co = checkout
-	cp = cherry-pick
-	b = branch
-	changed = diff --name-status -r
-	add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
-	au = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
-	ch = diff --name-status -r
-	cosu = !sh -c 'git checkout $0 && git submodule update --init'
-	ignored = "!git ls-files --others --exclude-standard"
-	lg = log --all --graph --abbrev-commit --date=relative --pretty=format:'%C(bold blue)%h - %C(reset)%C(green)(%ar)%C(reset) - %s %C(dim)- %an%C(reset)%C(yellow)%d'
-	lgb = log --graph --abbrev-commit --date=relative --pretty=format:'%C(bold blue)%h - %C(reset)%C(green)(%ar)%C(reset) - %s %C(dim)- %an%C(reset)%C(yellow)%d'
-	track = !sh -c 'git branch --track "$0" "origin/$0" && git checkout "$0"'
-	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
-	touchdown = merge --no-ff
-	integrate = merge --no-ff
-	td = merge --no-ff
-	lastauthor = log -1 --format='%Cgreen%an <%ae>'
-	reauthor = commit --amend --reset-author -C HEAD
-	publish = push -u
-	tree = log --graph --decorate --pretty=oneline --abbrev-commit
-	hist = log --pretty=format:\"%C(yellow)%h %ad%Creset | %s%C(bold red)%d%Creset [%C(bold blue)%an%Creset]\" --graph --date=short
-	cleanup-branches = !sh -c 'git branch --merged | grep -v ^* | xargs -n 1 git branch -d'
-	pf = push --force-with-lease
-	nit = commit --amend --no-edit
-	praise = blame
-	git = !exec git
-	lb = branch -v --sort=committerdate
-
-[rerere]
-	enabled = 1
-
-[pull]
-	rebase = true
-
-[feature]
-	manyFiles = true
-
-[log]
-	mailmap = true
-
-[alias]
-	co = checkout
-	cma = commit -a -m
-	st = status
-	br = branch
-	f = fetch
-	up = !git pull --rebase --autostash && git submodule init && git submodule update
-	nvm = !git add . && git reset --hard
-        rbi = rebase -i
-	l = "log -i -n 10 --format='%C(auto) %>(12,trunc)%aL | %h %s' --abbrev-commit --no-merges"
-
-[core]
-	pager = delta
-	editor = nvim
-	fsmonitor = true
-	untrackedCache = true
-
-[delta]
-	plus-style = syntax "#012800"
-	minus-style = normal "#340001"
-	syntax-theme = Monokai Extended
-	# navigate = true
-	# side-by-side = true
-
-[interactive]
-	diffFilter = delta --color-only
 
 [commit]
 	gpgsign = false
@@ -114,6 +53,23 @@
 
 [index]
 	skipHash = false
-[user]
-	name = Trey Wood
-	email = treyw@squareup.com
+
+[feature]
+	manyFiles = true
+
+[delta]
+	plus-style = syntax "#012800"
+	minus-style = normal "#340001"
+	syntax-theme = Monokai Extended
+
+[interactive]
+	diffFilter = delta --color-only
+
+[alias]
+	st = status
+	br = branch
+	f = fetch
+	cma = commit -a -m
+	co = checkout
+	up = !git pull --rebase --autostash && git submodule init && git submodule update
+	l = "log -i -n 10 --format='%C(auto) %>(12,trunc)%aL | %h %s' --abbrev-commit --no-merges"
