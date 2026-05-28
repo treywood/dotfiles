@@ -19,6 +19,7 @@ The bootstrap script will:
 - **zsh/** - Zsh shell configuration and vendored plugins
 - **bat/** - Bat (cat alternative) configuration and themes
 - **starship.toml** - Cross-shell prompt configuration
+- **overlay.ini** - fast-syntax-highlighting overlay theme (symlinked to `~/.config/fsh/overlay.ini`)
 
 ### Dotfiles (symlinked to `~/`)
 - **.gitconfig** - Git configuration and aliases
@@ -41,6 +42,8 @@ The bootstrap script automatically installs:
 - **fd** - Fast find alternative
 - **ripgrep** - Fast grep alternative
 - **starship** - Cross-shell prompt (configured via `starship.toml`)
+- **git-delta** - Syntax-highlighting pager for git diffs (referenced by `.gitconfig`)
+- **jq** / **jqp** - JSON processor and TUI playground (referenced by `zsh/config.zsh`)
 
 ### Fonts (via Homebrew Casks)
 - **Fira Code** - Monospaced font with programming ligatures
@@ -53,6 +56,7 @@ directly in `zsh/config.zsh` — no plugin manager required. Included:
 
 - `zsh-vi-mode` - vi-style modal editing
 - `fast-syntax-highlighting` - syntax highlighting for the command line
+- `fzf-tab` - replace zsh's default completion menu with fzf
 - `zsh-autosuggestions` - fish-style autosuggestions
 - `zsh-history-substring-search` - history search bound to `^P`/`^N`/`^K`/`^J`
 - `zsh-tab-title` - terminal tab title management
@@ -110,11 +114,23 @@ rm -f ~/.gitconfig \
 cp -a ~/.dotfiles-backup-TIMESTAMP/. ~/
 ```
 
+## Managing Neovim Plugins
+
+Neovim plugins are vendored as git submodules under `nvim/pack/vendor/start/`.
+Two helper scripts at the repo root manage them:
+
+- `./add-plugin <author/repo> [sha]` - add a plugin (optionally pinned to a sha)
+- `./remove-plugin <name>` - deinit the submodule and clean up its config
+
+Both print follow-up steps for wiring the plugin into `nvim/lua/config/plugins.lua`.
+
 ## Structure
 
 ```
 dotfiles/
 ├── bootstrap.sh         # Setup script for new machines
+├── add-plugin           # Add a vendored nvim plugin (git submodule)
+├── remove-plugin        # Remove a vendored nvim plugin
 ├── nvim/                # Neovim configuration
 ├── ghostty/             # Ghostty terminal config
 ├── zsh/                 # Zsh configuration
@@ -124,6 +140,7 @@ dotfiles/
 ├── bat/                 # Bat configuration
 ├── claude/              # Claude Code settings + statusline
 ├── starship.toml        # Starship prompt config
+├── overlay.ini          # fast-syntax-highlighting overlay theme
 └── .gitconfig           # Git configuration
 ```
 

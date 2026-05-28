@@ -43,7 +43,8 @@
       "Bash(chmod +x /Users/treyw/Development/dotfiles/add-plugin /Users/treyw/Development/dotfiles/remove-plugin)",
       "Bash(/Users/treyw/Development/dotfiles/add-plugin)",
       "Bash(/Users/treyw/Development/dotfiles/remove-plugin)",
-      "Bash(/Users/treyw/Development/dotfiles/remove-plugin not-a-real-plugin *)"
+      "Bash(/Users/treyw/Development/dotfiles/remove-plugin not-a-real-plugin *)",
+      "Bash(brew info *)"
     ]
   }
 }

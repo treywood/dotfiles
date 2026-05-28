@@ -4,7 +4,7 @@ input=$(cat)
 cwd=$(echo "$input" | jq -r '.cwd // .workspace.current_dir // ""')
 
 RESET='\033[0m'
-CYAN='\033[36m'
+BLUE='\033[34m'
 GREEN='\033[32m'
 YELLOW='\033[33m'
 RED='\033[31m'
@@ -99,4 +99,4 @@ EOF
   fi
 fi
 
-printf '%b\n' "${CYAN}${short_cwd}${RESET}${git_info}"
+printf '%b\n' "${BLUE}${short_cwd}${RESET}${git_info}"
