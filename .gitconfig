@@ -7,13 +7,25 @@
 	editor = nvim
 	fsmonitor = true
 	untrackedCache = true
+	commitGraph = true
+
+[init]
+	defaultBranch = main
 
 [push]
 	default = simple
 	autosetupremote = true
+	followTags = true
 
 [pull]
 	rebase = true
+
+[fetch]
+	prune = true
+	writeCommitGraph = true
+
+[gc]
+	writeCommitGraph = true
 
 [branch]
 	autosetupmerge = true
@@ -32,6 +44,7 @@
 [diff]
 	renames = true
 	indentHeuristic = on
+	algorithm = histogram
 
 [status]
 	showUntrackedFiles = normal
@@ -71,5 +84,5 @@
 	f = fetch
 	cma = commit -a -m
 	co = checkout
-	up = !git pull --rebase --autostash && git submodule init && git submodule update
+	up = !git pull --rebase --autostash && git submodule update --init --recursive
 	l = "log -i -n 10 --format='%C(auto) %>(12,trunc)%aL | %h %s' --abbrev-commit --no-merges"

@@ -1,5 +1,9 @@
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 
+# Cache brew prefix once. `brew --prefix` forks every call (~50–100ms);
+# `brew shellenv` already exports HOMEBREW_PREFIX, so prefer that.
+BREW_PREFIX="${HOMEBREW_PREFIX:-$(brew --prefix)}"
+
 # Plugins are vendored as git submodules under zsh/plugins/.
 # ${0:A:h} = the directory of this sourced file.
 ZSH_PLUGINS="${0:A:h}/plugins"
@@ -35,9 +39,43 @@ function zvm_after_init() {
   bindkey '^@' autosuggest-accept
 
   # Load fzf keybindings after zsh-vi-mode
-  source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+  source "$BREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
 }
 source "$ZSH_PLUGINS/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+
+# Compute a worktree-collection-aware CWD for starship via a chpwd hook so
+# starship doesn't fork a zsh + git rev-parse on every prompt redraw.
+# starship reads $STARSHIP_CWD via [env_var.STARSHIP_CWD] in starship.toml.
+autoload -Uz add-zsh-hook
+_set_starship_cwd() {
+  local gd
+  gd=$(git rev-parse --git-common-dir 2>/dev/null)
+  if [[ -z "$gd" ]]; then
+    STARSHIP_CWD="${PWD/#$HOME/~}"
+  else
+    [[ "$gd" != /* ]] && gd="$PWD/$gd"
+    local collection=${gd:A:h}
+    if [[ "$PWD" == "$collection" ]]; then
+      STARSHIP_CWD="${collection:t}"
+    else
+      STARSHIP_CWD="${collection:t}${PWD#$collection}"
+    fi
+  fi
+  export STARSHIP_CWD
+}
+add-zsh-hook chpwd _set_starship_cwd
+_set_starship_cwd
+
+# Print a blank line before each prompt for visual separation in scrollback.
+# Done via terminal output (not PROMPT) so Square's hermit emoji prefix — which
+# is prepended to PROMPT — stays attached to the prompt line instead of dangling
+# above the blank line. Skipping the first prompt avoids a blank line at the
+# top of a fresh terminal.
+_blank_line_before_prompt() {
+  [[ -n ${_PROMPT_SHOWN-} ]] && print
+  _PROMPT_SHOWN=1
+}
+add-zsh-hook precmd _blank_line_before_prompt
 
 eval "$(starship init zsh)"
 
@@ -53,7 +91,7 @@ zle -N clear-screen _clear-screen-full-redraw
 
 # fzf shell integration
 # Note: key-bindings.zsh is loaded in zvm_after_init() to avoid conflicts with zsh-vi-mode
-source "$(brew --prefix)/opt/fzf/shell/completion.zsh"
+source "$BREW_PREFIX/opt/fzf/shell/completion.zsh"
 
 # fzf configuration
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --info=inline"
@@ -85,7 +123,8 @@ export PATH="$PATH:$HOME/.ghcup/bin"
 
 FPATH="$HOME/.completions:$FPATH"
 
-export DEV_HOME="$HOME/workspace/"
+: "${DEV_HOME:=$HOME/workspace}"
+export DEV_HOME
 function cdp() {
   cd "$DEV_HOME/$1"
 }

@@ -1,6 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """${custom.cwd}\
+format = """${env_var.STARSHIP_CWD}\
 $git_branch$git_status\
 $line_break\
 $character"""
@@ -8,7 +8,7 @@ $character"""
 right_format = """$cmd_duration$jobs$status"""
 
 add_newline = false
-command_timeout = 5000
+command_timeout = 500
 
 palette = "everforest"
 
@@ -27,29 +27,16 @@ gray      = "#859289"
 symbol = " "
 
 [directory]
-# Replaced by [custom.cwd] so worktree-collection roots (android-register/master)
-# can be shown above the worktree root.
+# Replaced by [env_var.STARSHIP_CWD] so worktree-collection roots
+# (android-register/master) can be shown above the worktree root.
 disabled = true
 
-[custom.cwd]
-description = "Path anchored at the worktree-collection root (parent of .git/.bare)"
-when = "true"
-shell = ["zsh", "--no-rcs", "--no-globalrcs"]
-command = '''
-gd=$(git rev-parse --git-common-dir 2>/dev/null)
-if [[ -z "$gd" ]]; then
-    print -rn -- "${PWD/#$HOME/~}"
-else
-    [[ "$gd" != /* ]] && gd="$PWD/$gd"
-    collection=${gd:a:h}
-    if [[ "$PWD" == "$collection" ]]; then
-        print -rn -- "${collection:t}"
-    else
-        print -rn -- "${collection:t}${PWD#$collection}"
-    fi
-fi
-'''
-format = "[$output]($style) "
+# STARSHIP_CWD is computed once per `cd` by a chpwd hook in zsh/config.zsh,
+# instead of forking a zsh + git rev-parse on every prompt.
+[env_var.STARSHIP_CWD]
+variable = "STARSHIP_CWD"
+default = ""
+format = "[$env_value]($style) "
 style = "blue bold"
 
 [git_branch]
@@ -58,6 +45,7 @@ style = "green"
 format = "[on ](gray)[$symbol$branch]($style)"
 
 [git_status]
+ignore_submodules = true
 format = '( [$ahead_behind](green))( [$stashed](green))( [$conflicted](red))( [$staged](yellow))( [$modified](yellow))( [$untracked](green))'
 ahead = "⇡${count}"
 behind = "⇣${count}"

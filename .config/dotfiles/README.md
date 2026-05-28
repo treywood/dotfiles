@@ -94,16 +94,20 @@ For machine-specific configurations that shouldn't be committed:
 ## Backup and Recovery
 
 The bootstrap script automatically backs up existing configurations before
-creating symlinks. Backups are stored in `~/.dotfiles-backup-TIMESTAMP/` and
-include the date and time of the backup.
+creating symlinks. Backups are stored in `~/.dotfiles-backup-TIMESTAMP/`,
+mirroring the original paths under `$HOME` (e.g. `~/.config/nvim` is backed
+up to `~/.dotfiles-backup-TIMESTAMP/.config/nvim`).
 
 To restore a backup:
 ```bash
-# Remove symlinks
-rm ~/.config/nvim ~/.config/ghostty # etc...
+# Remove the dotfiles symlinks first — otherwise cp follows them.
+rm -f ~/.gitconfig \
+      ~/.config/nvim ~/.config/ghostty ~/.config/zsh \
+      ~/.config/bat ~/.config/starship.toml \
+      ~/.claude/settings.json ~/.claude/statusline-command.sh
 
-# Restore from backup
-cp -r ~/.dotfiles-backup-TIMESTAMP/* ~/
+# Copy the backup tree back into $HOME (the /. copies contents, not the dir).
+cp -a ~/.dotfiles-backup-TIMESTAMP/. ~/
 ```
 
 ## Structure

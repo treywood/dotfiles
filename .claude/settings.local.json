@@ -32,7 +32,10 @@
       "Bash(timeout 5 starship prompt --terminal-width=120)",
       "Bash(zsh -i -c 'echo OK; echo \"loaded widgets check:\"; bindkey | grep -E \"history-substring-search-up|autosuggest-accept\" | head -4; echo \"vi-mode active: $ZVM_VERSION\"; echo \"autosuggestions: ${ZSH_AUTOSUGGEST_USE_ASYNC:-\\(default\\)}\"; echo \"starship loaded: $STARSHIP_SHELL\"')",
       "Bash([ -L \"$HOME/.ideavimrc\" ])",
-      "Bash(rm -v __TRACKED_VAR__/.ideavimrc)"
+      "Bash(rm -v __TRACKED_VAR__/.ideavimrc)",
+      "Read(//Users/treyw/**)",
+      "Bash(bash -n bootstrap.sh)",
+      "Bash(zsh -n zsh/config.zsh)"
     ]
   }
 }
