@@ -1,6 +1,5 @@
 # Font
 font-family = "Fira Code Retina"
-# font-family = "FiraCode Nerd Font Ret"
 font-family-bold "Fira Code Bold"
 font-size = 14
 font-feature = +zero
@@ -9,12 +8,6 @@ font-feature = +ss09
 font-feature = +cv14
 font-feature = +cv16
 font-thicken = true
-
-# Codepoint mappings
-font-codepoint-map = U+276F,U+276E,U+21E3,U+21E1=FiraCode Nerd Font Ret
-# Nerd Font icon ranges (powerline, devicons, font-awesome, material design, etc.)
-font-codepoint-map = U+E000-U+F8FF=FiraCode Nerd Font
-font-codepoint-map = U+F0000-U+FFFFD=FiraCode Nerd Font
 
 adjust-cell-height = 2
 # adjust-cell-width = 1
