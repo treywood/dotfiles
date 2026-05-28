@@ -1,0 +1,36 @@
+#!/bin/bash
+set -eu
+
+if [ $# -ne 1 ]; then
+  echo "usage: remove-plugin <name>" >&2
+  exit 1
+fi
+
+name="$1"
+path="nvim/pack/vendor/start/$name"
+
+cd "$(cd "$(dirname "$0")" && pwd)"
+
+if [ ! -d "$path" ]; then
+  echo "error: $path does not exist" >&2
+  echo "available plugins:" >&2
+  ls nvim/pack/vendor/start/ >&2
+  exit 1
+fi
+
+git submodule deinit -f "$path"
+git rm -f "$path"
+rm -rf ".git/modules/$path"
+
+config="nvim/lua/config/plugins/$name.lua"
+if [ -f "$config" ]; then
+  rm "$config"
+  echo "Removed $config"
+fi
+
+echo
+echo "Removed $name"
+echo
+echo "Next steps:"
+echo "  1. remove require('config.plugins.$name') from nvim/lua/config/plugins.lua (if present)"
+echo "  2. git commit"

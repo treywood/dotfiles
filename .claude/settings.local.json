@@ -39,7 +39,11 @@
       "Bash(bash *)",
       "Bash(make)",
       "Bash(nvim --headless +'lua print\\(\"ok\"\\)' +qa)",
-      "Bash(nvim --headless nvim/init.lua +'lua vim.cmd\\(\"messages\"\\)' +'lua require\\(\"telescope\"\\).setup{}; print\\(\"tele ok\"\\)' +'lua require\\(\"gitsigns\"\\); print\\(\"gs ok\"\\)' +'lua require\\(\"nvim-treesitter\"\\); print\\(\"ts ok\"\\)' +'lua require\\(\"lualine\"\\); print\\(\"ll ok\"\\)' +'lua require\\(\"mini.starter\"\\); print\\(\"starter ok\"\\)' +'lua require\\(\"mini.surround\"\\); print\\(\"surround ok\"\\)' +'lua require\\(\"kulala\"\\); print\\(\"kulala ok\"\\)' +'lua require\\(\"sq-connect-repl\"\\); print\\(\"sqcr ok\"\\)' +qa)"
+      "Bash(nvim --headless nvim/init.lua +'lua vim.cmd\\(\"messages\"\\)' +'lua require\\(\"telescope\"\\).setup{}; print\\(\"tele ok\"\\)' +'lua require\\(\"gitsigns\"\\); print\\(\"gs ok\"\\)' +'lua require\\(\"nvim-treesitter\"\\); print\\(\"ts ok\"\\)' +'lua require\\(\"lualine\"\\); print\\(\"ll ok\"\\)' +'lua require\\(\"mini.starter\"\\); print\\(\"starter ok\"\\)' +'lua require\\(\"mini.surround\"\\); print\\(\"surround ok\"\\)' +'lua require\\(\"kulala\"\\); print\\(\"kulala ok\"\\)' +'lua require\\(\"sq-connect-repl\"\\); print\\(\"sqcr ok\"\\)' +qa)",
+      "Bash(chmod +x /Users/treyw/Development/dotfiles/add-plugin /Users/treyw/Development/dotfiles/remove-plugin)",
+      "Bash(/Users/treyw/Development/dotfiles/add-plugin)",
+      "Bash(/Users/treyw/Development/dotfiles/remove-plugin)",
+      "Bash(/Users/treyw/Development/dotfiles/remove-plugin not-a-real-plugin *)"
     ]
   }
 }

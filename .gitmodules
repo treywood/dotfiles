@@ -52,9 +52,6 @@
 [submodule "nvim/pack/vendor/start/plenary.nvim"]
 	path = nvim/pack/vendor/start/plenary.nvim
 	url = git@github.com:nvim-lua/plenary.nvim.git
-[submodule "nvim/pack/vendor/start/sq-connect-repl.nvim"]
-	path = nvim/pack/vendor/start/sq-connect-repl.nvim
-	url = git@github.com:squareup/sq-connect-repl.nvim.git
 [submodule "nvim/pack/vendor/start/telescope-fzf-native.nvim"]
 	path = nvim/pack/vendor/start/telescope-fzf-native.nvim
 	url = git@github.com:nvim-telescope/telescope-fzf-native.nvim.git
