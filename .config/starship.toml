@@ -93,34 +93,3 @@ disabled = false
 style = "red bold"
 symbol = "✖ "
 format = "[$symbol$status]($style)"
-
-[python]
-symbol = "󰌠 "
-style = "yellow"
-format = '[$symbol($virtualenv )]($style)'
-detect_extensions = []
-detect_files = []
-detect_folders = []
-
-[kubernetes]
-disabled = false
-symbol = "⎈ "
-style = "blue"
-format = '[$symbol$context( \($namespace\))]($style) '
-detect_files = ["k8s", "kustomization.yaml", "Chart.yaml"]
-
-[terraform]
-symbol = "💠 "
-style = "magenta"
-format = "[$symbol$workspace]($style) "
-
-[aws]
-symbol = "󰸏 "
-style = "yellow"
-format = '[$symbol($profile )(\($region\) )]($style)'
-
-[gcloud]
-symbol = "☁️ "
-style = "blue"
-format = '[$symbol$account(@$domain)(\($project\))]($style) '
-disabled = false
