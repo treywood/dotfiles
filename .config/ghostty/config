@@ -1,16 +1,13 @@
 # Font
-font-family = "Fira Code Retina"
-font-family-bold "Fira Code Bold"
+font-family = "Fira Code Medium"
 font-size = 14
 font-feature = +zero
 font-feature = +ss03
 font-feature = +ss09
 font-feature = +cv14
 font-feature = +cv16
-font-thicken = true
 
 adjust-cell-height = 2
-# adjust-cell-width = 1
 
 # Cursor
 cursor-color = #d3c6aa
@@ -54,8 +51,5 @@ window-padding-x = 5
 window-padding-y = 0
 macos-titlebar-style = native
 
-# Keybinds
-# Send Ctrl-L on cmd+k so the shell's clear-screen widget runs and redraws the
-# full multi-line prompt (default cmd+k only clears visually without notifying
-# the shell, leaving only the last prompt line visible).
+# Send ctrl-L on cmd+k
 keybind = cmd+k=text:\x0c

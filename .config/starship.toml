@@ -1,6 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """${env_var.STARSHIP_CWD}\
+format = """$directory\
 $git_branch$git_status\
 $line_break\
 $character"""
@@ -27,17 +27,14 @@ gray      = "#859289"
 symbol = " "
 
 [directory]
-# Replaced by [env_var.STARSHIP_CWD] so worktree-collection roots
-# (android-register/master) can be shown above the worktree root.
-disabled = true
-
-# STARSHIP_CWD is computed once per `cd` by a chpwd hook in zsh/config.zsh,
-# instead of forking a zsh + git rev-parse on every prompt.
-[env_var.STARSHIP_CWD]
-variable = "STARSHIP_CWD"
-default = ""
-format = "[$env_value]($style) "
+disabled = false
+truncation_length = 100
+truncate_to_repo = false
 style = "blue bold"
+format = "[$path]($style) "
+
+[directory.substitutions]
+"~/Development/" = ""
 
 [git_branch]
 symbol = " "

@@ -1,6 +1,5 @@
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 
-# Cache brew prefix once. `brew --prefix` forks every call (~50–100ms);
 # `brew shellenv` already exports HOMEBREW_PREFIX, so prefer that.
 BREW_PREFIX="${HOMEBREW_PREFIX:-$(brew --prefix)}"
 
@@ -43,34 +42,6 @@ function zvm_after_init() {
 }
 source "$ZSH_PLUGINS/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
 
-# Compute a worktree-collection-aware CWD for starship via a chpwd hook so
-# starship doesn't fork a zsh + git rev-parse on every prompt redraw.
-# starship reads $STARSHIP_CWD via [env_var.STARSHIP_CWD] in starship.toml.
-autoload -Uz add-zsh-hook
-_set_starship_cwd() {
-  local gd
-  gd=$(git rev-parse --git-common-dir 2>/dev/null)
-  if [[ -z "$gd" ]]; then
-    STARSHIP_CWD="${PWD/#$HOME/~}"
-  else
-    [[ "$gd" != /* ]] && gd="$PWD/$gd"
-    local collection=${gd:A:h}
-    if [[ "$PWD" == "$collection" ]]; then
-      STARSHIP_CWD="${collection:t}"
-    else
-      STARSHIP_CWD="${collection:t}${PWD#$collection}"
-    fi
-  fi
-  export STARSHIP_CWD
-}
-add-zsh-hook chpwd _set_starship_cwd
-_set_starship_cwd
-
-# Print a blank line before each prompt for visual separation in scrollback.
-# Done via terminal output (not PROMPT) so Square's hermit emoji prefix — which
-# is prepended to PROMPT — stays attached to the prompt line instead of dangling
-# above the blank line. Skipping the first prompt avoids a blank line at the
-# top of a fresh terminal.
 _blank_line_before_prompt() {
   [[ -n ${_PROMPT_SHOWN-} ]] && print
   _PROMPT_SHOWN=1
