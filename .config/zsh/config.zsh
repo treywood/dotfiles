@@ -54,9 +54,6 @@ add-zsh-hook precmd _blank_line_before_prompt
 
 eval "$(starship init zsh)"
 
-# Make Ctrl-L (and cmd+k via cmux/ghostty) redraw the FULL multi-line prompt.
-# Default zsh clear-screen widget only redisplays the current edit line, which
-# for starship's two-line prompt means you'd only see `❯` after a clear.
 function _clear-screen-full-redraw() {
     print -n '\e[H\e[2J\e[3J'
     zle reset-prompt
@@ -65,7 +62,6 @@ function _clear-screen-full-redraw() {
 zle -N clear-screen _clear-screen-full-redraw
 
 # fzf shell integration
-# Note: key-bindings.zsh is loaded in zvm_after_init() to avoid conflicts with zsh-vi-mode
 source "$BREW_PREFIX/opt/fzf/shell/completion.zsh"
 
 # fzf configuration
@@ -94,13 +90,7 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:$HOME/.ghcup/bin"
 
-FPATH="$HOME/.completions:$FPATH"
-
-: "${DEV_HOME:=$HOME/workspace}"
-export DEV_HOME
-function cdp() {
-  cd "$DEV_HOME/$1"
-}
+eval "$(zoxide init zsh)"
 
 export CLAUDE_CODE_NO_FLICKER=1
 export MANPAGER="nvim +Man!"

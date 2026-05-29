@@ -153,8 +153,7 @@ dotfiles/
 ├── ghostty/             # Ghostty terminal config
 ├── zsh/                 # Zsh configuration
 │   ├── config.zsh       # Main zsh config file
-│   ├── plugins/         # Vendored plugin submodules
-│   └── _cdp             # cdp completion script
+│   └── plugins/         # Vendored plugin submodules
 ├── bat/                 # Bat configuration
 ├── claude/              # Claude Code settings + statusline
 ├── starship.toml        # Starship prompt config
