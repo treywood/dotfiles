@@ -1,13 +1,13 @@
 .DS_Store
 
-nvim/lua/config/plugins/hidden/
-nvim/lua/config/lazy/local.lua
-nvim/lua/config/local.lua
-nvim/plugin/
+.config/nvim/lua/config/plugins/hidden/
+.config/nvim/lua/config/lazy/local.lua
+.config/nvim/lua/config/local.lua
+.config/nvim/plugin/
 
-kitty/*.session
+.config/kitty/*.session
 
-zsh/*.zwc
+.config/zsh/*.zwc
 
 # Claude Code per-machine permission grants — never share across machines
 **/settings.local.json

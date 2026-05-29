@@ -94,3 +94,12 @@ eval "$(zoxide init zsh)"
 
 export CLAUDE_CODE_NO_FLICKER=1
 export MANPAGER="nvim +Man!"
+
+# Bare-repo dotfiles: ~/.dotfiles is a bare git repo whose work-tree is $HOME.
+# `config` is just git pinned at that repo + work-tree, so e.g.:
+#   config status        # untracked files hidden via status.showUntrackedFiles
+#   config add ~/.zshrc  # track a new file
+config() {
+  git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" "$@"
+}
+compdef config=git

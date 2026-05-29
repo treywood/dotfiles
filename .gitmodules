@@ -1,81 +1,81 @@
-[submodule "zsh/plugins/zsh-autosuggestions"]
-	path = zsh/plugins/zsh-autosuggestions
+[submodule ".config/zsh/plugins/zsh-autosuggestions"]
+	path = .config/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
-[submodule "zsh/plugins/fast-syntax-highlighting"]
-	path = zsh/plugins/fast-syntax-highlighting
+[submodule ".config/zsh/plugins/fast-syntax-highlighting"]
+	path = .config/zsh/plugins/fast-syntax-highlighting
 	url = https://github.com/zdharma-continuum/fast-syntax-highlighting.git
-[submodule "zsh/plugins/zsh-history-substring-search"]
-	path = zsh/plugins/zsh-history-substring-search
+[submodule ".config/zsh/plugins/zsh-history-substring-search"]
+	path = .config/zsh/plugins/zsh-history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search.git
-[submodule "zsh/plugins/zsh-vi-mode"]
-	path = zsh/plugins/zsh-vi-mode
+[submodule ".config/zsh/plugins/zsh-vi-mode"]
+	path = .config/zsh/plugins/zsh-vi-mode
 	url = https://github.com/jeffreytse/zsh-vi-mode.git
-[submodule "zsh/plugins/zsh-tab-title"]
-	path = zsh/plugins/zsh-tab-title
+[submodule ".config/zsh/plugins/zsh-tab-title"]
+	path = .config/zsh/plugins/zsh-tab-title
 	url = https://github.com/trystan2k/zsh-tab-title.git
-[submodule "nvim/pack/vendor/start/everforest"]
-	path = nvim/pack/vendor/start/everforest
+[submodule ".config/nvim/pack/vendor/start/everforest"]
+	path = .config/nvim/pack/vendor/start/everforest
 	url = git@github.com:sainnhe/everforest.git
-[submodule "nvim/pack/vendor/start/gitsigns.nvim"]
-	path = nvim/pack/vendor/start/gitsigns.nvim
+[submodule ".config/nvim/pack/vendor/start/gitsigns.nvim"]
+	path = .config/nvim/pack/vendor/start/gitsigns.nvim
 	url = git@github.com:lewis6991/gitsigns.nvim.git
-[submodule "nvim/pack/vendor/start/kulala.nvim"]
-	path = nvim/pack/vendor/start/kulala.nvim
+[submodule ".config/nvim/pack/vendor/start/kulala.nvim"]
+	path = .config/nvim/pack/vendor/start/kulala.nvim
 	url = git@github.com:mistweaverco/kulala.nvim.git
-[submodule "nvim/pack/vendor/start/lualine.nvim"]
-	path = nvim/pack/vendor/start/lualine.nvim
+[submodule ".config/nvim/pack/vendor/start/lualine.nvim"]
+	path = .config/nvim/pack/vendor/start/lualine.nvim
 	url = git@github.com:nvim-lualine/lualine.nvim.git
-[submodule "nvim/pack/vendor/start/mini.bracketed"]
-	path = nvim/pack/vendor/start/mini.bracketed
+[submodule ".config/nvim/pack/vendor/start/mini.bracketed"]
+	path = .config/nvim/pack/vendor/start/mini.bracketed
 	url = git@github.com:echasnovski/mini.bracketed.git
-[submodule "nvim/pack/vendor/start/mini.pairs"]
-	path = nvim/pack/vendor/start/mini.pairs
+[submodule ".config/nvim/pack/vendor/start/mini.pairs"]
+	path = .config/nvim/pack/vendor/start/mini.pairs
 	url = git@github.com:echasnovski/mini.pairs.git
-[submodule "nvim/pack/vendor/start/mini.starter"]
-	path = nvim/pack/vendor/start/mini.starter
+[submodule ".config/nvim/pack/vendor/start/mini.starter"]
+	path = .config/nvim/pack/vendor/start/mini.starter
 	url = git@github.com:echasnovski/mini.starter.git
-[submodule "nvim/pack/vendor/start/mini.surround"]
-	path = nvim/pack/vendor/start/mini.surround
+[submodule ".config/nvim/pack/vendor/start/mini.surround"]
+	path = .config/nvim/pack/vendor/start/mini.surround
 	url = git@github.com:echasnovski/mini.surround.git
-[submodule "nvim/pack/vendor/start/nvim-treesitter"]
-	path = nvim/pack/vendor/start/nvim-treesitter
+[submodule ".config/nvim/pack/vendor/start/nvim-treesitter"]
+	path = .config/nvim/pack/vendor/start/nvim-treesitter
 	url = git@github.com:nvim-treesitter/nvim-treesitter.git
-[submodule "nvim/pack/vendor/start/nvim-treesitter-context"]
-	path = nvim/pack/vendor/start/nvim-treesitter-context
+[submodule ".config/nvim/pack/vendor/start/nvim-treesitter-context"]
+	path = .config/nvim/pack/vendor/start/nvim-treesitter-context
 	url = git@github.com:romgrk/nvim-treesitter-context.git
-[submodule "nvim/pack/vendor/start/nvim-treesitter-textobjects"]
-	path = nvim/pack/vendor/start/nvim-treesitter-textobjects
+[submodule ".config/nvim/pack/vendor/start/nvim-treesitter-textobjects"]
+	path = .config/nvim/pack/vendor/start/nvim-treesitter-textobjects
 	url = git@github.com:nvim-treesitter/nvim-treesitter-textobjects.git
-[submodule "nvim/pack/vendor/start/nvim-web-devicons"]
-	path = nvim/pack/vendor/start/nvim-web-devicons
+[submodule ".config/nvim/pack/vendor/start/nvim-web-devicons"]
+	path = .config/nvim/pack/vendor/start/nvim-web-devicons
 	url = git@github.com:nvim-tree/nvim-web-devicons.git
-[submodule "nvim/pack/vendor/start/plenary.nvim"]
-	path = nvim/pack/vendor/start/plenary.nvim
+[submodule ".config/nvim/pack/vendor/start/plenary.nvim"]
+	path = .config/nvim/pack/vendor/start/plenary.nvim
 	url = git@github.com:nvim-lua/plenary.nvim.git
-[submodule "nvim/pack/vendor/start/telescope-fzf-native.nvim"]
-	path = nvim/pack/vendor/start/telescope-fzf-native.nvim
+[submodule ".config/nvim/pack/vendor/start/telescope-fzf-native.nvim"]
+	path = .config/nvim/pack/vendor/start/telescope-fzf-native.nvim
 	url = git@github.com:nvim-telescope/telescope-fzf-native.nvim.git
-[submodule "nvim/pack/vendor/start/telescope-live-grep-args.nvim"]
-	path = nvim/pack/vendor/start/telescope-live-grep-args.nvim
+[submodule ".config/nvim/pack/vendor/start/telescope-live-grep-args.nvim"]
+	path = .config/nvim/pack/vendor/start/telescope-live-grep-args.nvim
 	url = git@github.com:nvim-telescope/telescope-live-grep-args.nvim.git
-[submodule "nvim/pack/vendor/start/telescope.nvim"]
-	path = nvim/pack/vendor/start/telescope.nvim
+[submodule ".config/nvim/pack/vendor/start/telescope.nvim"]
+	path = .config/nvim/pack/vendor/start/telescope.nvim
 	url = git@github.com:nvim-telescope/telescope.nvim.git
-[submodule "nvim/pack/vendor/start/vim-addon-local-vimrc"]
-	path = nvim/pack/vendor/start/vim-addon-local-vimrc
+[submodule ".config/nvim/pack/vendor/start/vim-addon-local-vimrc"]
+	path = .config/nvim/pack/vendor/start/vim-addon-local-vimrc
 	url = git@github.com:MarcWeber/vim-addon-local-vimrc.git
-[submodule "nvim/pack/vendor/start/vim-fugitive"]
-	path = nvim/pack/vendor/start/vim-fugitive
+[submodule ".config/nvim/pack/vendor/start/vim-fugitive"]
+	path = .config/nvim/pack/vendor/start/vim-fugitive
 	url = git@github.com:tpope/vim-fugitive.git
-[submodule "nvim/pack/vendor/start/vim-illuminate"]
-	path = nvim/pack/vendor/start/vim-illuminate
+[submodule ".config/nvim/pack/vendor/start/vim-illuminate"]
+	path = .config/nvim/pack/vendor/start/vim-illuminate
 	url = git@github.com:RRethy/vim-illuminate.git
-[submodule "nvim/pack/vendor/start/vim-rhubarb"]
-	path = nvim/pack/vendor/start/vim-rhubarb
+[submodule ".config/nvim/pack/vendor/start/vim-rhubarb"]
+	path = .config/nvim/pack/vendor/start/vim-rhubarb
 	url = git@github.com:tpope/vim-rhubarb.git
-[submodule "nvim/pack/vendor/start/vim-test"]
-	path = nvim/pack/vendor/start/vim-test
+[submodule ".config/nvim/pack/vendor/start/vim-test"]
+	path = .config/nvim/pack/vendor/start/vim-test
 	url = git@github.com:vim-test/vim-test.git
-[submodule "zsh/plugins/fzf-tab"]
-	path = zsh/plugins/fzf-tab
+[submodule ".config/zsh/plugins/fzf-tab"]
+	path = .config/zsh/plugins/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab.git

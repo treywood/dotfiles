@@ -1,3 +1,6 @@
+[include]
+	path = ~/Development/config_files/square/gitconfig
+
 [user]
 	name = Trey Wood
 	email = treyw@squareup.com

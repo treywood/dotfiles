@@ -10,16 +10,18 @@ repo="$1"
 sha="${2:-}"
 name="${repo##*/}"
 name="${name%.git}"
-path="nvim/pack/vendor/start/$name"
+path=".config/nvim/pack/vendor/start/$name"
 
-cd "$(cd "$(dirname "$0")" && pwd)"
+config() { git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" "$@"; }
+
+cd "$HOME"
 
 if [ -d "$path" ]; then
   echo "error: $path already exists" >&2
   exit 1
 fi
 
-git submodule add "git@github.com:${repo}.git" "$path"
+config submodule add "git@github.com:${repo}.git" "$path"
 
 if [ -n "$sha" ]; then
   git -C "$path" fetch --depth 1 origin "$sha"
@@ -27,10 +29,10 @@ if [ -n "$sha" ]; then
 fi
 
 echo
-echo "Added $repo at $path"
+echo "Added $repo at ~/$path"
 [ -f "$path/Makefile" ] && echo "  note: $path/Makefile detected — run make there if the plugin needs a build step"
 echo
 echo "Next steps:"
-echo "  1. create nvim/lua/config/plugins/$name.lua with your setup (skip for pure deps)"
-echo "  2. add require('config.plugins.$name') to nvim/lua/config/plugins.lua"
-echo "  3. git commit"
+echo "  1. create .config/nvim/lua/config/plugins/$name.lua with your setup (skip for pure deps)"
+echo "  2. add require('config.plugins.$name') to .config/nvim/lua/config/plugins.lua"
+echo "  3. config commit"
