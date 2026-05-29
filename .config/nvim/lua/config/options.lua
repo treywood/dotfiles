@@ -14,7 +14,6 @@ vim.o.number = true
 vim.o.showcmd = true
 vim.o.incsearch = true
 vim.o.hlsearch = true
-vim.o.path = os.getenv('PWD') .. '/**'
 vim.o.encoding = 'UTF-8'
 vim.o.completeopt = 'menu,menuone,noselect'
 vim.o.termguicolors = true

@@ -13,7 +13,14 @@ export ZSH_TAB_TITLE_ADDITIONAL_TERMS='kitty'
 source "$ZSH_PLUGINS/zsh-tab-title/zsh-tab-title.plugin.zsh"
 
 # fzf-tab (must load after compinit, before plugins that wrap widgets)
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+# Full compinit (with security audit) only if the dump is missing or >24h old;
+# otherwise skip the audit and reuse the cached dump.
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 source "$ZSH_PLUGINS/fzf-tab/fzf-tab.plugin.zsh"
 
 # zsh-autosuggestions
