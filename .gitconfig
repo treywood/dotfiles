@@ -5,6 +5,19 @@
 	name = Trey Wood
 	email = treyw@squareup.com
 
+[diff]
+  tool = difftastic
+  external = difft
+	renames = true
+	indentHeuristic = on
+	algorithm = histogram
+
+[difftool]
+  prompt = false
+
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+
 [core]
 	pager = delta
 	editor = nvim
@@ -44,11 +57,6 @@
 [rerere]
 	enabled = 1
 
-[diff]
-	renames = true
-	indentHeuristic = on
-	algorithm = histogram
-
 [status]
 	showUntrackedFiles = normal
 
@@ -79,7 +87,7 @@
 	syntax-theme = Monokai Extended
 
 [interactive]
-	diffFilter = delta --color-only
+	diffFilter = difft
 
 [alias]
 	st = status

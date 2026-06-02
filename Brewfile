@@ -4,12 +4,13 @@
 # CLI tools
 brew "neovim"
 brew "bat"
+brew "difftastic"
 brew "fzf"
 brew "fd"
+brew "glow"
 brew "ripgrep"
 brew "zoxide"
 brew "starship"
-brew "git-delta"
 brew "jq"
 brew "jqp"
 brew "shellcheck" # used by hooks/pre-commit
