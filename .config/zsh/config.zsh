@@ -1,7 +1,14 @@
 export GIT_COMPLETION_CHECKOUT_NO_GUESS=1
 
-# `brew shellenv` already exports HOMEBREW_PREFIX, so prefer that.
-BREW_PREFIX="${HOMEBREW_PREFIX:-$(brew --prefix)}"
+# Ensure brew is on PATH and HOMEBREW_PREFIX is set, even if the parent
+# .zshrc skips /etc/zprofile (common with company-managed shells).
+if [[ -z ${HOMEBREW_PREFIX-} ]]; then
+  if [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [[ -x /usr/local/bin/brew ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
+fi
 
 # Plugins are vendored as git submodules under zsh/plugins/.
 # ${0:A:h} = the directory of this sourced file.
@@ -9,17 +16,17 @@ ZSH_PLUGINS="${0:A:h}/plugins"
 
 # zsh-tab-title
 export ZSH_TAB_TITLE_DEFAULT_DISABLE_PREFIX=true
-export ZSH_TAB_TITLE_ADDITIONAL_TERMS='kitty'
+export ZSH_TAB_TITLE_ADDITIONAL_TERMS='ghostty'
 source "$ZSH_PLUGINS/zsh-tab-title/zsh-tab-title.plugin.zsh"
 
 # fzf-tab (must load after compinit, before plugins that wrap widgets)
 autoload -Uz compinit
-# Full compinit (with security audit) only if the dump is missing or >24h old;
-# otherwise skip the audit and reuse the cached dump.
-if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
-  compinit
-else
+# Full compinit (with security audit) on first run or if the dump is >24h old;
+# fast path (skip audit) only when the dump exists and is fresh.
+if [[ -f ~/.zcompdump && -z ~/.zcompdump(#qN.mh+24) ]]; then
   compinit -C
+else
+  compinit
 fi
 source "$ZSH_PLUGINS/fzf-tab/fzf-tab.plugin.zsh"
 
@@ -34,12 +41,16 @@ export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='underline'
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=red,underline'
 source "$ZSH_PLUGINS/zsh-history-substring-search/zsh-history-substring-search.zsh"
 
-# zsh-vi-mode (load last; it wraps other plugins' widgets via its after-init hook)
-export ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
-export ZVM_VI_SURROUND_BINDKEY='s-prefix'
-export ZVM_VI_HIGHLIGHT_BACKGROUND='#503946'
-export ZVM_VI_HIGHLIGHT_FOREGROUND='#d3c6aa'
-export ZVM_READKEY_ENGINE=$ZVM_READKEY_ENGINE_ZLE
+# zsh-vi-mode (load last; it wraps other plugins' widgets via its after-init hook).
+# Settings that reference ZVM_* constants (e.g. $ZVM_MODE_INSERT, $ZVM_READKEY_ENGINE_ZLE)
+# MUST be set inside zvm_config — the constants don't exist until the plugin sources.
+function zvm_config() {
+  ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+  ZVM_READKEY_ENGINE=$ZVM_READKEY_ENGINE_ZLE
+  ZVM_VI_SURROUND_BINDKEY='s-prefix'
+  ZVM_VI_HIGHLIGHT_BACKGROUND='#503946'
+  ZVM_VI_HIGHLIGHT_FOREGROUND='#d3c6aa'
+}
 
 function zvm_after_init() {
   bindkey '^K' history-substring-search-up
@@ -49,15 +60,9 @@ function zvm_after_init() {
   bindkey '^@' autosuggest-accept
 
   # Load fzf keybindings after zsh-vi-mode
-  source "$BREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
+  source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
 }
 source "$ZSH_PLUGINS/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
-
-_blank_line_before_prompt() {
-  [[ -n ${_PROMPT_SHOWN-} ]] && print
-  _PROMPT_SHOWN=1
-}
-add-zsh-hook precmd _blank_line_before_prompt
 
 eval "$(starship init zsh)"
 
@@ -69,7 +74,7 @@ function _clear-screen-full-redraw() {
 zle -N clear-screen _clear-screen-full-redraw
 
 # fzf shell integration
-source "$BREW_PREFIX/opt/fzf/shell/completion.zsh"
+source "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh"
 
 # fzf configuration
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --info=inline"
@@ -92,7 +97,7 @@ export GIT_OPTIONAL_LOCKS=0
 
 export JQ_COLORS="0;35:0;35:0;35:0;39:0;32:0;39:0;39"
 
-export PATH="/usr/local/sbin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:$HOME/.ghcup/bin"

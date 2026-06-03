@@ -11,3 +11,6 @@
 
 # Claude Code per-machine permission grants — never share across machines
 **/settings.local.json
+
+# Machine-local git config overrides (e.g. work email on this machine)
+.gitconfig.local

@@ -7,7 +7,6 @@ $character"""
 
 right_format = """$cmd_duration$jobs$status"""
 
-add_newline = false
 command_timeout = 500
 
 palette = "everforest"

@@ -1,22 +1,8 @@
-[include]
-	path = ~/Development/config_files/square/gitconfig
-
-[user]
-	name = Trey Wood
-	email = treyw@squareup.com
-
 [diff]
-  tool = difftastic
-  external = difft
+	external = difft
 	renames = true
 	indentHeuristic = on
 	algorithm = histogram
-
-[difftool]
-  prompt = false
-
-[difftool "difftastic"]
-  cmd = difft "$LOCAL" "$REMOTE"
 
 [core]
 	pager = delta
@@ -29,8 +15,7 @@
 	defaultBranch = main
 
 [push]
-	default = simple
-	autosetupremote = true
+	autoSetupRemote = true
 	followTags = true
 
 [pull]
@@ -43,11 +28,7 @@
 [gc]
 	writeCommitGraph = true
 
-[branch]
-	autosetupmerge = true
-
 [merge]
-	summary = true
 	conflictstyle = zdiff3
 
 [rebase]
@@ -55,31 +36,10 @@
 	autostash = true
 
 [rerere]
-	enabled = 1
-
-[status]
-	showUntrackedFiles = normal
-
-[log]
-	mailmap = true
+	enabled = true
 
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = auto
-
-[commit]
-	gpgsign = false
-
-[gpg]
-	program = gpg
-
-[index]
-	skipHash = false
-
-[feature]
-	manyFiles = true
+	ui = auto
 
 [delta]
 	plus-style = syntax "#012800"
@@ -87,7 +47,7 @@
 	syntax-theme = Monokai Extended
 
 [interactive]
-	diffFilter = difft
+	diffFilter = delta --color-only
 
 [alias]
 	st = status
@@ -95,5 +55,15 @@
 	f = fetch
 	cma = commit -a -m
 	co = checkout
-	up = !git pull --rebase --autostash && git submodule update --init --recursive
 	l = "log -i -n 10 --format='%C(auto) %>(12,trunc)%aL | %h %s' --abbrev-commit --no-merges"
+
+# Bare-repo safety net: any time git operates on ~/.dotfiles, force fsmonitor
+# and untrackedCache off so we don't index all of $HOME. Defense in depth —
+# the bootstrap also sets these locally on the bare repo.
+[includeIf "gitdir:~/.dotfiles"]
+	path = ~/.config/git/dotfiles-bare
+
+# Machine-local overrides (not tracked). Must be last so it wins.
+# This is also where per-machine includeIfs live (e.g. work gitconfig).
+[include]
+	path = ~/.gitconfig.local
