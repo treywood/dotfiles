@@ -1,4 +1,4 @@
-local parsers = { 'vim', 'lua', 'query', 'python', 'bash', 'http', 'json', 'markdown', 'markdown_inline' }
+local parsers = { 'vim', 'lua', 'query', 'python', 'bash', 'json', 'markdown', 'markdown_inline' }
 
 vim.treesitter.language.register('proto', 'protobuf')
 
@@ -27,10 +27,8 @@ vim.keymap.set({ 'x', 'o' }, 'ik', function() select.select_textobject('@block.i
 
 local move = require('nvim-treesitter-textobjects.move')
 vim.keymap.set({ 'n', 'x', 'o' }, ']f', function() move.goto_next_start('@function.outer', 'textobjects') end)
-vim.keymap.set({ 'n', 'x', 'o' }, ']r', function() move.goto_next_start('@request', 'textobjects') end)
 vim.keymap.set({ 'n', 'x', 'o' }, ']F', function() move.goto_next_end('@function.outer', 'textobjects') end)
 vim.keymap.set({ 'n', 'x', 'o' }, '[f', function() move.goto_previous_start('@function.outer', 'textobjects') end)
-vim.keymap.set({ 'n', 'x', 'o' }, '[r', function() move.goto_previous_start('@request', 'textobjects') end)
 vim.keymap.set({ 'n', 'x', 'o' }, '[F', function() move.goto_previous_end('@function.outer', 'textobjects') end)
 
 require('treesitter-context').setup {

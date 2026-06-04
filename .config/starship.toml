@@ -7,8 +7,6 @@ $character"""
 
 right_format = """$cmd_duration$jobs$status"""
 
-command_timeout = 500
-
 palette = "everforest"
 
 [palettes.everforest]
@@ -33,7 +31,7 @@ style = "blue bold"
 format = "[$path]($style) "
 
 [directory.substitutions]
-"~/Development/" = ""
+"~/Development/" = "dev/"
 
 [git_branch]
 symbol = " "

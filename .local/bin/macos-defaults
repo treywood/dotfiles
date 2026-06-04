@@ -15,10 +15,6 @@
 
 set -euo pipefail
 
-# Ask for admin password upfront and keep alive until script finishes.
-sudo -v
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-
 ###############################################################################
 # Keyboard / input
 ###############################################################################
@@ -93,6 +89,10 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 
 # Disable the "Are you sure you want to open this application?" dialog.
+# NOTE: this turns off Gatekeeper's quarantine attribute for newly downloaded
+# files. Apps from outside the App Store / unsigned binaries will run without
+# the first-launch warning. Acceptable on a single-user developer machine;
+# remove this line if you ever want stock macOS behavior back.
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 ###############################################################################

@@ -38,9 +38,6 @@ $EDITOR ~/.gitconfig.local
 #    config.zsh is your zshrc — point your shell at it however your distro
 #    expects. On corporate-managed machines, source it from the existing rc:
 grep -q 'config.zsh' ~/.zshrc || echo 'source ~/.config/zsh/config.zsh' >> ~/.zshrc
-
-# 7. Apply the fast-syntax-highlighting overlay (one-time; persists in fsh state).
-zsh -ic 'fast-theme XDG:overlay'
 ```
 
 After step 6's shell reload, `config` (the function) is available everywhere.

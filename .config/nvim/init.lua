@@ -11,16 +11,10 @@ require('config.keymaps')
 require('config.autocommands')
 require('config.lsp')
 
-pcall(require, 'config.local')
-
-vim.api.nvim_create_user_command('Kulala', function()
-  require('kulala').scratchpad()
-end, {})
-
-vim.filetype.add {
-  extension = {
-    mmd = 'mermaid',
-    sq = 'sql',
-    sqm = 'sql',
-  },
-}
+-- Optional per-machine override. Silent only when the module is absent —
+-- any other error (syntax, runtime) gets surfaced so a broken local.lua
+-- doesn't disappear.
+local ok, err = pcall(require, 'config.local')
+if not ok and not err:match("^module 'config%.local' not found") then
+  vim.notify('config.local failed to load: ' .. err, vim.log.levels.ERROR)
+end

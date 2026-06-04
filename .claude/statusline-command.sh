@@ -10,7 +10,10 @@ YELLOW='\033[33m'
 RED='\033[31m'
 GREY='\033[90m'
 
-short_cwd="${cwd/#$DEV_HOME}"
+short_cwd="$cwd"
+# DEV_HOME is set per-machine; if unset, skip — bash treats an empty pattern
+# as matching position 0 of every string, which would prefix everything with "dev".
+[ -n "${DEV_HOME:-}" ] && short_cwd="${short_cwd/#$DEV_HOME/dev}"
 short_cwd="${short_cwd/#$HOME/~}"
 short_cwd="${short_cwd#/}"
 

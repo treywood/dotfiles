@@ -40,8 +40,7 @@ hl_links {
   ['@string.special.symbol.ruby'] = 'Orange',
 
   -- go
-  goTSConstBuiltin = '@constant.builtin',
-  goTSProperty = '@field',
+  ['@property.go'] = '@field',
 
   -- yaml
   ['@field.yaml'] = 'Orange',

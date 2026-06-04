@@ -66,13 +66,6 @@ source "$ZSH_PLUGINS/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
 
 eval "$(starship init zsh)"
 
-function _clear-screen-full-redraw() {
-    print -n '\e[H\e[2J\e[3J'
-    zle reset-prompt
-    zle -R
-}
-zle -N clear-screen _clear-screen-full-redraw
-
 # fzf shell integration
 source "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh"
 
@@ -94,6 +87,7 @@ export EDITOR="nvim"
 
 # Prevent prompt-side git calls (starship) from blocking on locks
 export GIT_OPTIONAL_LOCKS=0
+export DFT_DISPLAY=inline
 
 export JQ_COLORS="0;35:0;35:0;35:0;39:0;32:0;39:0;39"
 
@@ -105,13 +99,12 @@ export PATH="$PATH:$HOME/.ghcup/bin"
 eval "$(zoxide init zsh)"
 
 export CLAUDE_CODE_NO_FLICKER=1
-export MANPAGER="nvim +Man!"
 
 # Bare-repo dotfiles: ~/.dotfiles is a bare git repo whose work-tree is $HOME.
 # `config` is just git pinned at that repo + work-tree, so e.g.:
 #   config status        # untracked files hidden via status.showUntrackedFiles
 #   config add ~/.zshrc  # track a new file
 config() {
-  git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" "$@"
+  git -C "$HOME" --git-dir="$HOME/.dotfiles" --work-tree="$HOME" "$@"
 }
 compdef config=git

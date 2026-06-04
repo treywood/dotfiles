@@ -19,9 +19,6 @@
 [submodule ".config/nvim/pack/vendor/start/gitsigns.nvim"]
 	path = .config/nvim/pack/vendor/start/gitsigns.nvim
 	url = git@github.com:lewis6991/gitsigns.nvim.git
-[submodule ".config/nvim/pack/vendor/start/kulala.nvim"]
-	path = .config/nvim/pack/vendor/start/kulala.nvim
-	url = git@github.com:mistweaverco/kulala.nvim.git
 [submodule ".config/nvim/pack/vendor/start/lualine.nvim"]
 	path = .config/nvim/pack/vendor/start/lualine.nvim
 	url = git@github.com:nvim-lualine/lualine.nvim.git
