@@ -78,19 +78,18 @@
 	renames = true
 	indentHeuristic = on
 	algorithm = histogram
+[difftool]
+  prompt = false
 
 [core]
-	pager = delta
+	; pager = delta
 	editor = nvim
 	fsmonitor = true
 	untrackedCache = true
 	commitGraph = true
 
-# Difftastic handles its own pagination based on TTY size; piping its
-# structured output through delta would break the side-by-side rendering.
-# `git log -p` / `git show` still produce unified diffs that delta pages.
 [pager]
-	diff = false
+	difftool = true
 
 [init]
 	defaultBranch = main

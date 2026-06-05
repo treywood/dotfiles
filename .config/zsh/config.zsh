@@ -87,7 +87,6 @@ export EDITOR="nvim"
 
 # Prevent prompt-side git calls (starship) from blocking on locks
 export GIT_OPTIONAL_LOCKS=0
-export DFT_DISPLAY=inline
 
 export JQ_COLORS="0;35:0;35:0;35:0;39:0;32:0;39:0;39"
 
