@@ -1,13 +1,15 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """$directory\
-$git_branch$git_status\
+$git_branch $git_metrics\
 $line_break\
 $character"""
 
 right_format = """$cmd_duration$jobs$status"""
 
 palette = "everforest"
+
+command_timeout = 1000
 
 [palettes.everforest]
 bg        = "#2b3339"
@@ -38,21 +40,8 @@ symbol = " "
 style = "green"
 format = "[on ](gray)[$symbol$branch]($style)"
 
-[git_status]
-ignore_submodules = true
-format = '( [$ahead_behind](green))( [$stashed](green))( [$conflicted](red))( [$staged](yellow))( [$modified](yellow))( [$untracked](green))'
-ahead = "⇡${count}"
-behind = "⇣${count}"
-diverged = "⇣${behind_count}⇡${ahead_count}"
-stashed = "*${count}"
-conflicted = "~${count}"
-staged = "+${count}"
-modified = "!${count}"
-untracked = "?${count}"
-up_to_date = ""
-deleted = ""
-renamed = ""
-typechanged = ""
+[git_metrics]
+disabled = false
 
 [character]
 success_symbol = "[❯](green bold)"
