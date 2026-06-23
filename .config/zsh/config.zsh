@@ -61,6 +61,7 @@ function zvm_after_init() {
 
   # Load fzf keybindings after zsh-vi-mode
   source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
+  bindkey -r '\ec'   # disable Alt-C / Esc-c fzf-cd-widget
 }
 source "$ZSH_PLUGINS/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
 
@@ -73,7 +74,6 @@ source "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh"
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --info=inline"
 export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}' --preview-window=right:60%"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:wrap"
-export FZF_ALT_C_OPTS="--preview 'ls -la {}' --preview-window=right:60%"
 
 # Use fd if available for faster file/directory searching
 if command -v fd &> /dev/null; then
