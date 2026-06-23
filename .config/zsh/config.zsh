@@ -82,6 +82,9 @@ if command -v fd &> /dev/null; then
   export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
 fi
 
+# Don't highlight pasted text (zsh defaults the `paste` context to standout).
+zle_highlight=('paste:none')
+
 export GPG_TTY=$(tty)
 export EDITOR="nvim"
 
