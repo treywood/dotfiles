@@ -74,10 +74,10 @@
 [init]
 	defaultBranch = main
 [diff]
-	external = difft
 	renames = true
 	indentHeuristic = on
 	algorithm = histogram
+	external = difft
 [difftool]
   prompt = false
 
@@ -143,10 +143,11 @@
 [includeIf "gitdir:~/.dotfiles"]
 	path = ~/.config/git/dotfiles-bare
 
+[user]
+	name = Trey Wood
+	email = edwinjwood3rd@gmail.com
+
 # Machine-local overrides (not tracked). Must be last so it wins.
 # This is also where per-machine includeIfs live (e.g. work gitconfig).
 [include]
 	path = ~/.gitconfig.local
-[user]
-	name = Trey Wood
-	email = edwinjwood3rd@gmail.com
