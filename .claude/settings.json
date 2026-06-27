@@ -2,6 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(sq *)"
+    ],
+    "deny": [
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git revert:*)",
+      "Bash(gt submit:*)",
+      "Bash(gt create:*)",
+      "Bash(gt modify:*)"
     ]
   },
   "statusLine": {
