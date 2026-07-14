@@ -12,6 +12,7 @@
       "Bash(gt modify:*)"
     ]
   },
+  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
@@ -24,7 +25,8 @@
     "lua-lsp@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true,
+  "autoCompactWindow": 300000,
   "tui": "fullscreen",
-  "editorMode": "vim",
-  "model": "opus[1m]"
+  "skipWorkflowUsageWarning": true,
+  "editorMode": "vim"
 }

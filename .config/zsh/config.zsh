@@ -91,7 +91,14 @@ export EDITOR="nvim"
 # Prevent prompt-side git calls (starship) from blocking on locks
 export GIT_OPTIONAL_LOCKS=0
 
-export JQ_COLORS="0;35:0;35:0;35:0;39:0;32:0;39:0;39"
+export JQ_COLORS="0;35"             # null
+export JQ_COLORS="$JQ_COLORS:0;35"  # false
+export JQ_COLORS="$JQ_COLORS:0;35"  # true
+export JQ_COLORS="$JQ_COLORS:0;35"  # numbers
+export JQ_COLORS="$JQ_COLORS:0;32"  # strings
+export JQ_COLORS="$JQ_COLORS:0;39"  # arrays
+export JQ_COLORS="$JQ_COLORS:0;39" # objects
+export JQ_COLORS="$JQ_COLORS:38;5;248" # object keys
 
 export PATH="$HOME/.local/bin:$PATH"
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env

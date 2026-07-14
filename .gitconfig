@@ -77,12 +77,11 @@
 	renames = true
 	indentHeuristic = on
 	algorithm = histogram
-	external = difft
 [difftool]
   prompt = false
 
 [core]
-	; pager = delta
+	pager = delta
 	editor = nvim
 	fsmonitor = true
 	untrackedCache = true
