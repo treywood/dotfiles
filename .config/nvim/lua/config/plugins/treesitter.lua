@@ -2,6 +2,37 @@ local parsers = { 'vim', 'lua', 'query', 'python', 'bash', 'json', 'markdown', '
 
 vim.treesitter.language.register('proto', 'protobuf')
 
+-- (#heredoc-lang! @tag ["fallback"]) -- resolve a heredoc tag to a parser name.
+--
+-- Used by queries/dockerfile/injections.scm so `RUN ruby -e <<ruby` highlights
+-- its body as ruby. The dockerfile grammar parses the heredoc body into a
+-- separate heredoc_block sibling rather than leaving it inside the shell
+-- fragment, so the injected bash tree never sees a heredoc_body and bash's own
+-- tag-based injection can't fire -- the language has to be picked here instead.
+--
+-- Mirrors nvim's own resolve_lang: normalize, try the parser name, then the
+-- filetype->parser registry. Unresolvable tags (EOF, END) use the fallback, or
+-- inject nothing when none is given.
+local function has_parser(lang)
+  return vim._ts_has_language(lang) or #vim.api.nvim_get_runtime_file('parser/' .. lang .. '.*', false) > 0
+end
+
+local function resolve_heredoc_lang(tag)
+  local alias = tag:gsub('%s+', ''):lower():gsub('%-', '_')
+  if alias:match('[%w_]+') ~= alias then return nil end
+  if has_parser(alias) then return alias end
+  local lang = vim.treesitter.language.get_lang(alias)
+  if lang and has_parser(lang) then return lang end
+  return nil
+end
+
+vim.treesitter.query.add_directive('heredoc-lang!', function(match, _, bufnr, pred, metadata)
+  local nodes = match[pred[2]]
+  local node = type(nodes) == 'table' and nodes[1] or nodes
+  if not node then return end
+  metadata['injection.language'] = resolve_heredoc_lang(vim.treesitter.get_node_text(node, bufnr) or '') or pred[3]
+end, { force = true })
+
 local treesitter = require('nvim-treesitter')
 treesitter.setup()
 treesitter.install(parsers)
