@@ -76,3 +76,6 @@
 [submodule ".config/zsh/plugins/fzf-tab"]
 	path = .config/zsh/plugins/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab.git
+[submodule ".config/nvim/pack/vendor/start/diffs.nvim"]
+	path = .config/nvim/pack/vendor/start/diffs.nvim
+	url = git@github.com:barrettruth/diffs.nvim

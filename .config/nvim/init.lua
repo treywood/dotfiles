@@ -3,8 +3,6 @@ for _, plugin in ipairs({ 'gzip', 'netrwPlugin', 'matchit', 'matchparen', 'tarPl
   vim.g['loaded_' .. plugin] = 1
 end
 
-vim.cmd('packloadall')
-
 require('config.options')
 require('config.plugins')
 require('config.keymaps')

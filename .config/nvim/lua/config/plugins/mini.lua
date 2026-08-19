@@ -11,6 +11,8 @@ starter.setup {
   },
 }
 
+-- mini.diff is set up in config.plugins.mini-diff: it is scoped to raw diffs
+-- and carries enough machinery to warrant its own file.
 require('mini.bracketed').setup { comment = { suffix = 'm' } }
 require('mini.pairs').setup()
 require('mini.surround').setup()
