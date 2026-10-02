@@ -88,6 +88,11 @@ zle_highlight=('paste:none')
 export GPG_TTY=$(tty)
 export EDITOR="nvim"
 
+autoload -Uz edit-command-line
+zle -N edit-command-line
+
+bindkey '^X^E' edit-command-line
+
 # Prevent prompt-side git calls (starship) from blocking on locks
 export GIT_OPTIONAL_LOCKS=0
 

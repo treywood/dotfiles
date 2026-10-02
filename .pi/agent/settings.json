@@ -1,0 +1,18 @@
+{
+  "lastChangelogVersion": "0.99.1",
+  "theme": "everforest",
+  "defaultProvider": "databricks",
+  "defaultModel": "databricks-glm-5-3-flash",
+  "defaultThinkingLevel": "medium",
+  "extensions": [
+    "~/.pi/extensions/oncall-sidebar.ts"
+  ],
+  "warnings": {
+    "anthropicExtraUsage": false
+  },
+  "packages": [
+    "ssh://org-49461806@github.com/squareup/pi-extensions.git",
+    "https://github.com/yeliu84/pi-model-router"
+  ],
+  "hideThinkingBlock": true
+}

@@ -86,6 +86,7 @@
 	fsmonitor = true
 	untrackedCache = true
 	commitGraph = true
+	hooksPath = /Users/treyw/.local/libexec/lhm/hooks
 
 [pager]
 	difftool = true

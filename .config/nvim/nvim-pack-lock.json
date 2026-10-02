@@ -1,7 +1,7 @@
 {
   "plugins": {
     "blox.nvim": {
-      "rev": "0bce99319dedda26a10e16fe1c02676ff49eb804",
+      "rev": "15be0c26e7f4a051f2a28a879a4d1875358ce4b8",
       "src": "file:///Users/treyw/Development/blox.nvim"
     },
     "diffs.nvim": {
