@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.99.1",
+  "lastChangelogVersion": "1.3.0",
   "theme": "everforest",
   "defaultProvider": "databricks",
   "defaultModel": "databricks-glm-5-3-flash",
@@ -12,7 +12,9 @@
   },
   "packages": [
     "ssh://org-49461806@github.com/squareup/pi-extensions.git",
-    "https://github.com/yeliu84/pi-model-router"
+    "https://github.com/yeliu84/pi-model-router",
+    "npm:pi-fullscreen",
+    "npm:pi-vimmode"
   ],
   "hideThinkingBlock": true
 }

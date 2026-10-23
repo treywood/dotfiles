@@ -113,6 +113,8 @@ export PATH="$PATH:$HOME/.ghcup/bin"
 eval "$(zoxide init zsh)"
 
 export CLAUDE_CODE_NO_FLICKER=1
+export CMUX_PI_HOOKS_DISABLED=1
+export PI_SKIP_VERSION_CHECK=1
 
 # Bare-repo dotfiles: ~/.dotfiles is a bare git repo whose work-tree is $HOME.
 # `config` is just git pinned at that repo + work-tree, so e.g.:
