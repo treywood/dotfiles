@@ -19,6 +19,15 @@ export ZSH_TAB_TITLE_DEFAULT_DISABLE_PREFIX=true
 export ZSH_TAB_TITLE_ADDITIONAL_TERMS='ghostty'
 source "$ZSH_PLUGINS/zsh-tab-title/zsh-tab-title.plugin.zsh"
 
+# When SSH'd into a Blox workstation ($BLOX_WORKSTATION_NAME is set there),
+# override the tab title with the workstation name. Runs after the plugin's
+# precmd hook (hooks fire in registration order), so it wins.
+function _blox_tab_title() {
+  [[ -z "$BLOX_WORKSTATION_NAME" ]] && return
+  title "$BLOX_WORKSTATION_NAME: ${PWD##*/}" "blox:$BLOX_WORKSTATION_NAME %~"
+}
+add-zsh-hook precmd _blox_tab_title
+
 # fzf-tab (must load after compinit, before plugins that wrap widgets)
 autoload -Uz compinit
 # Full compinit (with security audit) on first run or if the dump is >24h old;
